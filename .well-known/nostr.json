@@ -1,0 +1,14 @@
+{
+  "names": {
+    "zaplamp": "9a470d841f9aa3f87891cd76a2e14a3441d015dbd8fc2b270b5ac8a9d9566e85"
+  },
+  "relays": {
+    "9a470d841f9aa3f87891cd76a2e14a3441d015dbd8fc2b270b5ac8a9d9566e85": [
+      "wss://nostr.sebastix.dev",
+      "wss://nos.lol",
+      "wss://relay.damus.io",
+      "wss://relay.nostr.band",
+      "wss://purplepag.es"
+    ]
+  }
+}
