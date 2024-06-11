@@ -5,7 +5,7 @@ image: php:8.3-alpine
 variables:
   DRUPAL_PROJECTROOT: "/var/www/nostrver.se"
   URL: "https://nostrver.se"
-  SSH_LOGIN: "ssh -T sebastix@nostrver.se"
+  SSH_LOGIN: "ssh -T -p 1986 sebastix@nostrver.se"
   SSH_USER: "sebastix"
   SSH_HOST: "nostrver.se"
   # Production
@@ -77,8 +77,8 @@ deploy:prd:
   script:
     - ls -la
     - $SSH_LOGIN "cd $DRUPAL_PROJECTROOT && ls -la"
-    - rsync -avz -e ssh composer.json $SSH_USER@$SSH_HOST:$DRUPAL_PROJECTROOT
-    - rsync -avz -e ssh composer.lock $SSH_USER@$SSH_HOST:$DRUPAL_PROJECTROOT
+    - rsync -avz -e ssh -p 1986 composer.json $SSH_USER@$SSH_HOST:$DRUPAL_PROJECTROOT
+    - rsync -avz -e ssh -p 1986 composer.lock $SSH_USER@$SSH_HOST:$DRUPAL_PROJECTROOT
     - rsync -avz --delete --exclude-from='gitlab-ci/rsync-excludes.txt' -e ssh ./config $SSH_USER@$SSH_HOST:$DRUPAL_PROJECTROOT
     - rsync -avz --delete --exclude-from='gitlab-ci/rsync-excludes.txt' -e ssh ./vendor $SSH_USER@$SSH_HOST:$DRUPAL_PROJECTROOT
     - rsync -avz --delete --exclude-from='gitlab-ci/rsync-excludes.txt' -e ssh ./web $SSH_USER@$SSH_HOST:$DRUPAL_PROJECTROOT
