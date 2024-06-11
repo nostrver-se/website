@@ -5,7 +5,7 @@ image: php:8.3-alpine
 variables:
   DRUPAL_PROJECTROOT: "/var/www/nostrver.se"
   URL: "https://nostrver.se"
-  SSH_LOGIN: "ssh -T sebastix@nostver.se"
+  SSH_LOGIN: "ssh -T sebastix@nostrver.se"
   SSH_USER: "sebastix"
   SSH_HOST: "nostrver.se"
   # Production
