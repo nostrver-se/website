@@ -1,6 +1,6 @@
 # nostrver.se
 
-Drupal website for https:/nostrver.se.
+Drupal website for https://nostrver.se.
 
 ## Docker
 
