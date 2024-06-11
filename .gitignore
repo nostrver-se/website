@@ -71,5 +71,6 @@
 /web/README.md
 /nostr
 /web/libraries/*
-/docker/
+/docker/ssh/config
+/docker/drupal/settings.local.php
 *.sql
