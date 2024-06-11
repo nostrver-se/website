@@ -1,0 +1,35 @@
+uuid: 300a8d0e-f876-4189-bbad-82ee920c6a91
+langcode: en
+status: true
+dependencies:
+  module:
+    - markdown_easy
+_core:
+  default_config_hash: hOzFi9tpt75xjrwYK7w7LF3D364chVM7lRDqdcyg98g
+name: Markdown
+format: markdown
+weight: 0
+filters:
+  filter_autop:
+    id: filter_autop
+    provider: filter
+    status: true
+    weight: -45
+    settings: {  }
+  filter_html:
+    id: filter_html
+    provider: filter
+    status: true
+    weight: -49
+    settings:
+      allowed_html: '<br> <p> <h2 id="jump-*"> <h3 id> <h4 id> <h5 id> <h6 id> <cite> <dl> <dt> <dd> <a hreflang href> <blockquote cite> <ul type> <ol type="1 A I" start> <strong> <em> <u> <code> <li> <hr> <img src alt height width data-entity-uuid data-entity-type>'
+      filter_html_help: true
+      filter_html_nofollow: false
+  markdown_easy:
+    id: markdown_easy
+    provider: markdown_easy
+    status: true
+    weight: -50
+    settings:
+      flavor: standard
+      tips: ''

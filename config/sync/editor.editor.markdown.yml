@@ -1,0 +1,66 @@
+uuid: 6fd7e38b-c581-4a53-9416-d3b0d7aada1b
+langcode: en
+status: true
+dependencies:
+  config:
+    - filter.format.markdown
+  module:
+    - ckeditor5
+format: markdown
+editor: ckeditor5
+settings:
+  toolbar:
+    items:
+      - heading
+      - bold
+      - italic
+      - underline
+      - link
+      - blockQuote
+      - code
+      - bulletedList
+      - numberedList
+      - drupalInsertImage
+      - horizontalLine
+      - removeFormat
+      - sourceEditing
+  plugins:
+    ckeditor5_heading:
+      enabled_headings:
+        - heading2
+        - heading3
+        - heading4
+        - heading5
+        - heading6
+    ckeditor5_imageResize:
+      allow_resize: true
+    ckeditor5_list:
+      properties:
+        reversed: false
+        startIndex: true
+      multiBlock: true
+    ckeditor5_markdown_editor_markdown_gfm:
+      markdown_output: true
+    ckeditor5_sourceEditing:
+      allowed_tags:
+        - '<cite>'
+        - '<dl>'
+        - '<dt>'
+        - '<dd>'
+        - '<a hreflang>'
+        - '<blockquote cite>'
+        - '<ul type>'
+        - '<ol type="1 A I">'
+        - '<h2 id="jump-*">'
+        - '<h3 id>'
+        - '<h4 id>'
+        - '<h5 id>'
+        - '<h6 id>'
+image_upload:
+  status: true
+  scheme: public
+  directory: inline-images
+  max_size: ''
+  max_dimensions:
+    width: 0
+    height: 0

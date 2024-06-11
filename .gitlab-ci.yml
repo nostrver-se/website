@@ -1,0 +1,101 @@
+image: php:8.3-alpine
+
+# Preparation:
+# Save $SSH_PRIVATE_KEY first in GitLab CI variables.
+variables:
+  DRUPAL_PROJECTROOT: "/var/www/nostrver.se"
+  URL: "https://nostrver.se"
+  SSH_LOGIN: "ssh -T sebastix@nostver.se"
+  SSH_USER: "sebastix"
+  SSH_HOST: "nostrver.se"
+  # Production
+#  DRUPAL_PROJECTROOT_PROD: "/var/www/vhosts/[domain]/domains/[domain]"
+#  URL_PROD: "https://[domain]"
+#  SSH_LOGIN_PROD: "ssh -T [username]@[domain]"
+#  SSH_USER_PROD: "[username]"
+#  SSH_HOST_PROD: "[domain]"
+
+workflow:
+  rules:
+    # Pipelines do not run when branchname starts with ^aupdt_
+    - if: $CI_COMMIT_BRANCH =~ /^aupdt_/
+      when: never
+    - when: always
+
+stages:
+  - build
+  - deploy
+
+before_script:
+  - 'which ssh-agent || ( apk add --update openssh )'
+  - apk add --update bash
+  - eval $(ssh-agent -s)
+  - echo "$SSH_PRIVATE_KEY_TINYPC" | ssh-add -
+  - mkdir -p ~/.ssh
+  - chmod 700 ~/.ssh
+  - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+  # Install rsync
+  - apk add rsync
+  # Install curl
+  - apk add curl
+  # Install git
+  - apk add git
+  # Install patch
+  - apk add patch
+  # Install composer
+  - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
+  - alias composer='php /usr/bin/composer'
+  - composer --version
+  # install php extensions
+  # - see https://github.com/mlocati/docker-php-extension-installer
+  - curl -sSLf -o /usr/bin/install-php-extensions https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions
+  - chmod +x /usr/bin/install-php-extensions
+  - install-php-extensions gd gmp
+
+build:drupal:
+  stage: build
+  script:
+    - composer install --no-dev --prefer-dist --optimize-autoloader
+  artifacts:
+    expire_in: 4 hours
+    paths:
+      - web
+      - vendor
+
+deploy:prd:
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "develop"'
+      when: always
+    - if: '$CI_COMMIT_BRANCH == "master" || $CI_COMMIT_BRANCH == "main"'
+      when: manual
+  stage: deploy
+  dependencies:
+    - build:drupal
+  environment:
+    name: prd
+    url: $URL
+  script:
+    - ls -la
+    - $SSH_LOGIN "cd $DRUPAL_PROJECTROOT && ls -la"
+    - rsync -avz -e ssh composer.json $SSH_USER@$SSH_HOST:$DRUPAL_PROJECTROOT
+    - rsync -avz -e ssh composer.lock $SSH_USER@$SSH_HOST:$DRUPAL_PROJECTROOT
+    - rsync -avz --delete --exclude-from='gitlab-ci/rsync-excludes.txt' -e ssh ./config $SSH_USER@$SSH_HOST:$DRUPAL_PROJECTROOT
+    - rsync -avz --delete --exclude-from='gitlab-ci/rsync-excludes.txt' -e ssh ./vendor $SSH_USER@$SSH_HOST:$DRUPAL_PROJECTROOT
+    - rsync -avz --delete --exclude-from='gitlab-ci/rsync-excludes.txt' -e ssh ./web $SSH_USER@$SSH_HOST:$DRUPAL_PROJECTROOT
+    - $SSH_LOGIN "chown -R sebastix:www-data $DRUPAL_PROJECTROOT"
+    #- $SSH_LOGIN "cd $DRUPAL_PROJECTROOT && composer install --optimize-autoloader --no-dev --prefer-dist"
+    #- $SSH_LOGIN "cd $DRUPAL_PROJECTROOT && ls -la"
+    # New site install
+    #- $SSH_LOGIN "drush si -y"
+    # Existing site: updates must be run before configuration is imported
+    - $SSH_LOGIN "cd $DRUPAL_PROJECTROOT && vendor/bin/drush updatedb -y --no-cache-clear"
+    - $SSH_LOGIN "cd $DRUPAL_PROJECTROOT && vendor/bin/drush cache-rebuild -y"
+    - $SSH_LOGIN "cd $DRUPAL_PROJECTROOT && vendor/bin/drush config-import -y"
+    - $SSH_LOGIN "cd $DRUPAL_PROJECTROOT && vendor/bin/drush ckeditor5_markdown_editor:install"
+    # When module locale is enabled:
+    #- $SSH_LOGIN "cd $DRUPAL_PROJECTROOT && vendor/bin/drush locale:check"
+    #- $SSH_LOGIN "cd $DRUPAL_PROJECTROOT && vendor/bin/drush locale:update"
+    - $SSH_LOGIN "cd $DRUPAL_PROJECTROOT && vendor/bin/drush core-cron"
+    - $SSH_LOGIN "cd $DRUPAL_PROJECTROOT && vendor/bin/drush cache-rebuild -y"
+    - $SSH_LOGIN "cd $DRUPAL_PROJECTROOT && vendor/bin/drush deploy:hook"
+    - echo "Deployment ready, check $URL"

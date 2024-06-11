@@ -1,0 +1,22 @@
+uuid: 9311b6b1-e5ed-4865-a68e-2a04cb84a897
+langcode: en
+status: true
+dependencies: {  }
+id: dev
+label: Development
+description: ''
+weight: 0
+stackable: false
+no_patching: false
+storage: folder
+folder: ../config/dev
+module:
+  devel: 0
+  tracer: 0
+  twig_xdebug: 0
+  webprofiler: 0
+theme: {  }
+complete_list:
+  - advagg.settings
+  - system.logging
+partial_list: {  }

@@ -1,0 +1,19 @@
+uuid: bf5be0d8-f40a-4e11-b565-04f27ef1aeb6
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: a9CQJD6BDd9A0X_Dk-twIwmaNx23CvHrr1yMi1CZutM
+id: tasks
+label: 'Local Tasks'
+type: tasks
+dialog_group: administrative
+dialog_type: modal
+dialog_width: '550'
+selection_criteria:
+  routes:
+    - dblog.clear_logs
+    - user.role.settings
+    - entity.shortcut_set.edit_form
+    - update.settings
+    - entity.node.delete_form

@@ -1,0 +1,19 @@
+uuid: e9886b15-2149-44b1-962d-de50fa708f14
+langcode: en
+status: false
+dependencies: {  }
+id: production
+label: Production
+description: ''
+weight: 0
+stackable: false
+no_patching: false
+storage: folder
+folder: ../config/production
+module:
+  raven: 0
+theme: {  }
+complete_list:
+  - advagg.settings
+  - system.logging
+partial_list: {  }

@@ -1,0 +1,17 @@
+uuid: 811ca1aa-d6f6-4655-9535-4aeb9e4991ab
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: Note
+type: note
+description: ''
+help: ''
+new_revision: true
+preview_mode: 0
+display_submitted: false

@@ -1,0 +1,43 @@
+# Access via "http://localhost"
+# (or "http://$(docker-machine ip):8080" if using docker-machine)
+
+services:
+
+  nostrverse_drupal:
+    image: sebastix/drupal:10-php83-apache
+    hostname: nostrverse_drupal
+    container_name: nostrverse_drupal
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ../:/var/www:cached
+      - ../config:/var/www/config:consistent
+      - ./php/custom.ini:/usr/local/etc/php/conf.d/custom.ini
+      - ./drupal/settings.local.php:/var/www/web/sites/default/settings.local.php
+      - ./drupal/development.services.yml:/var/www/web/sites/development.services.yml
+      - ./ssh/config:/root/.ssh/config
+    environment:
+      APACHE_DOCUMENT_ROOT: /var/www/web
+      XDEBUG_SESSION: PHPSTORM
+      PHP_IDE_CONFIG: "serverName=localhost"
+    working_dir: /var/www
+    secrets:
+      - tinypc_ssh_key
+      - prod_ssh_key
+
+  nostrverse_db:
+    image: mariadb:10.11
+    hostname: nostrverse_db
+    container_name: nostrverse_db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: nostrverse_drupal
+    ports:
+      - 32768:3306
+
+secrets:
+  tinypc_ssh_key:
+    file: ~/.ssh/id_ed25519_tinypc
+  prod_ssh_key:
+    file: ~/.ssh/id_srv01webrtb

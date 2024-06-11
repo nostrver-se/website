@@ -1,0 +1,18 @@
+uuid: 4fdb6748-40d8-4817-b6d0-6b92092cb593
+langcode: en
+status: true
+dependencies:
+  module:
+    - file
+    - search
+    - system
+_core:
+  default_config_hash: cFrlqjtkTfvY3RGccjJkPf1SGIfJ942IrxTLWAO4mgA
+id: authenticated
+label: 'Authenticated user'
+weight: 1
+is_admin: false
+permissions:
+  - 'access content'
+  - 'delete own files'
+  - 'search content'

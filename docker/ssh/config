@@ -1,0 +1,15 @@
+Host *
+StrictHostKeyChecking no
+
+Host nostrver.se
+  PreferredAuthentications publickey
+  User sebastix
+  AddKeysToAgent yes
+  IdentityFile /run/secrets/tinypc_ssh_key
+  Port 1986
+
+#Host ximo1.ximology.com
+#  PreferredAuthentications publickey
+#  User sebastix
+#  AddKeysToAgent yes
+#  IdentityFile /run/secrets/prod_ssh_key

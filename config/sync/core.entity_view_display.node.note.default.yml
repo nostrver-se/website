@@ -1,0 +1,28 @@
+uuid: 06b3f323-84dd-4d2d-8764-e736317c24f9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.note.body
+    - node.type.note
+  module:
+    - text
+    - user
+id: node.note.default
+targetEntityType: node
+bundle: note
+mode: default
+content:
+  body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden: {  }

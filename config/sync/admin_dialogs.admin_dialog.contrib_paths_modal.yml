@@ -1,0 +1,15 @@
+uuid: fcfe3fa9-ce6a-40e9-a640-e3cdc570a928
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: l8bxr1_LhDhYTt58W6QGxx7WofD1v_iZTTfeol2ufSI
+id: contrib_paths_modal
+label: 'Paths (Modal)'
+type: paths
+dialog_group: contrib_modules
+dialog_type: modal
+dialog_width: '550'
+selection_criteria:
+  paths:
+    - '*/admin/config/content/paragraphs*'

@@ -1,0 +1,5 @@
+name: 'DRPL custom'
+type: module
+description: 'Custom stuff'
+package: Custom
+core_version_requirement: ^10

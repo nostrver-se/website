@@ -1,0 +1,16 @@
+uuid: 44054aae-bd2c-496e-99ca-e9fa3758f9ce
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: 9ipPs094L_emggPtq1jhnZpRwzPaNMAwweRFi-vg-MA
+id: redirect_delete
+label: 'Redirect Delete'
+type: ops
+dialog_group: contrib_modules
+dialog_type: modal
+dialog_width: '750'
+selection_criteria:
+  entity_type: redirect
+  bundles: {  }
+  key: delete
