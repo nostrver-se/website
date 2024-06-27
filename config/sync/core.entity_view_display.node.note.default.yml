@@ -3,22 +3,21 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.note.body
+    - field.field.node.note.field_nostr_note
     - node.type.note
   module:
-    - text
     - user
 id: node.note.default
 targetEntityType: node
 bundle: note
 mode: default
 content:
-  body:
-    type: text_default
-    label: hidden
+  field_nostr_note:
+    type: basic_string
+    label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 101
+    weight: 102
     region: content
   links:
     settings: {  }

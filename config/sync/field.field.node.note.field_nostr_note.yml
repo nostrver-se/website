@@ -1,0 +1,19 @@
+uuid: 5003cbe3-6f09-45f8-8ce9-0293a1ec512f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_nostr_note
+    - node.type.note
+id: node.note.field_nostr_note
+field_name: field_nostr_note
+entity_type: node
+bundle: note
+label: Note
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

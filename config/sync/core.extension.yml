@@ -29,6 +29,9 @@ module:
   image: 0
   link: 0
   markdown_easy: 0
+  media: 0
+  media_library: 0
+  media_library_edit: 0
   menu_link_content: 0
   menu_ui: 0
   metatag: 0
@@ -36,6 +39,7 @@ module:
   node: 0
   nostr_content_nip23: 0
   nostr_id_nip05: 0
+  nostr_simple_publish: 0
   options: 0
   page_cache: 0
   path: 0

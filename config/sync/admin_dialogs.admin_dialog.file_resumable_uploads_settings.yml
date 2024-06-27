@@ -1,0 +1,15 @@
+uuid: a03396b2-bbf1-4f35-a444-3e1c76415d1e
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: fwymPV41YbZfjqdQQpxQb-4U6bbqMd5JdPlAXKqwRwE
+id: file_resumable_uploads_settings
+label: 'File Resumable Uploads Settings'
+type: paths
+dialog_group: contrib_modules
+dialog_type: modal
+dialog_width: '550'
+selection_criteria:
+  paths:
+    - '/admin/config/system/file-resup-settings*'

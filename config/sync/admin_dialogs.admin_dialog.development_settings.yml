@@ -1,0 +1,15 @@
+uuid: 3cc47c7f-c9b7-4ed9-9d77-ff6b09b79ac6
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: UZgLd8cezaymJxgH-LjZ8BwDTqVy28tw8xnWSuvfqjA
+id: development_settings
+label: 'Development Settings'
+type: paths
+dialog_group: administrative
+dialog_type: modal
+dialog_width: '550'
+selection_criteria:
+  paths:
+    - '/admin/config/development/settings*'

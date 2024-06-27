@@ -1,21 +1,21 @@
-uuid: 0c32ea3b-512c-492b-bc1e-959191232dd7
+uuid: e78e4561-84db-435e-93df-4e995ca7c1a0
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.body
+    - field.storage.node.field_nostr_markdown_content
     - filter.format.markdown
     - node.type.blog
   module:
     - text
-id: node.blog.body
-field_name: body
+id: node.blog.field_nostr_markdown_content
+field_name: field_nostr_markdown_content
 entity_type: node
 bundle: blog
-label: Body
+label: Content
 description: ''
 required: false
-translatable: true
+translatable: false
 default_value: {  }
 default_value_callback: ''
 settings:

@@ -1,0 +1,15 @@
+uuid: d5b1be62-9ce0-4b94-bb8a-c21cbd1a7180
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: arLXWMeQ3NWatoT1SXbMXfWS9gjV8_td6X51XiCjQ6w
+id: edit_sitemap_type
+label: 'Edit Sitemap Type'
+type: paths
+dialog_group: contrib_modules
+dialog_type: modal
+dialog_width: '550'
+selection_criteria:
+  paths:
+    - '/admin/config/search/simplesitemap/types/*'

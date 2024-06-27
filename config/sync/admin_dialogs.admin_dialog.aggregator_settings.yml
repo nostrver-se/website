@@ -1,0 +1,15 @@
+uuid: 42185c8e-d6fc-46c3-8ccb-f10800297ab3
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: JjoR8ga0i3z6FQvUUmRvucG8rCK1ylNdRTjnjJQV0eQ
+id: aggregator_settings
+label: 'Aggregator Settings'
+type: paths
+dialog_group: contrib_modules
+dialog_type: modal
+dialog_width: '550'
+selection_criteria:
+  paths:
+    - '/admin/config/services/aggregator/settings*'
