@@ -1,8 +1,9 @@
-uuid: f8997e98-9602-483c-acb5-0994dcf34a86
+uuid: ec08b105-3537-4bb7-a5f6-1675d5b6ec29
 langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.node.blog_teaser
     - field.field.node.blog.field_image
     - field.field.node.blog.field_labels
     - field.field.node.blog.field_nostr_markdown_content
@@ -10,10 +11,10 @@ dependencies:
   module:
     - text
     - user
-id: node.blog.default
+id: node.blog.blog_teaser
 targetEntityType: node
 bundle: blog
-mode: default
+mode: blog_teaser
 content:
   field_image:
     type: entity_reference_entity_view
@@ -22,26 +23,20 @@ content:
       view_mode: default
       link: false
     third_party_settings: {  }
-    weight: 1
-    region: content
-  field_labels:
-    type: entity_reference_label
-    label: hidden
-    settings:
-      link: true
-    third_party_settings: {  }
-    weight: 3
+    weight: 0
     region: content
   field_nostr_markdown_content:
-    type: text_default
+    type: text_summary_or_trimmed
     label: hidden
-    settings: {  }
+    settings:
+      trim_length: 600
     third_party_settings: {  }
     weight: 2
     region: content
   links:
     settings: {  }
     third_party_settings: {  }
-    weight: 0
+    weight: 1
     region: content
-hidden: {  }
+hidden:
+  field_labels: true

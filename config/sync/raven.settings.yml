@@ -1,10 +1,8 @@
 _core:
   default_config_hash: hV4bhqbC5LiJvbdO0pxBI_UQaDlWFNysWF_eclD1fLI
-client_key: null
-environment: null
-release: null
-fatal_error_handler: false
-fatal_error_handler_memory: 2560
+client_key: 'https://de7aa74293af49029902be7ac7d547a1@logs.sebastix.dev/22'
+environment: ''
+release: ''
 log_levels:
   emergency: false
   alert: false
@@ -14,12 +12,14 @@ log_levels:
   notice: false
   info: false
   debug: false
-drush_error_handler: false
 stack: true
-timeout: 2
+timeout: 2.0
 message_limit: 2048
 trace: false
+fatal_error_handler: false
+fatal_error_handler_memory: 2560
 javascript_error_handler: false
+drush_error_handler: false
 public_dsn: null
 ssl: verify_ssl
 ca_cert: ''
@@ -43,7 +43,7 @@ show_report_dialog: false
 error_embed_url: null
 tunnel: false
 modules: false
-cron_monitor_id: null
+cron_monitor_id: ''
 profiles_sample_rate: null
 http_compression: true
 send_inp_spans: false

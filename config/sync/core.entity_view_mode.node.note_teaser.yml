@@ -1,0 +1,11 @@
+uuid: b00859da-d8b2-4792-9a3f-7cef85d063f8
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.note_teaser
+label: 'Note teaser'
+description: ''
+targetEntityType: node
+cache: true

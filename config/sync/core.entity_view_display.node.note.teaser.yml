@@ -1,9 +1,10 @@
 uuid: 626bfc68-3970-4b38-a8a7-34e415fbfc43
 langcode: en
-status: true
+status: false
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
+    - field.field.node.note.field_labels
     - field.field.node.note.field_nostr_note
     - node.type.note
   module:
@@ -19,4 +20,5 @@ content:
     weight: 100
     region: content
 hidden:
+  field_labels: true
   field_nostr_note: true

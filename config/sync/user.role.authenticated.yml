@@ -4,6 +4,7 @@ status: true
 dependencies:
   module:
     - file
+    - matomo
     - media
     - search
     - system
@@ -16,5 +17,6 @@ is_admin: false
 permissions:
   - 'access content'
   - 'delete own files'
+  - 'opt-in or out of matomo tracking'
   - 'search content'
   - 'view media'
