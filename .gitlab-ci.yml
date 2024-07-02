@@ -80,7 +80,7 @@ deploy:prd:
     - rsync -avz --delete --exclude-from='gitlab-ci/rsync-excludes.txt' -e 'ssh -p 1986' ./config $SSH_USER@$SSH_HOST:$DRUPAL_PROJECTROOT
     - rsync -avz --delete --exclude-from='gitlab-ci/rsync-excludes.txt' -e 'ssh -p 1986' ./vendor $SSH_USER@$SSH_HOST:$DRUPAL_PROJECTROOT
     - rsync -avz --delete --exclude-from='gitlab-ci/rsync-excludes.txt' -e 'ssh -p 1986' ./web $SSH_USER@$SSH_HOST:$DRUPAL_PROJECTROOT
-    - $SSH_LOGIN "chown -R sebastix:www-data $DRUPAL_PROJECTROOT"
+    # - $SSH_LOGIN "chown -R sebastix:www-data $DRUPAL_PROJECTROOT"
     - $SSH_LOGIN "cd $DRUPAL_PROJECTROOT && vendor/bin/drush updatedb -y --no-cache-clear"
     - $SSH_LOGIN "cd $DRUPAL_PROJECTROOT && vendor/bin/drush cache-rebuild -y"
     - $SSH_LOGIN "cd $DRUPAL_PROJECTROOT && vendor/bin/drush config-import -y"
