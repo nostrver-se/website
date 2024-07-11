@@ -1,0 +1,20 @@
+uuid: 9d76b38d-ee34-44ce-b993-a43e03875ee2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_nsec
+  module:
+    - user
+id: user.user.field_nsec
+field_name: field_nsec
+entity_type: user
+bundle: user
+label: 'Private key (nsec)'
+description: 'Nostr private key starting with <code>nsec...</code> stored in a encrypted field.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

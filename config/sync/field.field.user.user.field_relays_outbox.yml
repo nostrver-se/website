@@ -1,0 +1,20 @@
+uuid: c82041c4-a1db-470b-8d2f-e1de9c88bb62
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_relays_outbox
+  module:
+    - user
+id: user.user.field_relays_outbox
+field_name: field_relays_outbox
+entity_type: user
+bundle: user
+label: 'Relays outbox'
+description: 'Relay starting with <code>wss://</code<'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,13 @@
+uuid: fc942675-f4c1-4273-a568-e1f5df98b989
+langcode: en
+status: true
+dependencies:
+  config:
+    - key.key.encryption_secret
+  module:
+    - sodium
+id: nostr
+label: Nostr
+encryption_method: sodium
+encryption_method_configuration: {  }
+encryption_key: encryption_secret

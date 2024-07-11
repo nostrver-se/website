@@ -1,7 +1,8 @@
 {
   "names": {
     "zaplamp": "9a470d841f9aa3f87891cd76a2e14a3441d015dbd8fc2b270b5ac8a9d9566e85",
-    "nostrphp": "0dc39139f680dcec080c7da9440397f86e292c0575e6cba418575aeba78440b3"
+    "nostrphpdev": "0dc39139f680dcec080c7da9440397f86e292c0575e6cba418575aeba78440b3",
+    "nostrphp": "0dc2dcb14d89f94b8a1590e178e9fbcb2ef1cb0be175a283842f9dc54787801a"
   },
   "relays": {
     "9a470d841f9aa3f87891cd76a2e14a3441d015dbd8fc2b270b5ac8a9d9566e85": [

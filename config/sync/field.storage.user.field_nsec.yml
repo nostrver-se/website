@@ -1,0 +1,27 @@
+uuid: 08cffdb1-7e3c-42e1-b903-324b8727ac8e
+langcode: en
+status: true
+dependencies:
+  module:
+    - field_encrypt
+    - user
+third_party_settings:
+  field_encrypt:
+    encrypt: true
+    properties:
+      value: value
+id: user.field_nsec
+field_name: field_nsec
+entity_type: user
+type: string
+settings:
+  max_length: 128
+  case_sensitive: false
+  is_ascii: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -4,6 +4,8 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.user.compact
+    - field.field.user.user.field_nsec
+    - field.field.user.user.field_relays_outbox
     - field.field.user.user.user_picture
     - image.style.thumbnail
   module:
@@ -20,12 +22,14 @@ content:
     type: image
     label: hidden
     settings:
-      image_style: thumbnail
       image_link: content
+      image_style: thumbnail
       image_loading:
         attribute: lazy
     third_party_settings: {  }
     weight: 0
     region: content
 hidden:
+  field_nsec: true
+  field_relays_outbox: true
   member_for: true

@@ -1,6 +1,6 @@
 _core:
   default_config_hash: mKwnhF-0ryfftZZP6jyqW8q9MEo9glyRkvRzSddrc0k
-site_id: '22'
+site_id: '12'
 url_http: 'http://matomo.sebastix.nl/'
 url_https: 'https://matomo.sebastix.nl/'
 domain_mode: 0
