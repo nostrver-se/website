@@ -1,0 +1,26 @@
+uuid: 400dda0f-5822-4976-bbda-d6366fe34256
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.rss
+    - field.field.node.note.field_labels
+    - field.field.node.note.field_nostr_note
+    - node.type.note
+  module:
+    - user
+id: node.note.rss
+targetEntityType: node
+bundle: note
+mode: rss
+content:
+  field_nostr_note:
+    type: basic_string
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  field_labels: true
+  links: true
