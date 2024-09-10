@@ -36,6 +36,14 @@ services:
     ports:
       - 32768:3306
 
+  # Access via http://localhost:8025/
+  mailpit:
+    image: axllent/mailpit
+    hostname: mailpit
+    ports:
+      - 1025:1025
+      - 8025:8025
+
 secrets:
   tinypc_ssh_key:
     file: ~/.ssh/id_ed25519_tinypc
