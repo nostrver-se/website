@@ -149,9 +149,6 @@
         },
         "drupal/tracer": {
             "D11 support": "https://git.drupalcode.org/project/tracer/-/merge_requests/4.patch"
-        },
-        "drupal/encrypt": {
-            "D11 support": "https://git.drupalcode.org/project/encrypt/-/merge_requests/7.patch"
         }
     }
   }
