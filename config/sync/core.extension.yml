@@ -44,6 +44,7 @@ module:
   nostr_content_nip23: 0
   nostr_id_nip05: 0
   nostr_simple_publish: 0
+  nostrverse_cc: 0
   options: 0
   page_cache: 0
   path: 0
@@ -70,4 +71,5 @@ theme:
   olivero: 0
   claro: 0
   gin: 0
+  nostrverse: 0
 profile: standard

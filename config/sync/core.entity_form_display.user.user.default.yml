@@ -31,8 +31,8 @@ content:
     weight: 0
     region: content
     settings:
-      size: 128
-      placeholder: nsec...
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
   field_relays_outbox:
     type: string_textfield

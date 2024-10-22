@@ -28,7 +28,7 @@
     "cweagans/composer-patches": "^1.7",
     "drupal/admin_dialogs": "^1.0",
     "drupal/admin_toolbar": "^3.2",
-    "drupal/backup_migrate": "^5.1",
+    "drupal/backup_migrate": "^5.0",
     "drupal/ckeditor5_markdown_editor": "^1.0@dev",
     "drupal/config_ignore": "^3.2",
     "drupal/config_split": "^2.0",
@@ -87,7 +87,8 @@
       "dealerdirect/phpcodesniffer-composer-installer": true,
       "phpstan/extension-installer": true,
       "php-http/discovery": true,
-      "drupal/core-vendor-hardening": true
+      "drupal/core-vendor-hardening": true,
+      "tbachert/spi": true
     }
   },
   "extra": {

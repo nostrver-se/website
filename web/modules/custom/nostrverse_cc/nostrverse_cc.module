@@ -1,0 +1,13 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for Nostrverse custom module.
+ */
+
+
+function nostrverse_cc_form_alter(&$form, &$form_state, $form_id) {
+  if ($form_id === 'user_form') {
+
+  }
+}
