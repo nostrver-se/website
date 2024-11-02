@@ -73,4 +73,5 @@
 /web/libraries/*
 /docker/ssh/config
 /docker/drupal/settings.local.php
+/docker/drupal/*.settings.local.php
 *.sql
