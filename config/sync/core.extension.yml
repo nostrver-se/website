@@ -40,10 +40,12 @@ module:
   menu_ui: 0
   metatag: 0
   mysql: 0
+  njump: 0
   node: 0
   nostr_content_nip23: 0
   nostr_id_nip05: 0
   nostr_simple_publish: 0
+  nostrides: 0
   nostrverse_cc: 0
   options: 0
   page_cache: 0
