@@ -1,0 +1,8 @@
+{
+    "name": "nostrides",
+    "description": "",
+    "type": "drupal-module",
+    "require": {
+        "nostr-php": "^1.4"
+    }
+}

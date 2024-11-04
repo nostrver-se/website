@@ -1,0 +1,11 @@
+njump.event:
+  path: '/e/{event_id}'
+  defaults:
+    _title: 'Nostr event'
+    _controller: '\Drupal\njump\Controller\NjumpController'
+  options:
+    parameters:
+      event_id:
+        type: string
+  requirements:
+    _permission: 'access content'

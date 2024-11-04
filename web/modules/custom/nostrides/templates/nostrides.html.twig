@@ -1,0 +1,29 @@
+<p>
+  Proof of concept of displaying requested Nostr events with a custom Drupal module.
+  <br />
+  Events with kind <code>30100</code> are fetched from <code>wss://nos.lol</code> limited to 50 items.
+  <br />
+  Read <a href="https://github.com/nostr-protocol/nips/pull/1423" target="_blank">NIP-113 activity events</a> for more info about these event kinds (activity events).
+</p>
+
+<div>
+  {% for event in events %}
+    <h2>
+      <a href="/nostrides/e/{{ event.id }}">{{ event.title }}</a>
+    </h2>
+    <p>{{ event.content }}</p>
+    <br />
+    <a href="/nostrides/e/{{ event.id }}">{{ event.id }}</a>
+    <br />
+    Pubkey: {{ event.pubkey }}
+    <br />
+    Tags:
+    <ul>
+      {% for tag in event.tags %}
+        <li><code>{{ tag.0 }}</code> => <code>{{ tag.1 }}</code></li>
+      {% endfor %}
+    </ul>
+  {% endfor %}
+</div>
+
+

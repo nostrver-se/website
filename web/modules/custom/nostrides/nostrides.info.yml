@@ -1,0 +1,5 @@
+name: 'nostrides'
+type: module
+description: 'Integrate Nostr activity events'
+package: Custom
+core_version_requirement: ^10 || ^11

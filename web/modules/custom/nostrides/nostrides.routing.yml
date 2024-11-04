@@ -1,0 +1,19 @@
+nostrides.list_rides:
+  path: '/nostrides'
+  defaults:
+    _title: 'Nostrides'
+    _controller: '\Drupal\nostrides\Controller\ListRides'
+  requirements:
+    _permission: 'access content'
+
+nostrides.event_ride:
+  path: '/nostrides/e/{event_id}'
+  defaults:
+    _title: 'Event Ride'
+    _controller: '\Drupal\nostrides\Controller\EventRide'
+  options:
+    parameters:
+      event_id:
+        type: string
+  requirements:
+    _permission: 'access content'

@@ -1,0 +1,19 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for njump module.
+ */
+
+function njump_theme($existing, $type, $theme, $path) {
+  return [
+    'njump' => [
+      'render element' => 'children',
+      'template' => 'njump',
+      'path' => $path . '/templates',
+      'variables' => [
+        'event' => [],
+      ],
+    ]
+  ];
+}
