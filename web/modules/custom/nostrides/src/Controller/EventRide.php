@@ -34,6 +34,7 @@ final class EventRide extends ControllerBase {
     $filters = [$filter1];
     $requestMessage = new RequestMessage($subscriptionId, $filters);
     $relays = [
+      new Relay('wss://khatru.nostrver.se'),
       new Relay('wss://nos.lol'),
       new Relay('wss://relay.damus.io'),
       new Relay('wss://relay.nostr.band'),
@@ -48,6 +49,7 @@ final class EventRide extends ControllerBase {
         foreach ($relayResponses as $message) {
           if ($message instanceof RelayResponseEvent) {
             $tags = $message->event->tags;
+            $event['pubkey'] = $message->event->pubkey;
             $event['dTag'] = $this->getTagValue($tags, 'd');
             $event['title'] = $this->getTagValue($tags, 'title');
             $event['content'] = $message->event->content;
@@ -62,19 +64,32 @@ final class EventRide extends ControllerBase {
     // Get d-tag from event.
     if (isset($event['dTag'])) {
       $filter1 = new Filter();
+      $filter1->setAuthors([
+        $event['pubkey']
+      ]);
       $filter1->setKinds([30101]);
-      $filter1->setLimit(100);
-      // TODO
-//      $filter1->setTags(
-//        [
-//          '#d' => $event['dTag'],
-//        ],
-//      );
+      $filter1->setLimit(1);
+      $filter1->setTags(
+        [
+          '#r' => [$event['dTag']], // reference tag, which should be an a-tag in the NIP
+        ],
+      );
       $filters = [$filter1];
       $requestMessage = new RequestMessage($subscriptionId, $filters);
       $request = new Request($relaySet, $requestMessage);
       $response = $request->send();
 
+      foreach ($response as $relayUrl => $relayResponses) {
+        foreach ($relayResponses as $message) {
+          if ($message instanceof RelayResponseEvent && !isset($event['summary_content'])) {
+            // Stringified JSON.
+            $summary_content = json_decode($message->event->content);
+            $event['distance'] = $summary_content->Distance;
+            // Convert from yard to meter.
+            $event['summary_content'] = json_encode($summary_content, JSON_PRETTY_PRINT);
+          }
+        }
+      }
     }
 
     return [

@@ -3,12 +3,24 @@ Event id: {{ event.id }}
 <br />
 Content: {{ event.content }}
 <br />
-GPX: {{ event.gpx }}
+GPX: <a href="{{ event.gpx }}" target="_blank">{{ event.gpx }}</a>
 <br />
-Recorded at: {{ event.recorded_at }}
+Recorded at: {{ event.recorded_at|date("d-m-Y H:i") }}
 <br />
-d tag: {{ event.dTag}}
+#d: {{ event.dTag}}
 <br />
 
+{% if event.summary_content %}
 <h2>Summary info (kind 31011)</h2>
-@TODO
+
+<dl>
+  <dt>Distance</dt>
+  <dd>{{ event.distance }} yards</dd>
+</dl>
+
+<pre>
+  <code>
+    {{ event.summary_content }}
+  </code>
+</pre>
+{% endif %}
