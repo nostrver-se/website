@@ -2383,31 +2383,30 @@
         },
         {
             "name": "drupal/field_encrypt",
-            "version": "3.1.1",
+            "version": "3.2.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/field_encrypt.git",
-                "reference": "3.1.1"
+                "reference": "3.2.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/field_encrypt-3.1.1.zip",
-                "reference": "3.1.1",
-                "shasum": "e1aa6dc81ad358d7a435aefc1f0f0b555707c791"
+                "url": "https://ftp.drupal.org/files/projects/field_encrypt-3.2.0.zip",
+                "reference": "3.2.0",
+                "shasum": "68768b9f3fb602e69022dd2dd8db48983f6aac54"
             },
             "require": {
-                "drupal/core": "^9.4 || ^10",
-                "drupal/encrypt": "^3.0@dev",
-                "php": ">=7.1.0"
+                "drupal/core": ">=10.3 <11.1",
+                "drupal/encrypt": "^3.0@dev"
             },
             "require-dev": {
-                "drupal/commerce": "^2.19"
+                "drupal/commerce": "^2.19 || ^3.0@alpha"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "3.1.1",
-                    "datestamp": "1675958966",
+                    "version": "3.2.0",
+                    "datestamp": "1731408658",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
