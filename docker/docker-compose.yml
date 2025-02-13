@@ -36,6 +36,36 @@ services:
     ports:
       - 32768:3306
 
+  nlnostrverse_db:
+    image: mariadb:10.11
+    hostname: nlnostrverse_db
+    container_name: nlnostrverse_db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: nlnostrverse_drupal
+    ports:
+      - 32769:3306
+
+  nostrides_db:
+    image: mariadb:10.11
+    hostname: nostrides_db
+    container_name: nostrides_db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: nostrides_drupal
+    ports:
+      - 32770:3306
+
+  nyves_db:
+    image: mariadb:10.11
+    hostname: nyves_db
+    container_name: nyves_db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: nyves_drupal
+    ports:
+      - 32771:3306
+
   # Access via http://localhost:8025/
   mailpit:
     image: axllent/mailpit

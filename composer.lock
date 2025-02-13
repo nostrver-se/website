@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8a71ed6e35d23e369b01c260f0a60a2d",
+    "content-hash": "1e35e83700b9cee9d76fab4eed0aa11e",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2402,27 +2402,27 @@
         },
         {
             "name": "drupal/gin",
-            "version": "3.0.0",
+            "version": "4.0.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/gin.git",
-                "reference": "8.x-3.0"
+                "reference": "4.0.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/gin-8.x-3.0.zip",
-                "reference": "8.x-3.0",
-                "shasum": "bb1c660e85577d49db1deedfefe1ed3a91370aeb"
+                "url": "https://ftp.drupal.org/files/projects/gin-4.0.0.zip",
+                "reference": "4.0.0",
+                "shasum": "8607d9f225b550c9c2f0a84d0371adabc0ac42c1"
             },
             "require": {
-                "drupal/core": "^9 || ^10 || ^11",
+                "drupal/core": "^10 || ^11",
                 "drupal/gin_toolbar": "^1.0@beta"
             },
             "type": "drupal-theme",
             "extra": {
                 "drupal": {
-                    "version": "8.x-3.0",
-                    "datestamp": "1734771812",
+                    "version": "4.0.0",
+                    "datestamp": "1734696940",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -2587,6 +2587,69 @@
                     "url": "https://paypal.me/saschaeggi"
                 }
             ]
+        },
+        {
+            "name": "drupal/hux",
+            "version": "1.7.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/hux.git",
+                "reference": "1.7.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/hux-1.7.0.zip",
+                "reference": "1.7.0",
+                "shasum": "8581574195b2a32425dfca37ca2e68cb7c3ffe49"
+            },
+            "require": {
+                "drupal/core": "^11.0",
+                "php": ">=8.1"
+            },
+            "require-dev": {
+                "composer/installers": "2.x-dev",
+                "dealerdirect/phpcodesniffer-composer-installer": "^1",
+                "drupal/core-dev": ">=11",
+                "micheh/phpcs-gitlab": "^1.1",
+                "mockery/mockery": "^1.5",
+                "phpstan/extension-installer": "^1.3",
+                "phpstan/phpstan": "^1.11",
+                "phpstan/phpstan-deprecation-rules": "*",
+                "phpstan/phpstan-mockery": "*",
+                "phpstan/phpstan-strict-rules": "^1@stable",
+                "previousnext/coding-standard": "^1.1"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "1.7.0",
+                    "datestamp": "1723627780",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                },
+                "installer-paths": {
+                    "web/core": [
+                        "type:drupal-core"
+                    ]
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "dpi",
+                    "homepage": "https://www.drupal.org/user/81431"
+                }
+            ],
+            "description": "New hooks",
+            "homepage": "https://www.drupal.org/project/hux",
+            "support": {
+                "source": "https://git.drupalcode.org/project/hux"
+            }
         },
         {
             "name": "drupal/key",
@@ -3556,6 +3619,105 @@
             "homepage": "https://www.drupal.org/project/redirect",
             "support": {
                 "source": "https://git.drupalcode.org/project/redirect"
+            }
+        },
+        {
+            "name": "drupal/refreshless",
+            "version": "2.0.0-alpha7",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/refreshless.git",
+                "reference": "2.0.0-alpha7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/refreshless-2.0.0-alpha7.zip",
+                "reference": "2.0.0-alpha7",
+                "shasum": "f5b3d094ca0807cbb935bbc48d73f252df1cea8f"
+            },
+            "require": {
+                "composer/semver": "^3.0",
+                "cweagans/composer-patches": "^1.7.0",
+                "drupal/core": "^10.3 || ^11.0",
+                "drupal/hux": "^1.4",
+                "php": "^8.1"
+            },
+            "require-dev": {
+                "drupal/hux": "*",
+                "drupal/refreshless_turbo": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "2.0.0-alpha7",
+                    "datestamp": "1738108411",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Alpha releases are not covered by Drupal security advisories."
+                    }
+                },
+                "patches": {
+                    "drupal/core": {
+                        "JS aggregation should account for \"async\" and \"defer\" attributes [#1587536]: https://www.drupal.org/project/drupal/issues/1587536": "https://git.drupalcode.org/project/refreshless/-/raw/9bd0325f415e95bfaa7adc29daaf26cc32bed673/modules/refreshless_turbo/patches/drupal/core/1587536-js-aggregation-async-defer-attributes.patch",
+                        "Allow setting aggregation groups for js files in library definitions [#3232810]: https://www.drupal.org/project/drupal/issues/3232810": "https://git.drupalcode.org/project/refreshless/-/raw/a9abd3f0581150115ce17dcf8d80891db6dbb84d/patches/drupal/core/3232810-aggregation-groups-for-js.patch",
+                        "New navigation does not displace if detached and attached again [#3487905]: https://www.drupal.org/project/drupal/issues/3487905": "https://git.drupalcode.org/project/refreshless/-/raw/a9abd3f0581150115ce17dcf8d80891db6dbb84d/patches/drupal/core/3487905-navigation-displace-detach-attach.patch"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Matei Stanca",
+                    "homepage": "https://www.drupal.org/u/ambientimpact",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Wim Leers",
+                    "homepage": "https://www.drupal.org/u/wim-leers",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "See other contributors",
+                    "homepage": "https://www.drupal.org/node/2693129/committers"
+                },
+                {
+                    "name": "handkerchief",
+                    "homepage": "https://www.drupal.org/user/3090607"
+                },
+                {
+                    "name": "jaydip makawana",
+                    "homepage": "https://www.drupal.org/user/3621830"
+                },
+                {
+                    "name": "rajeshreeputra",
+                    "homepage": "https://www.drupal.org/user/3418561"
+                },
+                {
+                    "name": "renguer0",
+                    "homepage": "https://www.drupal.org/user/3623854"
+                },
+                {
+                    "name": "ronaldtebrake",
+                    "homepage": "https://www.drupal.org/user/2314038"
+                },
+                {
+                    "name": "wim leers",
+                    "homepage": "https://www.drupal.org/user/99777"
+                }
+            ],
+            "description": "RefreshLess layers JavaScript-based navigation on top of Drupal's existing server-rendered HTML to provide the kind of smooth, fast, and responsive experience users expect.",
+            "homepage": "https://www.drupal.org/project/refreshless",
+            "keywords": [
+                "performance",
+                "scalability"
+            ],
+            "support": {
+                "source": "https://git.drupalcode.org/project/refreshless",
+                "issues": "https://www.drupal.org/project/issues/refreshless",
+                "irc": "irc://irc.freenode.org/drupal"
             }
         },
         {
@@ -4720,16 +4882,16 @@
         },
         {
             "name": "illuminate/collections",
-            "version": "v11.41.3",
+            "version": "v11.42.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/collections.git",
-                "reference": "80c85f81573cc4c024da05312119f9149a6b64c1"
+                "reference": "6fd628d32a0989211c4f2829bf0a6a6175b2f3fd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/collections/zipball/80c85f81573cc4c024da05312119f9149a6b64c1",
-                "reference": "80c85f81573cc4c024da05312119f9149a6b64c1",
+                "url": "https://api.github.com/repos/illuminate/collections/zipball/6fd628d32a0989211c4f2829bf0a6a6175b2f3fd",
+                "reference": "6fd628d32a0989211c4f2829bf0a6a6175b2f3fd",
                 "shasum": ""
             },
             "require": {
@@ -4772,11 +4934,11 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2025-01-24T15:40:32+00:00"
+            "time": "2025-02-05T10:23:21+00:00"
         },
         {
             "name": "illuminate/conditionable",
-            "version": "v11.41.3",
+            "version": "v11.42.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/conditionable.git",
@@ -4822,16 +4984,16 @@
         },
         {
             "name": "illuminate/contracts",
-            "version": "v11.41.3",
+            "version": "v11.42.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/contracts.git",
-                "reference": "534b697fc1dd9fbdd9fbf2f33fc9dcbb943dea75"
+                "reference": "b350a3cd8450846325cb49e1cbc1293598b18898"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/contracts/zipball/534b697fc1dd9fbdd9fbf2f33fc9dcbb943dea75",
-                "reference": "534b697fc1dd9fbdd9fbf2f33fc9dcbb943dea75",
+                "url": "https://api.github.com/repos/illuminate/contracts/zipball/b350a3cd8450846325cb49e1cbc1293598b18898",
+                "reference": "b350a3cd8450846325cb49e1cbc1293598b18898",
                 "shasum": ""
             },
             "require": {
@@ -4866,11 +5028,11 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2025-01-10T20:57:00+00:00"
+            "time": "2025-02-10T14:20:57+00:00"
         },
         {
             "name": "illuminate/macroable",
-            "version": "v11.41.3",
+            "version": "v11.42.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/macroable.git",
@@ -6396,16 +6558,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "1.12.17",
+            "version": "1.12.18",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "7027b3b0270bf392de0cfba12825979768d728bf"
+                "reference": "fef9f07814a573399229304bb0046affdf558812"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/7027b3b0270bf392de0cfba12825979768d728bf",
-                "reference": "7027b3b0270bf392de0cfba12825979768d728bf",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/fef9f07814a573399229304bb0046affdf558812",
+                "reference": "fef9f07814a573399229304bb0046affdf558812",
                 "shasum": ""
             },
             "require": {
@@ -6450,7 +6612,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-02-07T15:01:57+00:00"
+            "time": "2025-02-13T12:44:44+00:00"
         },
         {
             "name": "phpstan/phpstan-deprecation-rules",
@@ -16877,7 +17039,6 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "drupal/ckeditor5_markdown_editor": 20,
-        "drupal/gin": 15,
         "drupal/gin_toolbar": 5,
         "drupal/masquerade": 5,
         "drupal/matomo": 15,
@@ -16886,6 +17047,7 @@
         "drupal/nostr_id_nip05": 20,
         "drupal/nostr_simple_publish": 20,
         "drupal/pwa": 10,
+        "drupal/refreshless": 15,
         "drupal/swiper_formatter": 15,
         "drupal/symfony_mailer": 10,
         "drupal/ultimate_cron": 15,
