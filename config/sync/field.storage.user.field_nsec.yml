@@ -3,7 +3,13 @@ langcode: en
 status: true
 dependencies:
   module:
+    - field_encrypt
     - user
+third_party_settings:
+  field_encrypt:
+    encrypt: true
+    properties:
+      value: value
 id: user.field_nsec
 field_name: field_nsec
 entity_type: user
