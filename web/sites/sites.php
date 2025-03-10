@@ -57,6 +57,10 @@
  */
 
 $sites['nostrver.se'] = 'default';
+$sites['nostrver.local'] = 'default';
 $sites['nl.nostrver.se'] = 'nl.nostrver.se';
+$sites['nl.nostrverse.local'] = 'nl.nostrver.se';
 $sites['nostrides.cc'] = 'nostrides.cc';
+$sites['nostrides.local'] = 'nostrides.cc';
 $sites['nyves.nl'] = 'nyves.nl';
+$sites['nyves.local'] = 'nyves.nl';

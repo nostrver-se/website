@@ -12,7 +12,6 @@ storage: folder
 folder: ../config/dev
 module:
   devel: 0
-  devel_entity_updates: 0
   tracer: 0
   twig_xdebug: 0
   webprofiler: 0

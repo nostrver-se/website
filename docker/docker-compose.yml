@@ -15,6 +15,8 @@ services:
       - ../config:/var/www/config:consistent
       - ./php/custom.ini:/usr/local/etc/php/conf.d/custom.ini
       - ./drupal/settings.local.php:/var/www/web/sites/default/settings.local.php
+      - ./drupal/nyves-nl-settings.local.php:/var/www/web/sites/nyves.nl/settings.local.php
+      - ./drupal/nostrides-cc-settings.local.php:/var/www/web/sites/nostrides.cc/settings.local.php
       - ./drupal/development.services.yml:/var/www/web/sites/development.services.yml
       - ./ssh/config:/root/.ssh/config
     environment:
