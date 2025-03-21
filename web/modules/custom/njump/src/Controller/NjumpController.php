@@ -10,6 +10,7 @@ use swentel\nostr\Message\RequestMessage;
 use swentel\nostr\Relay\Relay;
 use swentel\nostr\Relay\RelaySet;
 use swentel\nostr\RelayResponse\RelayResponseEvent;
+use swentel\nostr\Request\Request as NostrRequest;
 use swentel\nostr\Subscription\Subscription;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -41,7 +42,7 @@ final class NjumpController extends ControllerBase {
     ];
     $relaySet = new RelaySet();
     $relaySet->setRelays($relays);
-    $request = new \swentel\nostr\Request\Request($relaySet, $requestMessage);
+    $request = new NostrRequest($relaySet, $requestMessage);
     $response = $request->send();
 
     foreach ($response as $relayUrl => $relayResponses) {
