@@ -1,0 +1,37 @@
+uuid: 86fd16ee-8502-43b9-be20-43771dc41ced
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.nostr_tags.field_nostr_tag_name
+    - field.field.paragraph.nostr_tags.field_nostr_tag_parameters
+    - field.field.paragraph.nostr_tags.field_nostr_tag_value
+    - paragraphs.paragraphs_type.nostr_tags
+id: paragraph.nostr_tags.default
+targetEntityType: paragraph
+bundle: nostr_tags
+mode: default
+content:
+  field_nostr_tag_name:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_nostr_tag_parameters:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_nostr_tag_value:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden: {  }

@@ -1,0 +1,22 @@
+uuid: fdda1f04-7089-4915-98cb-21bd249dd796
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: nostr_event
+label: 'Nostr event'
+type: 'canonical_entities:node'
+pattern: '/e/[node:field_nostr_id]'
+selection_criteria:
+  4fdf477c-9a4a-4f54-afd6-b95fd013cc1b:
+    id: 'entity_bundle:node'
+    negate: false
+    uuid: 4fdf477c-9a4a-4f54-afd6-b95fd013cc1b
+    context_mapping:
+      node: node
+    bundles:
+      nostr_event: nostr_event
+selection_logic: and
+weight: -5
+relationships: {  }

@@ -1,0 +1,17 @@
+uuid: 8676a4e8-09a9-4575-be4b-64cf751ea0ad
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: 'Nostr event'
+type: nostr_event
+description: 'Generic Nostr event, used to save Nostr event fetched by this website'
+help: null
+new_revision: true
+preview_mode: 0
+display_submitted: false

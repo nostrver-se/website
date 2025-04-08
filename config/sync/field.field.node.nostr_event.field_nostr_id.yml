@@ -1,0 +1,19 @@
+uuid: 8c18d14d-2563-46af-829c-fa6c611adab8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_nostr_id
+    - node.type.nostr_event
+id: node.nostr_event.field_nostr_id
+field_name: field_nostr_id
+entity_type: node
+bundle: nostr_event
+label: ID
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

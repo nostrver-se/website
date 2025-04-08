@@ -1,0 +1,19 @@
+uuid: 372b703e-8230-41d9-9e9d-6ce9c6f33ec5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_nostr_pubkey
+    - node.type.nostr_event
+id: node.nostr_event.field_nostr_pubkey
+field_name: field_nostr_pubkey
+entity_type: node
+bundle: nostr_event
+label: Pubkey
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

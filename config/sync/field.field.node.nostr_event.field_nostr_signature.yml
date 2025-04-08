@@ -1,0 +1,19 @@
+uuid: 309ce1af-e0f4-44af-b1ef-e80b114014b2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_nostr_signature
+    - node.type.nostr_event
+id: node.nostr_event.field_nostr_signature
+field_name: field_nostr_signature
+entity_type: node
+bundle: nostr_event
+label: Signature
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

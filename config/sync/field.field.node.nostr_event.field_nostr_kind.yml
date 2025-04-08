@@ -1,0 +1,23 @@
+uuid: 8ea11f57-14ba-4f7e-be9c-293773ffce09
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_nostr_kind
+    - node.type.nostr_event
+id: node.nostr_event.field_nostr_kind
+field_name: field_nostr_kind
+entity_type: node
+bundle: nostr_event
+label: Kind
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

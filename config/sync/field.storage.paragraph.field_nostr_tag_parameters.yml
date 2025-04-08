@@ -1,0 +1,19 @@
+uuid: 5474ebbc-361e-4be6-9bd3-16d6d0cb3377
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+id: paragraph.field_nostr_tag_parameters
+field_name: field_nostr_tag_parameters
+entity_type: paragraph
+type: string_long
+settings:
+  case_sensitive: false
+module: core
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

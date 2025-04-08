@@ -1,0 +1,31 @@
+uuid: 01c5e186-4925-4a50-aa62-b7b802d2b987
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_nostr_tags
+    - node.type.nostr_event
+    - paragraphs.paragraphs_type.nostr_tags
+  module:
+    - entity_reference_revisions
+id: node.nostr_event.field_nostr_tags
+field_name: field_nostr_tags
+entity_type: node
+bundle: nostr_event
+label: Tags
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      nostr_tags: nostr_tags
+    negate: 0
+    target_bundles_drag_drop:
+      nostr_tags:
+        weight: 2
+        enabled: true
+field_type: entity_reference_revisions

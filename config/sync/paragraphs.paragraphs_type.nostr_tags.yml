@@ -1,0 +1,10 @@
+uuid: ac915503-fdfb-46dc-b04f-6141d537e456
+langcode: en
+status: true
+dependencies: {  }
+id: nostr_tags
+label: 'Nostr tag'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

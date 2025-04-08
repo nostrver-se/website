@@ -1,0 +1,32 @@
+uuid: 5c6d1c42-7537-48ad-8e05-338ae781ee05
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.nostr_event.field_nostr_content
+    - field.field.node.nostr_event.field_nostr_id
+    - field.field.node.nostr_event.field_nostr_kind
+    - field.field.node.nostr_event.field_nostr_pubkey
+    - field.field.node.nostr_event.field_nostr_signature
+    - field.field.node.nostr_event.field_nostr_tags
+    - node.type.nostr_event
+  module:
+    - user
+id: node.nostr_event.teaser
+targetEntityType: node
+bundle: nostr_event
+mode: teaser
+content:
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_nostr_content: true
+  field_nostr_id: true
+  field_nostr_kind: true
+  field_nostr_pubkey: true
+  field_nostr_signature: true
+  field_nostr_tags: true
