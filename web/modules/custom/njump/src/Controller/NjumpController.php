@@ -5,8 +5,10 @@ declare(strict_types=1);
 namespace Drupal\njump\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
+use Drupal\Core\Url;
 use Drupal\node\Entity\Node;
 use Drupal\paragraphs\Entity\Paragraph;
+use swentel\nostr\Event\Profile\Profile;
 use swentel\nostr\Filter\Filter;
 use swentel\nostr\Message\RequestMessage;
 use swentel\nostr\Nip19\Nip19Helper;
@@ -15,6 +17,7 @@ use swentel\nostr\Relay\RelaySet;
 use swentel\nostr\RelayResponse\RelayResponseEvent;
 use swentel\nostr\Request\Request as NostrRequest;
 use swentel\nostr\Subscription\Subscription;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -24,8 +27,16 @@ final class NjumpController extends ControllerBase {
 
   /**
    * Builds the response.
+   *
+   * @param \Symfony\Component\HttpFoundation\Request $request
+   *
+   * @return array|\Symfony\Component\HttpFoundation\RedirectResponse
+   * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
+   * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
+   * @throws \Drupal\Core\Entity\EntityStorageException
+   * @throws \JsonException
    */
-  public function __invoke(Request $request): array {
+  public function __invoke(Request $request): RedirectResponse|array {
     // Determine the identifier first.
     $identifier = $request->attributes->get('identifier');
     $pos = strrpos($identifier, '1');
@@ -104,8 +115,8 @@ final class NjumpController extends ControllerBase {
     }
     $relaySet = new RelaySet();
     $relaySet->setRelays($relays);
-    $request = new NostrRequest($relaySet, $requestMessage);
-    $response = $request->send();
+    $nRequest = new NostrRequest($relaySet, $requestMessage);
+    $response = $nRequest->send();
 
     foreach ($response as $relayUrl => $relayResponses) {
       if (count($response[$relayUrl]) > 0) {
@@ -116,6 +127,12 @@ final class NjumpController extends ControllerBase {
         }
       }
     }
+
+    // Fetch profile from pubkey of the event
+    $profile = new Profile();
+    $profile->fetch($event->pubkey, 'wss://relay.nostr.band');
+    $profile_content = json_decode($profile->getContent(), true);
+
     // TODO check if node already exist with this nostr event id
     $nodeStorage = \Drupal::entityTypeManager()->getStorage('node');
     $node = $nodeStorage->loadByProperties([
@@ -123,8 +140,12 @@ final class NjumpController extends ControllerBase {
       'field_nostr_id' => $event->id,
     ]);
     if ($node) {
-      // TODO Do we need to update the existing node?
+      // TODO Do we need to update the existing node? Which conditions we have to check?
       // Depends on the type of the event
+      $nostr_event_node = reset($node);
+      // Redirect to node page
+      $url = Url::fromRoute('entity.node.canonical', ['node' => $nostr_event_node->id()]);
+      return new RedirectResponse($url->toString());
     } else {
       // Create for each tag a paragraph entity
       $tags = [];
@@ -146,6 +167,7 @@ final class NjumpController extends ControllerBase {
       }
       // Create and save Nostr event as a node entity.
       $nostr_event_node = Node::create([
+        //'uid' => 2, // TODO should we create a user entity first so we can set the author here?
         'type' => 'nostr_event',
         'title' => $node_title ?? $event->id,
         'created' => $event->created_at,
@@ -171,13 +193,22 @@ final class NjumpController extends ControllerBase {
       //]);
     }
 
-
     // Encode as JSON string.
     $event = json_encode($event, JSON_THROW_ON_ERROR | JSON_PRETTY_PRINT);
 
+    // View builder to render node
+    $view_builder = \Drupal::entityTypeManager()->getViewBuilder('node');
+
     return [
       '#theme' => 'njump',
+      '#title' => $nostr_event_node->getTitle(), // only set the h1 title, not the meta page title
+      '#identifier' => $identifier,
       '#event' => $event,
+      '#author' => [
+        'profile' => $profile,
+        'profile_content' => $profile_content
+      ],
+      '#nostr_event_node' => $view_builder->view($nostr_event_node, 'default'),
     ];
   }
 

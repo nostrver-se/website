@@ -12,7 +12,10 @@ function njump_theme($existing, $type, $theme, $path) {
       'template' => 'njump',
       'path' => $path . '/templates',
       'variables' => [
-        'event' => [],
+        'identifier' => NULL,
+        'event' => NULL,
+        'author' => NULL,
+        'nostr_event_node' => NULL,
       ],
     ]
   ];
