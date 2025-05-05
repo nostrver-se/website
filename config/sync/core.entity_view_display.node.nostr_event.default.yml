@@ -20,18 +20,10 @@ mode: default
 content:
   field_nostr_content:
     type: basic_string
-    label: above
+    label: hidden
     settings: {  }
     third_party_settings: {  }
-    weight: 105
-    region: content
-  field_nostr_id:
-    type: string
-    label: above
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    weight: 102
+    weight: 2
     region: content
   field_nostr_kind:
     type: number_integer
@@ -40,7 +32,7 @@ content:
       thousand_separator: ''
       prefix_suffix: true
     third_party_settings: {  }
-    weight: 101
+    weight: 3
     region: content
   field_nostr_pubkey:
     type: string
@@ -48,7 +40,7 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 103
+    weight: 1
     region: content
   field_nostr_signature:
     type: string
@@ -56,20 +48,21 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 104
+    weight: 5
     region: content
   field_nostr_tags:
     type: entity_reference_revisions_entity_view
-    label: above
+    label: hidden
     settings:
       view_mode: default
       link: ''
     third_party_settings: {  }
-    weight: 106
+    weight: 4
     region: content
   links:
     settings: {  }
     third_party_settings: {  }
-    weight: 100
+    weight: 0
     region: content
-hidden: {  }
+hidden:
+  field_nostr_id: true
