@@ -1,0 +1,22 @@
+uuid: 72b79301-c7fd-4c00-850c-e5e0f3dfb99e
+langcode: en
+status: true
+dependencies:
+  theme:
+    - nostrverse
+_core:
+  default_config_hash: 67RxXrILTWOy1kMC-HpBb6Z3q-lS_SzCjDB5D96E7H8
+id: nostrverse_primary_local_tasks
+theme: nostrverse
+region: highlighted
+weight: -4
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: 'Primary tabs'
+  label_display: '0'
+  provider: core
+  primary: true
+  secondary: false
+visibility: {  }

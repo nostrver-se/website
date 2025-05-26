@@ -1,0 +1,27 @@
+uuid: d31ff290-27cf-4e85-bdd8-0c00f1c9d92e
+langcode: en
+status: false
+dependencies:
+  config:
+    - system.menu.account
+  module:
+    - system
+  theme:
+    - daisy_ui
+_core:
+  default_config_hash: wBENWsuEoGkyy8smeVrNXGfva99JMDvLuC1lPWZG36w
+id: daisy_ui_account_menu
+theme: daisy_ui
+region: secondary_menu
+weight: -4
+provider: null
+plugin: 'system_menu_block:account'
+settings:
+  id: 'system_menu_block:account'
+  label: 'User account menu'
+  label_display: '0'
+  provider: system
+  level: 1
+  depth: 1
+  expand_all_items: false
+visibility: {  }

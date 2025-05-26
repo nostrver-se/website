@@ -1,0 +1,25 @@
+uuid: e9115e22-0c88-41c7-90b4-e41c8d42c765
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - daisy_ui
+_core:
+  default_config_hash: 4RhL646rY_K5PbtGl9WIh29fg46ASkSSbpynvockByI
+id: daisy_ui_site_branding
+theme: daisy_ui
+region: header
+weight: -5
+provider: null
+plugin: system_branding_block
+settings:
+  id: system_branding_block
+  label: 'Site branding'
+  label_display: '0'
+  provider: system
+  use_site_logo: true
+  use_site_name: true
+  use_site_slogan: false
+visibility: {  }

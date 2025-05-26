@@ -1,0 +1,22 @@
+uuid: aad34fa5-1456-40d9-b11e-8c90e1552453
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - nostrverse
+_core:
+  default_config_hash: HsqYbf_8WMLHyga6hMgMFN-76D9M8ClxLdPUB_7X7Kg
+id: nostrverse_powered
+theme: nostrverse
+region: footer
+weight: -5
+provider: null
+plugin: system_powered_by_block
+settings:
+  id: system_powered_by_block
+  label: 'Powered by Drupal'
+  label_display: '0'
+  provider: system
+visibility: {  }

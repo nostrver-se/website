@@ -1,0 +1,22 @@
+uuid: 418f912a-f591-4069-956c-b733d3db0baa
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - nostrverse
+_core:
+  default_config_hash: Jq987GN3a0B-KGYagpTAFHW2fc7kf32BGOQLX3ZPAUI
+id: nostrverse_breadcrumbs
+theme: nostrverse
+region: breadcrumb
+weight: 0
+provider: null
+plugin: system_breadcrumb_block
+settings:
+  id: system_breadcrumb_block
+  label: Breadcrumbs
+  label_display: '0'
+  provider: system
+visibility: {  }

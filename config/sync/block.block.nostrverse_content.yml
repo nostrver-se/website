@@ -1,0 +1,22 @@
+uuid: 3e3a26c6-ac26-4dc9-ad83-4b52516e6dde
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - nostrverse
+_core:
+  default_config_hash: PED47Ak1vcENwBO38Biu7IPL7BzgFc6oP2ahlHJ1TCk
+id: nostrverse_content
+theme: nostrverse
+region: content
+weight: -4
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Main page content'
+  label_display: '0'
+  provider: system
+visibility: {  }

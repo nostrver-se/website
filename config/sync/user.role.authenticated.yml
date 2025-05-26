@@ -6,7 +6,6 @@ dependencies:
     - file
     - matomo
     - media
-    - search
     - system
 _core:
   default_config_hash: cFrlqjtkTfvY3RGccjJkPf1SGIfJ942IrxTLWAO4mgA
@@ -18,5 +17,4 @@ permissions:
   - 'access content'
   - 'delete own files'
   - 'opt-in or out of matomo tracking'
-  - 'search content'
   - 'view media'

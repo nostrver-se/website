@@ -1,0 +1,20 @@
+uuid: b306906f-b783-4643-a3e3-69e070c05fe6
+langcode: en
+status: true
+dependencies:
+  theme:
+    - nostrverse
+_core:
+  default_config_hash: f9EnElCEl6htu_4pe5ub173NQuSeluZDlvxeiIIXZqM
+id: nostrverse_primary_admin_actions
+theme: nostrverse
+region: highlighted
+weight: -5
+provider: null
+plugin: local_actions_block
+settings:
+  id: local_actions_block
+  label: 'Primary admin actions'
+  label_display: '0'
+  provider: core
+visibility: {  }

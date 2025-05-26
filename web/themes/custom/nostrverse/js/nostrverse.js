@@ -8,9 +8,7 @@
 
   Drupal.behaviors.nostrverse = {
     attach (context, settings) {
-
-      console.log('It works!');
-
+      //console.log('It works!');
     }
   };
 

@@ -212,4 +212,10 @@ final class NjumpController extends ControllerBase {
     ];
   }
 
+  public function nostrEvent(Request $request): RedirectResponse|array {
+    return [
+      '#theme' => 'njump',
+    ];
+  }
+
 }

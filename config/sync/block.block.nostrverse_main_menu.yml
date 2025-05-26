@@ -1,0 +1,27 @@
+uuid: 4e7291f8-ec89-4173-ae66-f672c3120b07
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.main
+  module:
+    - system
+  theme:
+    - nostrverse
+_core:
+  default_config_hash: Og0d5crha508JVsPDi8kW9KrgnVOlAys0jcLGqbpeEs
+id: nostrverse_main_menu
+theme: nostrverse
+region: header
+weight: -4
+provider: null
+plugin: 'system_menu_block:main'
+settings:
+  id: 'system_menu_block:main'
+  label: 'Main navigation'
+  label_display: '0'
+  provider: system
+  level: 1
+  depth: 2
+  expand_all_items: true
+visibility: {  }

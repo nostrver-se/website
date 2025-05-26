@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d3e76f112aa00785d90fb402acc7b09e",
+    "content-hash": "3966374a6e274771d7da2be5a003deed",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2143,6 +2143,48 @@
             }
         },
         {
+            "name": "drupal/daisy_ui",
+            "version": "dev-1.0.x",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/daisy_ui.git",
+                "reference": "012cea504fdf50b8184e91aebf4f0f0c6cc2669d"
+            },
+            "require": {
+                "drupal/core": "^11",
+                "drupal/tailwind_css": "^1.0"
+            },
+            "type": "drupal-theme",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.0.x": "1.0.x-dev"
+                },
+                "drupal": {
+                    "version": "1.0.x-dev",
+                    "datestamp": "1748254230",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Project has not opted into security advisory coverage!"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "sebastix",
+                    "homepage": "https://www.drupal.org/user/2943731"
+                }
+            ],
+            "description": "daisyUI plugin for Tailwind CSS theme for Drupal",
+            "homepage": "https://www.drupal.org/project/daisy_ui",
+            "support": {
+                "source": "https://git.drupalcode.org/project/daisy_ui"
+            }
+        },
+        {
             "name": "drupal/danse",
             "version": "2.3.6",
             "source": {
@@ -3869,6 +3911,91 @@
             "homepage": "https://www.drupal.org/project/symfony_mailer",
             "support": {
                 "source": "https://git.drupalcode.org/project/symfony_mailer"
+            }
+        },
+        {
+            "name": "drupal/tailwind_css",
+            "version": "dev-1.0.x",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/tailwind_css.git",
+                "reference": "519d097c5908fa8229374b2685b81629784b8f23"
+            },
+            "require": {
+                "drupal/core": "^11"
+            },
+            "type": "drupal-theme",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.0.x": "1.0.x-dev"
+                },
+                "drupal": {
+                    "version": "1.0.x-dev",
+                    "datestamp": "1747921314",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Project has not opted into security advisory coverage!"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "sebastix",
+                    "homepage": "https://www.drupal.org/user/2943731"
+                }
+            ],
+            "description": "Tailwind CSS theme for Drupal",
+            "homepage": "https://www.drupal.org/project/tailwind_css",
+            "support": {
+                "source": "https://git.drupalcode.org/project/tailwind_css"
+            }
+        },
+        {
+            "name": "drupal/tailwindcss",
+            "version": "5.0.0-alpha4",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/tailwindcss.git",
+                "reference": "5.0.0-alpha4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/tailwindcss-5.0.0-alpha4.zip",
+                "reference": "5.0.0-alpha4",
+                "shasum": "4f0374d13a613aea82382b2394ebe78cdd70c886"
+            },
+            "require": {
+                "drupal/core": "^8 || ^9 || ^10 ||^11"
+            },
+            "type": "drupal-theme",
+            "extra": {
+                "drupal": {
+                    "version": "5.0.0-alpha4",
+                    "datestamp": "1738375101",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Alpha releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "opdavies",
+                    "homepage": "https://www.drupal.org/user/381388"
+                }
+            ],
+            "description": "This is a starter kit/demo theme for using Tailwind CSS within Drupal.",
+            "homepage": "https://www.drupal.org/project/tailwindcss",
+            "support": {
+                "source": "https://git.drupalcode.org/project/tailwindcss"
             }
         },
         {
@@ -16911,6 +17038,7 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "drupal/ckeditor5_markdown_editor": 20,
+        "drupal/daisy_ui": 20,
         "drupal/masquerade": 5,
         "drupal/matomo": 15,
         "drupal/nostr_content_nip23": 20,
@@ -16921,6 +17049,7 @@
         "drupal/refreshless": 15,
         "drupal/swiper_formatter": 15,
         "drupal/symfony_mailer": 10,
+        "drupal/tailwindcss": 15,
         "drupal/ultimate_cron": 15,
         "drupal/webp": 5
     },

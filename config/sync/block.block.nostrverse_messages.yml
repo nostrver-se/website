@@ -1,0 +1,22 @@
+uuid: d6eac978-9f17-48d9-b238-5d1c69a203b2
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - nostrverse
+_core:
+  default_config_hash: fK2bmNrtfiH4EeHewDzbyyL3p29vWArpwVbrMs756zE
+id: nostrverse_messages
+theme: nostrverse
+region: highlighted
+weight: -5
+provider: null
+plugin: system_messages_block
+settings:
+  id: system_messages_block
+  label: 'Status messages'
+  label_display: '0'
+  provider: system
+visibility: {  }

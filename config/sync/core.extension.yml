@@ -56,7 +56,6 @@ module:
   refreshless: 0
   refreshless_turbo: 0
   refreshless_turbo_gin: 0
-  search: 0
   sodium: 0
   symfony_mailer: 0
   system: 0
@@ -77,4 +76,8 @@ theme:
   olivero: 0
   claro: 0
   gin: 0
+  stark: 0
+  tailwind_css: 0
+  daisy_ui: 0
+  nostrverse: 0
 profile: standard

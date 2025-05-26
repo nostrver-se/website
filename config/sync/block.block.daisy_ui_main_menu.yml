@@ -1,0 +1,27 @@
+uuid: 93860d93-ad37-465f-a981-d3a0f386b70c
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.main
+  module:
+    - system
+  theme:
+    - daisy_ui
+_core:
+  default_config_hash: Og0d5crha508JVsPDi8kW9KrgnVOlAys0jcLGqbpeEs
+id: daisy_ui_main_menu
+theme: daisy_ui
+region: header
+weight: -4
+provider: null
+plugin: 'system_menu_block:main'
+settings:
+  id: 'system_menu_block:main'
+  label: 'Main navigation'
+  label_display: '0'
+  provider: system
+  level: 1
+  depth: 2
+  expand_all_items: true
+visibility: {  }

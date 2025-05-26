@@ -1,20 +1,8 @@
 name: nostrverse
 type: theme
-base theme: olivero
-description: Nostrverse theme
+base theme: daisy_ui
+description: Nostrverse theme with custom styling using the daisyUI as a base theme.
 package: Custom
-core_version_requirement: ^10 || ^11
+core_version_requirement: ^11
 libraries:
   - nostrverse/global
-regions:
-  header: 'Header'
-  primary_menu: 'Primary menu'
-  secondary_menu: 'Secondary menu'
-  page_top: 'Page top'
-  page_bottom: 'Page bottom'
-  featured: 'Featured'
-  breadcrumb: 'Breadcrumb'
-  content: 'Content'
-  sidebar_first: 'Sidebar first'
-  sidebar_second: 'Sidebar second'
-  footer: 'Footer'

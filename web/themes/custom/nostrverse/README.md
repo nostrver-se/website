@@ -1,0 +1,1 @@
+# Nostrver.se custom theme

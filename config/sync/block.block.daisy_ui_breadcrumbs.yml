@@ -1,0 +1,22 @@
+uuid: 1242a12a-ae41-4569-9264-9ac9354a3e8d
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - daisy_ui
+_core:
+  default_config_hash: Jq987GN3a0B-KGYagpTAFHW2fc7kf32BGOQLX3ZPAUI
+id: daisy_ui_breadcrumbs
+theme: daisy_ui
+region: breadcrumb
+weight: 0
+provider: null
+plugin: system_breadcrumb_block
+settings:
+  id: system_breadcrumb_block
+  label: Breadcrumbs
+  label_display: '0'
+  provider: system
+visibility: {  }

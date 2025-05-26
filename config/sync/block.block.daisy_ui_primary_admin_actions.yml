@@ -1,0 +1,20 @@
+uuid: 01aa15d1-9cda-4b6c-ba02-974e666dd32b
+langcode: en
+status: true
+dependencies:
+  theme:
+    - daisy_ui
+_core:
+  default_config_hash: f9EnElCEl6htu_4pe5ub173NQuSeluZDlvxeiIIXZqM
+id: daisy_ui_primary_admin_actions
+theme: daisy_ui
+region: highlighted
+weight: -5
+provider: null
+plugin: local_actions_block
+settings:
+  id: local_actions_block
+  label: 'Primary admin actions'
+  label_display: '0'
+  provider: core
+visibility: {  }
