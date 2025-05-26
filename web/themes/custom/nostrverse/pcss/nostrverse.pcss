@@ -5,6 +5,30 @@ header {
     @apply px-0;
   }
 }
+main {
+  .layout-content {
+    @apply mx-3 xl:mx-0;
+    article {
+      @apply overflow-x-hidden;
+      div.node__content > div {
+        @apply wrap-break-word;
+      }
+      .node__meta {
+        @apply flex;
+        article {
+          @apply flex-none;
+          img {
+            @apply h-6 w-6 inline;
+          }
+        }
+        .node__submitted {
+          @apply ml-2 pt-1 flex-1;
+        }
+      }
+    }
+  }
+
+}
 a {
   color: #9400bd;
 }

@@ -168,6 +168,36 @@ header {
     padding-inline: calc(var(--spacing) * 0);
   }
 }
+main {
+  .layout-content {
+    margin-inline: calc(var(--spacing) * 3);
+    @media (width >= 80rem) {
+      margin-inline: calc(var(--spacing) * 0);
+    }
+    article {
+      overflow-x: hidden;
+      div.node__content > div {
+        overflow-wrap: break-word;
+      }
+      .node__meta {
+        display: flex;
+        article {
+          flex: none;
+          img {
+            display: inline;
+            height: calc(var(--spacing) * 6);
+            width: calc(var(--spacing) * 6);
+          }
+        }
+        .node__submitted {
+          margin-left: calc(var(--spacing) * 2);
+          flex: 1;
+          padding-top: calc(var(--spacing) * 1);
+        }
+      }
+    }
+  }
+}
 a {
   color: #9400bd;
 }
