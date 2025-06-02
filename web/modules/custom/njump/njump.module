@@ -1,9 +1,61 @@
 <?php
 
+use swentel\nostr\Event\Event;
+use swentel\nostr\Event\Profile\Profile;
+use swentel\nostr\Nip19\Nip19Helper;
+
 /**
  * @file
  * Primary module hooks for njump module.
  */
+
+function njump_preprocess_page_title(&$variables) {
+  // Get node
+  $node = \Drupal::request()->attributes->get('node');
+  if (!is_null($node) && $node->bundle() === 'nostr_event') {
+    if ($node->hasField('field_nostr_kind')) {
+      // Get field_nostr_kind
+      $field_nostr_kind = $node->get('field_nostr_kind')->getString();
+      // What Nostr event kinds have a required title?
+      if ($field_nostr_kind !== '30023') {
+        unset($variables['title']);
+      }
+    }
+  }
+}
+
+function njump_preprocess_node__nostr_event(&$variables) {
+  $node = $variables['node'];
+  $pubkey_author = $node->get('field_nostr_pubkey')->getString();
+  // TODO Get relay list metadata of this pubkey so we can determine which relay to use to fetch their profile info.
+  $profile = new Profile();
+  $profile->fetch($pubkey_author);
+  $nip19 = new Nip19Helper();
+  $variables['npub'] = $nip19->encodeNpub($pubkey_author);
+  $variables['nprofile'] = $nip19->encodeProfile($profile);
+  $variables['profile'] = $profile;
+}
+
+function njump_preprocess_field__field_nostr_content(&$variables) {
+  // Get the node object.
+  $node = $variables['element']['#object'];
+  $content = $node->get('field_nostr_content')->getString();
+  // Check if content value is a stringified JSON
+  if (json_validate($content)) {
+    // This string is a valid JSON string
+    $json = json_decode($content, false);
+    $event = new Event();
+    $event->populate($json);
+    $variables['quoted_event'] = $event;
+  }
+  /*
+   * TODO check which identifier we can replace in the content string
+   */
+  // npubs
+  if (preg_match('/nostr:npub1\w+/m', $content, $matches)) {
+    //var_dump($matches);
+  }
+}
 
 function njump_theme($existing, $type, $theme, $path) {
   return [

@@ -8,6 +8,7 @@ use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Url;
 use Drupal\node\Entity\Node;
 use Drupal\paragraphs\Entity\Paragraph;
+use swentel\nostr\Event\Event;
 use swentel\nostr\Event\Profile\Profile;
 use swentel\nostr\Filter\Filter;
 use swentel\nostr\Message\RequestMessage;
@@ -19,6 +20,7 @@ use swentel\nostr\Request\Request as NostrRequest;
 use swentel\nostr\Subscription\Subscription;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * Returns responses for Njump routes.
@@ -82,6 +84,10 @@ final class NjumpController extends ControllerBase {
           $event['kind'] = $decoded['kind'];
         }
         break;
+      case 'nprofile':
+        $decoded = $nip19Helper->decode($identifier);
+        // TODO Get relay list metadata of this pubkey
+        break;
       default:
         // hex formatted id
         $event['id'] = $identifier;
@@ -122,7 +128,11 @@ final class NjumpController extends ControllerBase {
       if (count($response[$relayUrl]) > 0) {
         foreach ($relayResponses as $message) {
           if ($message instanceof RelayResponseEvent) {
-            $event = $message->event;
+            $event = new Event();
+            $event->populate($message->event);
+            break;
+          } else {
+            throw new NotFoundHttpException();
           }
         }
       }
@@ -130,14 +140,14 @@ final class NjumpController extends ControllerBase {
 
     // Fetch profile from pubkey of the event
     $profile = new Profile();
-    $profile->fetch($event->pubkey, 'wss://relay.nostr.band');
+    $profile->fetch($event->getPublicKey());
     $profile_content = json_decode($profile->getContent(), true);
 
     // TODO check if node already exist with this nostr event id
     $nodeStorage = \Drupal::entityTypeManager()->getStorage('node');
     $node = $nodeStorage->loadByProperties([
-      'created' => $event->created_at,
-      'field_nostr_id' => $event->id,
+      'created' => $event->getCreatedAt(),
+      'field_nostr_id' => $event->getId(),
     ]);
     if ($node) {
       // TODO Do we need to update the existing node? Which conditions we have to check?
@@ -149,7 +159,7 @@ final class NjumpController extends ControllerBase {
     } else {
       // Create for each tag a paragraph entity
       $tags = [];
-      foreach ($event->tags as $tag) {
+      foreach ($event->getTags() as $tag) {
         $paragraph_tag = Paragraph::create([
           'type' => 'nostr_tags',
           'status' => 1,
@@ -161,36 +171,43 @@ final class NjumpController extends ControllerBase {
         $paragraph_tag->save();
         $tags[] = $paragraph_tag;
         // Override title if set
-        if ($tag[0] === 'title') {
-          $node_title = $tag[1];
+        $title = $event->getTag('title');
+        if ($title) {
+          $node_title = $title[0][1];
         }
       }
       // Create and save Nostr event as a node entity.
       $nostr_event_node = Node::create([
         //'uid' => 2, // TODO should we create a user entity first so we can set the author here?
         'type' => 'nostr_event',
-        'title' => $node_title ?? $event->id,
-        'created' => $event->created_at,
+        'title' => $node_title ?? $event->getId(),
+        'created' => $event->getCreatedAt(),
         'status' => 1,
-        'field_nostr_id' => $event->id,
-        'field_nostr_pubkey' => $event->pubkey,
-        'field_nostr_kind' => $event->kind,
-        'field_nostr_content' => $event->content,
-        'field_nostr_signature' => $event->sig,
+        'field_nostr_id' => $event->getId(),
+        'field_nostr_pubkey' => $event->getPublicKey(),
+        'field_nostr_kind' => $event->getKind(),
+        'field_nostr_content' => $event->getContent(),
+        'field_nostr_signature' => $event->getSignature(),
         'field_nostr_tags' => $tags,
       ]);
       $nostr_event_node->save();
 
-      // TODO process URL aliasses for this node
-      //$node_path = "/node/$nid";
-      //$new_url = $parent_url_alias . $url_alias;
-      //
-      ///** @var \Drupal\path_alias\PathAliasInterface $path_alias */
-      //$path_alias = \Drupal::entityTypeManager()->getStorage('path_alias')->create([
-      //  'path' => $node_path,
-      //  'alias' => $new_url,
-      //  'langcode' => 'en',
-      //]);
+      if ($identifier) {
+        // Add identifier string as a URL alias for this node
+        $node_path = '/node/'.$nostr_event_node->id();
+        $alias = '/e/'.$identifier;
+        /** @var \Drupal\path_alias\PathAliasInterface $path_alias */
+        $path_alias = \Drupal::entityTypeManager()->getStorage('path_alias')->create([
+          'path' => $node_path,
+          'alias' => $alias,
+          'langcode' => 'en',
+        ]);
+        $path_alias->save();
+        // TODO check if we can generate the other identifiers for this node too? So we could have as much identifiers as URL aliasses as possible:
+        // - note1
+        // - nevent1
+        // - naddr1
+      }
     }
 
     // Encode as JSON string.

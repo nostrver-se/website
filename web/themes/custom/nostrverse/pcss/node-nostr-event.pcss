@@ -1,0 +1,27 @@
+@import "tailwindcss" source('../../../contrib/tailwind_css');
+.page-node-type-nostr-event {
+  h1.page-title {
+      @apply text-wrap wrap-anywhere;
+  }
+  .avatar {
+    @apply my-2 mx-auto aspect-square overflow-hidden w-2/3 ring-fuchsia-200 rounded-full ring-3 ring-offset-2 transition hover:ring-fuchsia-700 hover:ring-4;
+    img {
+      @apply h-full;
+    }
+  }
+  .nostr-content {
+    @apply m-0 p-4 text-xl bg-fuchsia-100 text-wrap wrap-anywhere;
+  }
+  .event_id {
+    @apply font-mono;
+  }
+  .pubkey {
+    @apply font-mono;
+  }
+  .signature {
+    @apply font-mono;
+  }
+}
+.modal-box {
+  @apply w-11/12 !max-w-5xl;
+}

@@ -25,9 +25,17 @@ content:
     third_party_settings: {  }
     weight: 2
     region: content
+  field_nostr_id:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 6
+    region: content
   field_nostr_kind:
     type: number_integer
-    label: above
+    label: hidden
     settings:
       thousand_separator: ''
       prefix_suffix: true
@@ -36,7 +44,7 @@ content:
     region: content
   field_nostr_pubkey:
     type: string
-    label: above
+    label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
@@ -44,7 +52,7 @@ content:
     region: content
   field_nostr_signature:
     type: string
-    label: above
+    label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
@@ -64,5 +72,4 @@ content:
     third_party_settings: {  }
     weight: 0
     region: content
-hidden:
-  field_nostr_id: true
+hidden: {  }

@@ -5,3 +5,4 @@ global:
   css:
     theme:
       css/nostrverse.css: {}
+      css/node-nostr-event.css: {}

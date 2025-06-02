@@ -1,8 +1,8 @@
-@import "tailwindcss" source(none);
+@import "tailwindcss";
 header {
   @apply xl:w-3/4 xl:mx-auto;
   .region-header {
-    @apply px-0;
+    @apply px-0 py-0;
   }
 }
 main {
@@ -10,8 +10,19 @@ main {
     @apply mx-3 xl:mx-0;
     article {
       @apply overflow-x-hidden;
-      div.node__content > div {
-        @apply wrap-break-word;
+      div.node__content {
+        p > img {
+          @apply w-1/2 sm:w-max;
+          &.align-right {
+            @apply ml-2 mb-2;
+          }
+          &.align-left {
+            @apply mr-2 mb-2;
+          }
+        }
+        & > div {
+          @apply wrap-break-word;
+        }
       }
       .node__meta {
         @apply flex;
@@ -25,10 +36,25 @@ main {
           @apply ml-2 pt-1 flex-1;
         }
       }
+      p > a,
+      li > a {
+        @apply text-black underline-offset-1 decoration-1;
+      }
     }
   }
-
 }
+
+nav.breadcrumb {
+  @apply mx-3 xl:mx-0;
+  ol > li > a {
+    @apply no-underline;
+  }
+}
+
 a {
-  color: #9400bd;
+  @apply text-fuchsia-700 underline underline-offset-3 decoration-fuchsia-600/50 decoration-2 transition hover:text-fuchsia-900 hover:bg-fuchsia-600/20 active:text-fuchsia-800 focus:text-fuchsia-800;
+}
+
+article.node.node--view-mode-blog-teaser {
+  @apply my-2;
 }

@@ -2,8 +2,8 @@
   "name": "nostrverse",
   "private": true,
   "scripts": {
-    "dev": "postcss pcss/nostrverse.pcss -o css/nostrverse.css --watch --verbose",
-    "build": "postcss pcss/nostrverse.pcss -o css/nostrverse.css"
+    "dev": "postcss pcss --dir css --ext css --watch --verbose",
+    "build": "postcss pcss --dir css --ext css"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.7",
