@@ -1,30 +1,29 @@
 _core:
-  default_config_hash: hV4bhqbC5LiJvbdO0pxBI_UQaDlWFNysWF_eclD1fLI
-client_key: 'https://de7aa74293af49029902be7ac7d547a1@logs.sebastix.dev/22'
-environment: ''
+  default_config_hash: 9rw2YgXiK9d42SeeSO8sPyCoxiG6rIlj64rJ8ocdEYU
+client_key: 'https://e338db528629497fa614b9da1512089d@logs.sebastix.dev/1'
+environment: production
 release: ''
 log_levels:
-  emergency: false
-  alert: false
-  critical: false
-  error: false
-  warning: false
-  notice: false
-  info: false
-  debug: false
+  1: 1
+  2: 2
+  3: 3
+  4: 4
+  5: 0
+  6: 0
+  7: 0
+  8: 0
 stack: true
 timeout: 2.0
 message_limit: 2048
 trace: false
-fatal_error_handler: false
+fatal_error_handler: true
 fatal_error_handler_memory: 2560
 javascript_error_handler: false
 drush_error_handler: false
-public_dsn: null
+public_dsn: 'https://e338db528629497fa614b9da1512089d@logs.sebastix.dev/1'
 ssl: verify_ssl
 ca_cert: ''
 ignored_channels: {  }
-ignored_messages: {  }
 send_user_data: false
 rate_limit: 0
 send_request_body: false
@@ -40,13 +39,6 @@ seckit_set_report_uri: false
 send_monitoring_sensor_status_changes: false
 404_tracing: false
 show_report_dialog: false
-error_embed_url: null
+error_embed_url: ''
 tunnel: false
 modules: false
-cron_monitor_id: ''
-profiles_sample_rate: null
-http_compression: true
-send_inp_spans: false
-trace_propagation_targets_backend: {  }
-trace_propagation_targets_frontend: {  }
-database_tracing_args: false
