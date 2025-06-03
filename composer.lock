@@ -3100,7 +3100,7 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/nostr_content_nip23.git",
-                "reference": "7fa121f29119ac8f5f86775a26708550ced8d957"
+                "reference": "88a816f2abd0adf8bad7c84bc7ede220681a4582"
             },
             "require": {
                 "drupal/core": "^10 || ^11",
@@ -3114,7 +3114,7 @@
                 },
                 "drupal": {
                     "version": "1.0.x-dev",
-                    "datestamp": "1748270025",
+                    "datestamp": "1748956574",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Project has not opted into security advisory coverage!"
@@ -7986,16 +7986,16 @@
         },
         {
             "name": "swentel/nostr-php",
-            "version": "1.8.0",
+            "version": "1.9.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nostrver-se/nostr-php.git",
-                "reference": "3e8053becf001c994ba898ea885745aa371827b0"
+                "reference": "e1b74739adf9100399ba7a63af513ecebbef6a5b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nostrver-se/nostr-php/zipball/3e8053becf001c994ba898ea885745aa371827b0",
-                "reference": "3e8053becf001c994ba898ea885745aa371827b0",
+                "url": "https://api.github.com/repos/nostrver-se/nostr-php/zipball/e1b74739adf9100399ba7a63af513ecebbef6a5b",
+                "reference": "e1b74739adf9100399ba7a63af513ecebbef6a5b",
                 "shasum": ""
             },
             "require": {
@@ -8045,9 +8045,9 @@
                 "chat": "https://t.me/nostr_php",
                 "issue": "https://github.com/swentel/nostr-php/issues",
                 "issues": "https://github.com/nostrver-se/nostr-php/issues",
-                "source": "https://github.com/nostrver-se/nostr-php/tree/1.8.0"
+                "source": "https://github.com/nostrver-se/nostr-php/tree/push"
             },
-            "time": "2025-05-19T14:29:08+00:00"
+            "time": "2025-06-03T12:51:31+00:00"
         },
         {
             "name": "symfony/console",
