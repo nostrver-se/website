@@ -59,16 +59,6 @@ function njump_preprocess_field__field_nostr_content(&$variables) {
 
 function njump_theme($existing, $type, $theme, $path) {
   return [
-    'njump' => [
-      'render element' => 'children',
-      'template' => 'njump',
-      'path' => $path . '/templates',
-      'variables' => [
-        'identifier' => NULL,
-        'event' => NULL,
-        'author' => NULL,
-        'nostr_event_node' => NULL,
-      ],
-    ]
+
   ];
 }

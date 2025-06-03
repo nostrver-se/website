@@ -153,9 +153,6 @@ final class NjumpController extends ControllerBase {
       // TODO Do we need to update the existing node? Which conditions we have to check?
       // Depends on the type of the event
       $nostr_event_node = reset($node);
-      // Redirect to node page
-      $url = Url::fromRoute('entity.node.canonical', ['node' => $nostr_event_node->id()]);
-      return new RedirectResponse($url->toString());
     } else {
       // Create for each tag a paragraph entity
       $tags = [];
@@ -210,29 +207,16 @@ final class NjumpController extends ControllerBase {
       }
     }
 
+    // TODO remove this code here below
     // Encode as JSON string.
-    $event = json_encode($event, JSON_THROW_ON_ERROR | JSON_PRETTY_PRINT);
+    //$event = json_encode($event, JSON_THROW_ON_ERROR | JSON_PRETTY_PRINT);
 
     // View builder to render node
-    $view_builder = \Drupal::entityTypeManager()->getViewBuilder('node');
+    //$view_builder = \Drupal::entityTypeManager()->getViewBuilder('node');
+    // Return render array for the node.
+    //return $view_builder->view($nostr_event_node, 'default');
 
-    return [
-      '#theme' => 'njump',
-      '#title' => $nostr_event_node->getTitle(), // only set the h1 title, not the meta page title
-      '#identifier' => $identifier,
-      '#event' => $event,
-      '#author' => [
-        'profile' => $profile,
-        'profile_content' => $profile_content
-      ],
-      '#nostr_event_node' => $view_builder->view($nostr_event_node, 'default'),
-    ];
+    $url = Url::fromRoute('entity.node.canonical', ['node' => $nostr_event_node->id()]);
+    return new RedirectResponse($url->toString());
   }
-
-  public function nostrEvent(Request $request): RedirectResponse|array {
-    return [
-      '#theme' => 'njump',
-    ];
-  }
-
 }
