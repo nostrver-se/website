@@ -32,6 +32,7 @@ module:
   image: 0
   key: 0
   link: 0
+  mailer_transport: 0
   markdown_easy: 0
   matomo: 0
   media: 0
