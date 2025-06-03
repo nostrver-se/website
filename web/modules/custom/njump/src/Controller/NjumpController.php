@@ -86,6 +86,8 @@ final class NjumpController extends ControllerBase {
         break;
       case 'nprofile':
         $decoded = $nip19Helper->decode($identifier);
+        $event['pubkey'] = $decoded['pubkey'];
+        $event['kind'] = 0;
         // TODO Get relay list metadata of this pubkey
         break;
       default:
@@ -131,11 +133,13 @@ final class NjumpController extends ControllerBase {
             $event = new Event();
             $event->populate($message->event);
             break;
-          } else {
-            throw new NotFoundHttpException();
           }
         }
       }
+    }
+
+    if (!isset($event)) {
+      throw new NotFoundHttpException();
     }
 
     // Fetch profile from pubkey of the event
