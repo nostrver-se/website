@@ -1,6 +1,7 @@
 <?php
 
 use swentel\nostr\Event\Event;
+use swentel\nostr\Event\List\RelayListMetadata;
 use swentel\nostr\Event\Profile\Profile;
 use swentel\nostr\Nip19\Nip19Helper;
 
@@ -27,9 +28,10 @@ function njump_preprocess_page_title(&$variables) {
 function njump_preprocess_node__nostr_event(&$variables) {
   $node = $variables['node'];
   $pubkey_author = $node->get('field_nostr_pubkey')->getString();
-  // TODO Get relay list metadata of this pubkey so we can determine which relay to use to fetch their profile info.
+  $relayListMetadata = new RelayListMetadata($pubkey_author);
+  $writeRelays = $relayListMetadata->getWriteRelays();
   $profile = new Profile();
-  $profile->fetch($pubkey_author);
+  $profile->fetch($pubkey_author, $writeRelays[0] ?? null);
   $nip19 = new Nip19Helper();
   $variables['npub'] = $nip19->encodeNpub($pubkey_author);
   $variables['nprofile'] = $nip19->encodeProfile($profile);
@@ -40,8 +42,15 @@ function njump_preprocess_field__field_nostr_content(&$variables) {
   // Get the node object.
   $node = $variables['element']['#object'];
   $content = $node->get('field_nostr_content')->getString();
-  // Check if content value is a stringified JSON
-  if (json_validate($content)) {
+  $kind = $node->get('field_nostr_kind')->getString();
+  // Profile
+  if ($kind === '0' && json_validate($content)) {
+    // TODO parse profile metadata here
+    $profile = new Profile();
+    $profile->parseProfile($content);
+  }
+  // Quote
+  if ($kind === '6' && json_validate($content)) {
     // This string is a valid JSON string
     $json = json_decode($content, false);
     $event = new Event();
