@@ -1,5 +1,7 @@
 <?php
 
+use Drupal\Core\Link;
+use Drupal\Core\Url;
 use swentel\nostr\Event\Event;
 use swentel\nostr\Event\List\RelayListMetadata;
 use swentel\nostr\Event\Profile\Profile;
@@ -10,7 +12,7 @@ use swentel\nostr\Nip19\Nip19Helper;
  * Primary module hooks for njump module.
  */
 
-function njump_preprocess_page_title(&$variables) {
+function njump_preprocess_page_title(&$variables): void {
   // Get node
   $node = \Drupal::request()->attributes->get('node');
   if (!is_null($node) && $node->bundle() === 'nostr_event') {
@@ -25,31 +27,38 @@ function njump_preprocess_page_title(&$variables) {
   }
 }
 
-function njump_preprocess_node__nostr_event(&$variables) {
+function njump_preprocess_node__nostr_event(&$variables): void {
   $node = $variables['node'];
   $pubkey_author = $node->get('field_nostr_pubkey')->getString();
   $relayListMetadata = new RelayListMetadata($pubkey_author);
-  $writeRelays = $relayListMetadata->getWriteRelays();
+  if (!empty($relayListMetadata->getRelays())) {
+    $writeRelays = $relayListMetadata->getWriteRelays();
+  }
   $profile = new Profile();
-  $profile->fetch($pubkey_author, $writeRelays[0] ?? null);
+  try {
+    $profile->fetch($pubkey_author, $writeRelays[0] ?? 'wss://purplepag.es');
+  }
+  catch (\Exception $e) {
+    throw new \RuntimeException($e->getMessage());
+  }
   $nip19 = new Nip19Helper();
   $variables['npub'] = $nip19->encodeNpub($pubkey_author);
   $variables['nprofile'] = $nip19->encodeProfile($profile);
   $variables['profile'] = $profile;
 }
 
-function njump_preprocess_field__field_nostr_content(&$variables) {
+function njump_preprocess_field__field_nostr_content(&$variables): void {
   // Get the node object.
   $node = $variables['element']['#object'];
   $content = $node->get('field_nostr_content')->getString();
   $kind = $node->get('field_nostr_kind')->getString();
-  // Profile
+  // Profile event
   if ($kind === '0' && json_validate($content)) {
-    // TODO parse profile metadata here
+    // TODO parse profile metadata here.
     $profile = new Profile();
     $profile->parseProfile($content);
   }
-  // Quote
+  // Quote event
   if ($kind === '6' && json_validate($content)) {
     // This string is a valid JSON string
     $json = json_decode($content, false);
@@ -57,17 +66,105 @@ function njump_preprocess_field__field_nostr_content(&$variables) {
     $event->populate($json);
     $variables['quoted_event'] = $event;
   }
-  /*
-   * TODO check which identifier we can replace in the content string
-   */
-  // npubs
-  if (preg_match('/nostr:npub1\w+/m', $content, $matches)) {
-    //var_dump($matches);
+  // TODO reaction event
+  if ($kind === '7') {
+    // TODO fetch event where the reaction is made on.
   }
+  // TODO if the event is a note and a reaction, fetch the parent event
+
+  // TODO, can we build a tread with the parent event and all reactions?
+
+  /*
+   * Check which identifiers we can replace in the content string
+   * See NIP-21 - https://nips.nostr.com/21
+   * nostr:npub1
+   * nostr:note1
+   * nostr:nevent1
+   * nostr:nprofile1
+   * nostr:addr1
+   */
+  $prefix_identifiers = 'nostr:';
+  $identifiers = [
+    'npub1',
+    'note1',
+    'nevent1',
+    'nprofile1',
+    'naddr1'
+  ];
+  // The content to search in for the to be replaced identifiers.
+  $context = $variables['items'][0]['content']['#context']['value'];
+  foreach ($identifiers as $identifier) {
+    $pattern = '/'. $prefix_identifiers . $identifier .'\w+/m';
+    if (preg_match_all($pattern, $context, $matches)) {
+      $context = _replaceNostrIdentifiers($context, $matches[0]);
+    }
+  }
+
+  /*
+   * TODO replace external links
+   */
+
+  /**
+   * TODO replace links to media with elements to embed this content
+   */
+  $image_extensions = [
+    'jpg',
+    'jpeg',
+    'png',
+    'gif'
+  ];
+  foreach ($image_extensions as $extension) {
+    $pattern = '/https?:\/\/.*\.(?:' . $extension . ')/m';
+    if (preg_match_all($pattern, $context, $matches)) {
+      $context = _replaceImageLinks($context, $matches[0]);
+    }
+  }
+
+  /*
+   * TODO Replace hashtags
+   */
+
+  /**
+   * Render Markup formatted content to HTML (kind 30023 and 30024)
+   */
+
+  $variables['items'][0]['content']['#context']['value'] =  $context;
 }
 
-function njump_theme($existing, $type, $theme, $path) {
-  return [
+/**
+ * @param string $context
+ * @param array $matches
+ *
+ * @return string
+ */
+function _replaceNostrIdentifiers(string $context, array $matches): string {
+  foreach ($matches as $match) {
+    [$uri, $identifier] = explode(':', $match, 2);
+    $match_patterns = ['/' . $match . '/'];
+    $url = new Url('njump.event', ['identifier' => $identifier]);
+    $link = new Link($uri.':'.$identifier, $url);
+    $replacements = [$link->toString()->getGeneratedLink()];
+    // replace in context
+    $context = preg_replace($match_patterns, $replacements, $context);
+  }
+  return $context;
+}
 
-  ];
+/**
+ * @param string $context
+ * @param array $matches
+ *
+ * @return string
+ */
+function _replaceImageLinks(string $context, array $matches): string {
+  foreach ($matches as $match) {
+    $url = Url::fromUri($match);
+    $link = new Link($match, $url);
+    // TODO download and save image as a file (compressed) entity
+    $image = sprintf('<img src="%s" alt="%s" />', $link->getUrl()->toString(), $link->getUrl()->toString());
+    $match_patterns = ['/' . str_replace('/', '\/', $match) . '/'];
+    $replacements = [$image];
+    $context = preg_replace($match_patterns, $replacements, $context);
+  }
+  return $context;
 }

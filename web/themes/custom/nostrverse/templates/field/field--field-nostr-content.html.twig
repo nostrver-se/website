@@ -45,7 +45,7 @@
   {{ quoted_event.content|nl2br }}
 {% else %}
   {% for item in items %}
-    {{ item.content }}
+    {{ item.content['#context'].value|raw|nl2br }}
   {% endfor %}
 {% endif %}
 </p>

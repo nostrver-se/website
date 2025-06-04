@@ -9,8 +9,9 @@ use Drupal\Core\Url;
 use Drupal\node\Entity\Node;
 use Drupal\paragraphs\Entity\Paragraph;
 use swentel\nostr\Event\Event;
-use swentel\nostr\Event\Profile\Profile;
+use swentel\nostr\Event\List\RelayListMetadata;
 use swentel\nostr\Filter\Filter;
+use swentel\nostr\Key\Key;
 use swentel\nostr\Message\RequestMessage;
 use swentel\nostr\Nip19\Nip19Helper;
 use swentel\nostr\Relay\Relay;
@@ -36,7 +37,6 @@ final class NjumpController extends ControllerBase {
    * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
    * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    * @throws \Drupal\Core\Entity\EntityStorageException
-   * @throws \JsonException
    */
   public function __invoke(Request $request): RedirectResponse|array {
     // Determine the identifier first.
@@ -48,6 +48,7 @@ final class NjumpController extends ControllerBase {
     $prefix = substr($identifier, 0, $pos);
     $nip19Helper = new Nip19Helper();
     $event = [];
+    // Handle different identifiers in this switch case.
     switch ($prefix) {
       case 'note':
         $decoded = $nip19Helper->decodeNote($identifier);
@@ -71,7 +72,7 @@ final class NjumpController extends ControllerBase {
         if (isset($decoded['identifier'])) {
           $event['dTag'] = $decoded['identifier'];
         }
-        if (isset($decoded['relays']) && !empty($decoded['relays'])) {
+        if (!empty($decoded['relays'])) {
           $relays = [];
           foreach ($decoded['relays'] as $relay) {
             $relays[] = new Relay($relay);
@@ -88,7 +89,19 @@ final class NjumpController extends ControllerBase {
         $decoded = $nip19Helper->decode($identifier);
         $event['pubkey'] = $decoded['pubkey'];
         $event['kind'] = 0;
-        // TODO Get relay list metadata of this pubkey
+        if (!empty($decoded['relays'])) {
+          $event['relays'] = $decoded['relays'];
+        } else {
+          $relayListMetadata = new RelayListMetadata($decoded['pubkey']);
+          if(!empty($relayListMetadata->getRelays())) {
+            $event['relays'] = $relayListMetadata->getWriteRelays();
+          }
+        }
+        break;
+      case 'npub':
+        $key = new Key();
+        $event['pubkey'] = $key->convertToHex($identifier);
+        $event['kind'] = 0;
         break;
       default:
         // hex formatted id
@@ -96,9 +109,10 @@ final class NjumpController extends ControllerBase {
         break;
     }
 
-    // Fetch event.
+    // Fetch event with a subscription and request.
     $subscription = new Subscription();
     $subscriptionId = $subscription->setId();
+    // Set filters.
     $filter1 = new Filter();
     if (isset($event['id'])) {
       $filter1->setIds([$event['id']]);
@@ -114,7 +128,9 @@ final class NjumpController extends ControllerBase {
     }
     $filter1->setLimit(1);
     $filters = [$filter1];
+    // Create request message.
     $requestMessage = new RequestMessage($subscriptionId, $filters);
+    // Set relays where the request message is being sent to.
     if (!isset($relays)) {
       $relays = [
         new Relay('wss://nos.lol'),
@@ -123,9 +139,12 @@ final class NjumpController extends ControllerBase {
     }
     $relaySet = new RelaySet();
     $relaySet->setRelays($relays);
+    // Create request with the relays and request message.
     $nRequest = new NostrRequest($relaySet, $requestMessage);
+    // Send it.
     $response = $nRequest->send();
 
+    // Handle all responses from the request.
     foreach ($response as $relayUrl => $relayResponses) {
       if (count($response[$relayUrl]) > 0) {
         foreach ($relayResponses as $message) {
@@ -138,14 +157,15 @@ final class NjumpController extends ControllerBase {
       }
     }
 
+    // We got nothing, show a page not found page.
     if (!isset($event)) {
       throw new NotFoundHttpException();
     }
 
     // Fetch profile from pubkey of the event
-    $profile = new Profile();
-    $profile->fetch($event->getPublicKey());
-    $profile_content = json_decode($profile->getContent(), true);
+//    $profile = new Profile();
+//    $profile->fetch($event->getPublicKey());
+//    $profile_content = json_decode($profile->getContent(), true);
 
     // TODO check if node already exist with this nostr event id
     $nodeStorage = \Drupal::entityTypeManager()->getStorage('node');
@@ -208,6 +228,8 @@ final class NjumpController extends ControllerBase {
         // - note1
         // - nevent1
         // - naddr1
+        // - nprofile1
+        // - npub1
       }
     }
 
