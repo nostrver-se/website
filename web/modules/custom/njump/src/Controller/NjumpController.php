@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Drupal\njump\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
+use Drupal\Core\PageCache\ResponsePolicy\KillSwitch;
 use Drupal\Core\Url;
 use Drupal\node\Entity\Node;
 use Drupal\paragraphs\Entity\Paragraph;
@@ -19,6 +20,7 @@ use swentel\nostr\Relay\RelaySet;
 use swentel\nostr\RelayResponse\RelayResponseEvent;
 use swentel\nostr\Request\Request as NostrRequest;
 use swentel\nostr\Subscription\Subscription;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -27,6 +29,29 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
  * Returns responses for Njump routes.
  */
 final class NjumpController extends ControllerBase {
+
+  /**
+   * Page cache kill switch.
+   *
+   * @var \Drupal\Core\PageCache\ResponsePolicy\KillSwitch
+   */
+  protected $killSwitch;
+
+  /**
+   * {@inheritdoc}
+   */
+  public function __construct(KillSwitch $kill_switch) {
+    $this->killSwitch = $kill_switch;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container) {
+    return new static(
+      $container->get('page_cache_kill_switch')
+    );
+  }
 
   /**
    * Builds the response.
@@ -39,6 +64,9 @@ final class NjumpController extends ControllerBase {
    * @throws \Drupal\Core\Entity\EntityStorageException
    */
   public function __invoke(Request $request): RedirectResponse|array {
+    // Disable cache
+    $this->killSwitch->trigger();
+
     // Determine the identifier first.
     $identifier = $request->attributes->get('identifier');
     $pos = strrpos($identifier, '1');
