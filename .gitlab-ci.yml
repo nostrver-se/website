@@ -50,7 +50,7 @@ before_script:
   # - see https://github.com/mlocati/docker-php-extension-installer
   - curl -sSLf -o /usr/bin/install-php-extensions https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions
   - chmod +x /usr/bin/install-php-extensions
-  - install-php-extensions gd gmp
+  - install-php-extensions gd gmp xml
 
 build:drupal:
   stage: build
