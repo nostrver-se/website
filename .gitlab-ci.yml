@@ -1,4 +1,4 @@
-image: php:8.3-alpine
+image: php:8.4-alpine
 
 # Preparation:
 # Save $SSH_PRIVATE_KEY first in GitLab CI variables.
