@@ -52,6 +52,7 @@
     "drupal/nostr_simple_publish": "1.0.x-dev",
     "drupal/paragraphs": "^1.15",
     "drupal/pathauto": "^1.11",
+    "drupal/path_alias_length": "^1.0@beta",
     "drupal/push_framework": "^2.3",
     "drupal/pwa": "^2.1@beta",
     "drupal/raven": "^6.0",
@@ -152,13 +153,16 @@
         },
         "drupal/devel_entity_updates": {
             "#3454902 D11": "https://git.drupalcode.org/project/devel_entity_updates/-/merge_requests/5.diff"
+        },
+        "drupal/path_alias_length": {
+            "#3433866 D11" : "https://www.drupal.org/files/issues/2024-03-24/path_alias_length.1.0.0-beta3.rector.patch"
         }
     },
     "patchLevel": {
       "drupal/core": "-p2"
     },
     "drupal-lenient": {
-      "allowed-list": ["drupal/devel_entity_updates"]
+      "allowed-list": ["drupal/devel_entity_updates", "drupal/path_alias_length"]
     }
   }
 }

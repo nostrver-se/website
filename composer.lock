@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3966374a6e274771d7da2be5a003deed",
+    "content-hash": "5bd9b1c742a861a09b8820917beb26be",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1284,17 +1284,17 @@
         },
         {
             "name": "drupal/admin_toolbar",
-            "version": "3.6.0",
+            "version": "3.6.1",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/admin_toolbar.git",
-                "reference": "3.6.0"
+                "reference": "3.6.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/admin_toolbar-3.6.0.zip",
-                "reference": "3.6.0",
-                "shasum": "ee03fd8e5394525f6e0aaf19db75624fbefc5b5d"
+                "url": "https://ftp.drupal.org/files/projects/admin_toolbar-3.6.1.zip",
+                "reference": "3.6.1",
+                "shasum": "40e8874bdf100de90e0eec6984be14f0ec7765b0"
             },
             "require": {
                 "drupal/core": "^9.5 || ^10 || ^11"
@@ -1305,8 +1305,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "3.6.0",
-                    "datestamp": "1747981575",
+                    "version": "3.6.1",
+                    "datestamp": "1749079734",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -2148,7 +2148,7 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/daisy_ui.git",
-                "reference": "188eb0f96dd30dd4876267fffe9ad03eec806ca9"
+                "reference": "e30628e1450ea0d07c3a58b218bb713a49086c89"
             },
             "require": {
                 "drupal/core": "^11",
@@ -2161,7 +2161,7 @@
                 },
                 "drupal": {
                     "version": "1.0.x-dev",
-                    "datestamp": "1748875271",
+                    "datestamp": "1749110186",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Project has not opted into security advisory coverage!"
@@ -2761,7 +2761,7 @@
         },
         {
             "name": "drupal/mailer_transport",
-            "version": "1.6.0",
+            "version": "1.6.1",
             "require": {
                 "drupal/core": "^10.3 || ^11",
                 "drupal/symfony_mailer": "^1"
@@ -2769,8 +2769,8 @@
             "type": "metapackage",
             "extra": {
                 "drupal": {
-                    "version": "1.6.0",
-                    "datestamp": "1748449581",
+                    "version": "1.6.1",
+                    "datestamp": "1749109091",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -3367,6 +3367,60 @@
             }
         },
         {
+            "name": "drupal/path_alias_length",
+            "version": "1.0.0-beta3",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/path_alias_length.git",
+                "reference": "1.0.0-beta3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/path_alias_length-1.0.0-beta3.zip",
+                "reference": "1.0.0-beta3",
+                "shasum": "1a6c30d4d708165fc921cca9454306a50de1ac0d"
+            },
+            "require": {
+                "drupal/core": "^8 || ^9 || ^10 || ^11 || ^12",
+                "drupal/pathauto": "*",
+                "php": ">=7.4"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "1.0.0-beta3",
+                    "datestamp": "1701719938",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Beta releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "daften",
+                    "homepage": "https://www.drupal.org/user/176274"
+                },
+                {
+                    "name": "L_VanDamme",
+                    "homepage": "https://www.drupal.org/user/3162503"
+                },
+                {
+                    "name": "nginex",
+                    "homepage": "https://www.drupal.org/user/2822325"
+                }
+            ],
+            "description": "Allows longer length for path aliases, up to 1024 characters.",
+            "homepage": "https://www.drupal.org/project/path_alias_length",
+            "support": {
+                "source": "https://git.drupalcode.org/project/path_alias_length"
+            }
+        },
+        {
             "name": "drupal/pathauto",
             "version": "1.13.0",
             "source": {
@@ -3901,17 +3955,17 @@
         },
         {
             "name": "drupal/symfony_mailer",
-            "version": "1.6.0",
+            "version": "1.6.1",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/symfony_mailer.git",
-                "reference": "1.6.0"
+                "reference": "1.6.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/symfony_mailer-1.6.0.zip",
-                "reference": "1.6.0",
-                "shasum": "2d58b809a7fdd038900164d36f9de7f5df490cbb"
+                "url": "https://ftp.drupal.org/files/projects/symfony_mailer-1.6.1.zip",
+                "reference": "1.6.1",
+                "shasum": "254b9b6177c83930599d2d0216d40c57f093818a"
             },
             "require": {
                 "drupal/core": "^10.3 || ^11",
@@ -3923,8 +3977,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "1.6.0",
-                    "datestamp": "1748449581",
+                    "version": "1.6.1",
+                    "datestamp": "1749109091",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -17180,6 +17234,7 @@
         "drupal/nostr_dev_kit": 20,
         "drupal/nostr_id_nip05": 20,
         "drupal/nostr_simple_publish": 20,
+        "drupal/path_alias_length": 10,
         "drupal/pwa": 10,
         "drupal/refreshless": 15,
         "drupal/swiper_formatter": 15,

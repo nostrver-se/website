@@ -43,7 +43,8 @@ final class NjumpController extends ControllerBase {
     $identifier = $request->attributes->get('identifier');
     $pos = strrpos($identifier, '1');
     if ($pos === false) {
-      throw new \RuntimeException(message: 'Invalid bech32 string');
+      \Drupal::messenger()->addError('Invalid bech32 string');
+      throw new NotFoundHttpException();
     }
     $prefix = substr($identifier, 0, $pos);
     $nip19Helper = new Nip19Helper();
@@ -159,6 +160,7 @@ final class NjumpController extends ControllerBase {
 
     // We got nothing, show a page not found page.
     if (!isset($event)) {
+      \Drupal::messenger()->addError('Could not find any event.');
       throw new NotFoundHttpException();
     }
 
