@@ -1,19 +1,11 @@
 image: php:8.4-alpine
 
-# Preparation:
-# Save $SSH_PRIVATE_KEY first in GitLab CI variables.
 variables:
   DRUPAL_PROJECTROOT: "/var/www/nostrver.se"
   URL: "https://nostrver.se"
   SSH_LOGIN: "ssh -T -p 1986 sebastix@nostrver.se"
   SSH_USER: "sebastix"
   SSH_HOST: "nostrver.se"
-  # Production
-#  DRUPAL_PROJECTROOT_PROD: "/var/www/vhosts/[domain]/domains/[domain]"
-#  URL_PROD: "https://[domain]"
-#  SSH_LOGIN_PROD: "ssh -T [username]@[domain]"
-#  SSH_USER_PROD: "[username]"
-#  SSH_HOST_PROD: "[domain]"
 
 workflow:
   rules:
