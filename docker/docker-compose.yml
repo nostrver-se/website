@@ -26,7 +26,6 @@ services:
     working_dir: /var/www
     secrets:
       - tinypc_ssh_key
-      - prod_ssh_key
 
   nostrverse_db:
     image: mariadb:10.11
@@ -79,5 +78,3 @@ services:
 secrets:
   tinypc_ssh_key:
     file: ~/.ssh/id_ed25519_tinypc
-  prod_ssh_key:
-    file: ~/.ssh/id_srv01webrtb
