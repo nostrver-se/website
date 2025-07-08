@@ -57,6 +57,7 @@ function njump_preprocess_field__field_nostr_content(&$variables): void {
     // TODO parse profile metadata here.
     $profile = new Profile();
     $profile->parseProfile($content);
+    return;
   }
   // Quote event
   if ($kind === '6' && json_validate($content)) {
