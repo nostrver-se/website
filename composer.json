@@ -157,6 +157,9 @@
         },
         "drupal/path_alias_length": {
             "#3433866 D11" : "https://www.drupal.org/files/issues/2024-03-24/path_alias_length.1.0.0-beta3.rector.patch"
+        },
+        "drupal/gin_toolbar": {
+            "Gin Toolbar erased from Frontend after flushing all caches and executing cron - https://www.drupal.org/project/gin_toolbar/issues/3531929#comment-16184498" : "https://www.drupal.org/files/issues/2025-07-09/3531929-15.patch"
         }
     },
     "patchLevel": {
