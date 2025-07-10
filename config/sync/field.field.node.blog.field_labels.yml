@@ -10,7 +10,7 @@ id: node.blog.field_labels
 field_name: field_labels
 entity_type: node
 bundle: blog
-label: Labels
+label: Tags
 description: ''
 required: false
 translatable: false

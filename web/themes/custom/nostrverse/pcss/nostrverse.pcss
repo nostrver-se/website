@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@source inline("badge");
 header {
   @apply xl:w-3/4 xl:mx-auto;
   .region-header {
@@ -60,4 +61,9 @@ a {
 
 article.node.node--view-mode-blog-teaser {
   @apply my-2;
+}
+.badge {
+  > a {
+    @apply no-underline;
+  }
 }
