@@ -4065,7 +4065,7 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/tailwind_css.git",
-                "reference": "8289fab5b161cb24fbe66c65b0c1ce8f1081071e"
+                "reference": "34fcbeb86c0d5b84021dbb20dcb79538b9dd172c"
             },
             "require": {
                 "drupal/core": "^11"
@@ -4077,7 +4077,7 @@
                 },
                 "drupal": {
                     "version": "1.0.x-dev",
-                    "datestamp": "1752145990",
+                    "datestamp": "1752159742",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Project has not opted into security advisory coverage!"
@@ -11838,16 +11838,16 @@
         },
         {
             "name": "composer/composer",
-            "version": "2.8.9",
+            "version": "2.8.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/composer.git",
-                "reference": "b4e6bff2db7ce756ddb77ecee958a0f41f42bd9d"
+                "reference": "53834f587d7ab2527eb237459d7b94d1fb9d4c5a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/composer/zipball/b4e6bff2db7ce756ddb77ecee958a0f41f42bd9d",
-                "reference": "b4e6bff2db7ce756ddb77ecee958a0f41f42bd9d",
+                "url": "https://api.github.com/repos/composer/composer/zipball/53834f587d7ab2527eb237459d7b94d1fb9d4c5a",
+                "reference": "53834f587d7ab2527eb237459d7b94d1fb9d4c5a",
                 "shasum": ""
             },
             "require": {
@@ -11932,7 +11932,7 @@
                 "irc": "ircs://irc.libera.chat:6697/composer",
                 "issues": "https://github.com/composer/composer/issues",
                 "security": "https://github.com/composer/composer/security/policy",
-                "source": "https://github.com/composer/composer/tree/2.8.9"
+                "source": "https://github.com/composer/composer/tree/2.8.10"
             },
             "funding": [
                 {
@@ -11948,7 +11948,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-05-13T12:01:37+00:00"
+            "time": "2025-07-10T17:08:33+00:00"
         },
         {
             "name": "composer/metadata-minifier",
