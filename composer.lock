@@ -2157,7 +2157,7 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/daisy_ui.git",
-                "reference": "f5781b202d2aa12a3cd109e36353386622e72576"
+                "reference": "d310be00f709a5de39d9933b92f5568ba543b98d"
             },
             "require": {
                 "drupal/core": "^11",
@@ -2170,7 +2170,7 @@
                 },
                 "drupal": {
                     "version": "1.0.x-dev",
-                    "datestamp": "1751543926",
+                    "datestamp": "1752156040",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Project has not opted into security advisory coverage!"
@@ -3160,7 +3160,7 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/nostr_dev_kit.git",
-                "reference": "267e89b79e073164b52df4e2db4ca6891667a0a9"
+                "reference": "37826614f7e4de39f1ae68e85c10c4e290b388b9"
             },
             "require": {
                 "drupal/core": "^10 || ^11"
@@ -3172,7 +3172,7 @@
                 },
                 "drupal": {
                     "version": "1.0.x-dev",
-                    "datestamp": "1749557878",
+                    "datestamp": "1752145832",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Project has not opted into security advisory coverage!"
@@ -4065,7 +4065,7 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/tailwind_css.git",
-                "reference": "20f28985ec5e71a13b70f07c4b7a64ab6f00c549"
+                "reference": "8289fab5b161cb24fbe66c65b0c1ce8f1081071e"
             },
             "require": {
                 "drupal/core": "^11"
@@ -4077,7 +4077,7 @@
                 },
                 "drupal": {
                     "version": "1.0.x-dev",
-                    "datestamp": "1748875250",
+                    "datestamp": "1752145990",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Project has not opted into security advisory coverage!"
