@@ -6,3 +6,7 @@ global:
     theme:
       css/nostrverse.css: {}
       css/node-nostr-event.css: {}
+  dependencies:
+    - core/once
+    - core/jquery
+    - core/drupal.dialog.ajax
