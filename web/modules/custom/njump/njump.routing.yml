@@ -9,3 +9,15 @@ njump.event:
         type: string
   requirements:
     _permission: 'access content'
+
+njump.show_raw_data_in_modal:
+  path: /e/{event_id}/modal
+  defaults:
+    _title: 'Event JSON'
+    _controller: '\Drupal\njump\Controller\NjumpController::showRawDataInModal'
+  requirements:
+    _permission: 'access content'
+  options:
+    parameters:
+      event_id:
+    no_cache: 'TRUE'

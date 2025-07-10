@@ -272,7 +272,52 @@ final class NjumpController extends ControllerBase {
     // Return render array for the node.
     //return $view_builder->view($nostr_event_node, 'default');
 
+    // Redirect to the node page now.
     $url = Url::fromRoute('entity.node.canonical', ['node' => $nostr_event_node->id()]);
     return new RedirectResponse($url->toString());
   }
+
+  public function showRawDataInModal(string $event_id): array {
+    $build = [];
+    // Fetch event with a subscription and request.
+    $subscription = new Subscription();
+    $subscriptionId = $subscription->setId();
+    // Set filters.
+    $filter1 = new Filter();
+    $filter1->setIds([$event_id]);
+    $filter1->setLimit(1);
+    $filters = [$filter1];
+    // Create request message.
+    $requestMessage = new RequestMessage($subscriptionId, $filters);
+    // Set relays where the request message is being sent to.
+    $relays = [
+      new Relay('wss://nos.lol'),
+      new Relay('wss://relay.nostr.band'),
+    ];
+    $relaySet = new RelaySet();
+    $relaySet->setRelays($relays);
+    // Create request with the relays and request message.
+    $nRequest = new NostrRequest($relaySet, $requestMessage);
+    // Send it.
+    $response = $nRequest->send();
+    //$raw_data = "{ }";
+    // Handle all responses from the request.
+    foreach ($response as $relayUrl => $relayResponses) {
+      if (count($response[$relayUrl]) > 0) {
+        foreach ($relayResponses as $message) {
+          if ($message instanceof RelayResponseEvent) {
+            $event = new Event();
+            $event->populate($message->event);
+            $build['content'] = [
+              '#type' => 'item',
+              '#markup' => '<pre><code>' . json_encode($event->toArray(), JSON_THROW_ON_ERROR | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) . '</code></pre>',
+            ];
+            return $build;
+          }
+        }
+      }
+    }
+    return $build;
+  }
+
 }
