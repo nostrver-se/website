@@ -50,7 +50,7 @@
     "drupal/nostr_dev_kit": "^1.0@dev",
     "drupal/nostr_id_nip05": "1.0.x-dev",
     "drupal/nostr_simple_publish": "1.0.x-dev",
-    "drupal/nostr_wallet_connect": "^1.0@dev",
+    "drupal/nostr_wallet_connect": "^1.0.x-dev",
     "drupal/paragraphs": "^1.15",
     "drupal/path_alias_length": "^1.0@beta",
     "drupal/pathauto": "^1.11",

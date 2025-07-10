@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ffb22dd821d23fabfdc4d86296ed16a4",
+    "content-hash": "b53e834c9c0a308e65f3c5070b4550b6",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -3300,7 +3300,7 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/nostr_wallet_connect.git",
-                "reference": "b94620c34566c138f6d507b55e234679b733f54c"
+                "reference": "7fb07c2479f516167030cc8ad6228a4663b13a17"
             },
             "require": {
                 "drupal/core": "^10 || ^11",
@@ -3313,7 +3313,7 @@
                 },
                 "drupal": {
                     "version": "1.0.x-dev",
-                    "datestamp": "1751984956",
+                    "datestamp": "1752132930",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Project has not opted into security advisory coverage!"

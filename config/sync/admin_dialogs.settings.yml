@@ -3,4 +3,4 @@ _core:
 delete_ops: true
 delete_buttons: true
 other_buttons: true
-submit_spinner: false
+submit_spinner: true
