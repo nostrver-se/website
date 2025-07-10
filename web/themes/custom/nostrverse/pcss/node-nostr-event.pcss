@@ -1,10 +1,10 @@
 @import "tailwindcss" source('../../../contrib/tailwind_css');
 .page-node-type-nostr-event {
   h1.page-title {
-      @apply text-wrap wrap-anywhere;
+      @apply text-wrap wrap-anywhere mb-4;
   }
   .avatar {
-    @apply my-2 mx-auto aspect-square overflow-hidden w-2/3 ring-fuchsia-200 rounded-full ring-3 ring-offset-2 transition hover:ring-fuchsia-700 hover:ring-4;
+    @apply my-2 max-h-16 max-w-16 sm:max-h-none sm:max-w-none mx-auto aspect-square overflow-hidden ring-fuchsia-200 rounded-full ring-3 ring-offset-2 transition hover:ring-fuchsia-700 hover:ring-4;
     img {
       @apply h-full;
     }
