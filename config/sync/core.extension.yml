@@ -56,6 +56,7 @@ module:
   path_alias_length: 0
   raven: 0
   refreshless: 0
+  refreshless_preloader: 0
   refreshless_turbo: 0
   sodium: 0
   symfony_mailer: 0
