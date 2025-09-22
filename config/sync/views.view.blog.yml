@@ -73,24 +73,27 @@ display:
           separator: ', '
           field_api_classes: false
       pager:
-        type: mini
+        type: full
         options:
           offset: 0
-          pagination_heading_level: h4
-          items_per_page: 20
+          pagination_heading_level: h3
+          items_per_page: 50
           total_pages: null
           id: 0
           tags:
             next: ››
             previous: ‹‹
+            first: '« First'
+            last: 'Last »'
           expose:
             items_per_page: false
             items_per_page_label: 'Items per page'
             items_per_page_options: '5, 10, 25, 50'
-            items_per_page_options_all: false
+            items_per_page_options_all: true
             items_per_page_options_all_label: '- All -'
             offset: false
             offset_label: Offset
+          quantity: 9
       exposed_form:
         type: basic
         options:
@@ -149,7 +152,13 @@ display:
           value:
             blog: blog
       style:
-        type: default
+        type: grid_responsive
+        options:
+          uses_fields: false
+          columns: 3
+          cell_min_width: 180
+          grid_gutter: 15
+          alignment: horizontal
       row:
         type: 'entity:node'
         options:

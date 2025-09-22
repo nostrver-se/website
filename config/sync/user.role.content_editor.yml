@@ -6,7 +6,6 @@ dependencies:
     - node.type.page
     - taxonomy.vocabulary.tags
   module:
-    - contextual
     - file
     - node
     - path
@@ -22,7 +21,6 @@ is_admin: false
 permissions:
   - 'access administration pages'
   - 'access content overview'
-  - 'access contextual links'
   - 'access files overview'
   - 'access toolbar'
   - 'administer url aliases'

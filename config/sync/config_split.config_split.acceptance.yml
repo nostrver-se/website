@@ -14,6 +14,5 @@ module:
   raven: 0
 theme: {  }
 complete_list:
-  - advagg.settings
   - system.logging
 partial_list: {  }
