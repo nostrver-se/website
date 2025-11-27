@@ -1,16 +1,14 @@
 {
   "names": {
+    "sebastix": "06639a386c9c1014217622ccbcf40908c4f1a0c33e23f8d6d68f4abf655f8f71",
+    "sebastixdev": "29216785f7b241a6ebbb0f58f3ef882b544dafa3f60cca666aa845c12a636a70",
     "zaplamp": "9a470d841f9aa3f87891cd76a2e14a3441d015dbd8fc2b270b5ac8a9d9566e85",
     "nostrphpdev": "0dc39139f680dcec080c7da9440397f86e292c0575e6cba418575aeba78440b3",
-    "nostrphp": "0dc2dcb14d89f94b8a1590e178e9fbcb2ef1cb0be175a283842f9dc54787801a"
+    "nostrphp": "0dc2dcb14d89f94b8a1590e178e9fbcb2ef1cb0be175a283842f9dc54787801a",
+    "kubo.watch": "b360b1db7763c86385a0c24b969fead7a8a40023368eb723c00d2706f80bca27",
+    "wotfoundation": "334d62a277ca8d650bbab389f440370d287d30f6037c1df507ece5a8a1b9ed3d"
   },
   "relays": {
-    "9a470d841f9aa3f87891cd76a2e14a3441d015dbd8fc2b270b5ac8a9d9566e85": [
-      "wss://nostr.sebastix.dev",
-      "wss://nos.lol",
-      "wss://relay.damus.io",
-      "wss://relay.nostr.band",
-      "wss://purplepag.es"
-    ]
+
   }
 }
