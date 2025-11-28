@@ -1,10 +1,12 @@
-uuid: 309ce1af-e0f4-44af-b1ef-e80b114014b2
+uuid: 52c91fac-0cdc-4861-a265-ee403fdf0c8d
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.node.field_nostr_signature
     - node.type.nostr_event
+_core:
+  default_config_hash: HPm3J7VwYsoQ4dqHkqIMj-ia4PIYHebFHQG50Ama05k
 id: node.nostr_event.field_nostr_signature
 field_name: field_nostr_signature
 entity_type: node

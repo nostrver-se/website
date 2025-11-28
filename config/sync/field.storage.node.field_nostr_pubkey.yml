@@ -1,9 +1,11 @@
-uuid: 397293ab-aa39-439d-a115-96d40bba5761
+uuid: 5b6db4e4-e2d9-41a2-a3af-2580e7593972
 langcode: en
 status: true
 dependencies:
   module:
     - node
+_core:
+  default_config_hash: hH40Eg2MiN1Rz3YXJHlYRiYGXYtqz7P6cJDN3UdwIiw
 id: node.field_nostr_pubkey
 field_name: field_nostr_pubkey
 entity_type: node

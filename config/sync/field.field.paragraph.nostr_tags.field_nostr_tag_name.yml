@@ -1,10 +1,12 @@
-uuid: 37bf7205-759a-4456-a153-7dc9974bd3f4
+uuid: 88b80ff1-8219-49c8-9475-0a8fb006bf92
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.paragraph.field_nostr_tag_name
     - paragraphs.paragraphs_type.nostr_tags
+_core:
+  default_config_hash: Iyx-cudJEEujwUZTor2NPqoOvU5RCKOHwf8tTE4tdgc
 id: paragraph.nostr_tags.field_nostr_tag_name
 field_name: field_nostr_tag_name
 entity_type: paragraph

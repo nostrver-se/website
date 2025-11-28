@@ -1,4 +1,4 @@
-uuid: 01c5e186-4925-4a50-aa62-b7b802d2b987
+uuid: eb345df6-4ed7-4a48-8422-5009512e54f9
 langcode: en
 status: true
 dependencies:
@@ -8,6 +8,8 @@ dependencies:
     - paragraphs.paragraphs_type.nostr_tags
   module:
     - entity_reference_revisions
+_core:
+  default_config_hash: BbCL0UAwCeuE_SqduA040Ectp6HjS2SWmv809bif3CE
 id: node.nostr_event.field_nostr_tags
 field_name: field_nostr_tags
 entity_type: node

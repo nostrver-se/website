@@ -1,16 +1,18 @@
-uuid: 475201a9-77c7-47e6-b2ab-ef47b11450c8
+uuid: d1b97f3b-3763-4bf1-9373-b7aa6cc7d922
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.paragraph.field_nostr_tag_parameters
     - paragraphs.paragraphs_type.nostr_tags
+_core:
+  default_config_hash: BArYYcGIqHF7OV-aYNWyu1g0q-4QWVbEhIIwJ0K8Cdg
 id: paragraph.nostr_tags.field_nostr_tag_parameters
 field_name: field_nostr_tag_parameters
 entity_type: paragraph
 bundle: nostr_tags
 label: 'Tag parameters'
-description: 'You can add multiple parameters here'
+description: 'You can add multiple parameters here, seperated with commas'
 required: false
 translatable: false
 default_value: {  }

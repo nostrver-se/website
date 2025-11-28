@@ -1,4 +1,4 @@
-uuid: b167eabc-40a7-4ce5-a47c-178eedcaa929
+uuid: 8b7f2841-5f08-4e71-b419-b17f1a944327
 langcode: en
 status: true
 dependencies:
@@ -7,6 +7,8 @@ dependencies:
     - field.field.paragraph.nostr_tags.field_nostr_tag_parameters
     - field.field.paragraph.nostr_tags.field_nostr_tag_value
     - paragraphs.paragraphs_type.nostr_tags
+_core:
+  default_config_hash: DULb5IotnJ4TyI3bKQPafyKBWdLj0N793WULks_HnfI
 id: paragraph.nostr_tags.default
 targetEntityType: paragraph
 bundle: nostr_tags

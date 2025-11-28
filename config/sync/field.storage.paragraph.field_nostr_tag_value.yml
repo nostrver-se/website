@@ -1,9 +1,11 @@
-uuid: 9cb47098-333a-4f72-aa60-f2b7db588b05
+uuid: e7cbd959-854f-4e85-9b2b-4e4345ec9ddd
 langcode: en
 status: true
 dependencies:
   module:
     - paragraphs
+_core:
+  default_config_hash: MXyoaoAWeAs3EoS-Rl0RemxenRheOFvdBtBUPxazpJ4
 id: paragraph.field_nostr_tag_value
 field_name: field_nostr_tag_value
 entity_type: paragraph

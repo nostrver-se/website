@@ -1,4 +1,4 @@
-uuid: d55f1803-2965-4cbc-a478-cbe9b12238b3
+uuid: 59c9a8a0-f65e-4f45-b3bc-f30a448c1bb6
 langcode: en
 status: true
 dependencies:
@@ -13,6 +13,8 @@ dependencies:
   module:
     - entity_reference_revisions
     - user
+_core:
+  default_config_hash: 4zO-MBN2hOjxVhrXJA-B3AOQ8fDzbvXRjzLiHXNa2Lc
 id: node.nostr_event.default
 targetEntityType: node
 bundle: nostr_event

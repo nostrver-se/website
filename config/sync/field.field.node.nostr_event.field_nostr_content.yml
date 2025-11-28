@@ -1,10 +1,12 @@
-uuid: 24cb8c38-5445-4304-bd80-24c477ebff31
+uuid: b1163a9a-6770-46fe-9924-dcfb51d9fdc4
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.node.field_nostr_content
     - node.type.nostr_event
+_core:
+  default_config_hash: qMaoode4E3KJ6Etbk5-UBFhgUoe8nUO1zdJENXct1nU
 id: node.nostr_event.field_nostr_content
 field_name: field_nostr_content
 entity_type: node

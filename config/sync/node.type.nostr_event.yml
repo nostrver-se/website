@@ -1,17 +1,13 @@
-uuid: 8676a4e8-09a9-4575-be4b-64cf751ea0ad
+uuid: ea88e6e9-ff22-4fae-a0a3-ebd72699f96a
 langcode: en
 status: true
-dependencies:
-  module:
-    - menu_ui
-third_party_settings:
-  menu_ui:
-    available_menus: {  }
-    parent: ''
+dependencies: {  }
+_core:
+  default_config_hash: Ojg9rA-1nuF9rL7M-BrSwgydmmUGasfQFeK7ABsih6o
 name: 'Nostr event'
 type: nostr_event
-description: 'Generic Nostr event, used to save Nostr event fetched by this website'
+description: 'Generic Nostr event, used to save a Nostr event.'
 help: null
-new_revision: true
+new_revision: false
 preview_mode: 0
 display_submitted: false

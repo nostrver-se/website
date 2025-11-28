@@ -1,10 +1,12 @@
-uuid: fedde506-83a6-401a-acf8-de17a82d12ab
+uuid: c5b26ec8-f7e1-497d-bce0-1753f3ed59c7
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.paragraph.field_nostr_tag_value
     - paragraphs.paragraphs_type.nostr_tags
+_core:
+  default_config_hash: ZFfwCL6SL1SIyKh1_mGJuPyHM0jzLciFDUOyFkzzsPk
 id: paragraph.nostr_tags.field_nostr_tag_value
 field_name: field_nostr_tag_value
 entity_type: paragraph

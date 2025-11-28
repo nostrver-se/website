@@ -1,16 +1,18 @@
-uuid: 8c18d14d-2563-46af-829c-fa6c611adab8
+uuid: 22dbec11-6c09-495a-85ec-ac7daf5afc72
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.node.field_nostr_id
     - node.type.nostr_event
+_core:
+  default_config_hash: uDsa_9oW5yakN69Z8XZBV7RTysD12sS1Lm2f17bVOhE
 id: node.nostr_event.field_nostr_id
 field_name: field_nostr_id
 entity_type: node
 bundle: nostr_event
 label: ID
-description: ''
+description: '32-bytes lowercase hex-encoded sha256 of the serialized event data'
 required: true
 translatable: false
 default_value: {  }

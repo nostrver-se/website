@@ -1,9 +1,11 @@
-uuid: bab2fe82-7350-49c5-92cc-bf6667cbaae9
+uuid: 36e93630-605b-463b-abc5-d92642a3a1a3
 langcode: en
 status: true
 dependencies:
   module:
     - node
+_core:
+  default_config_hash: 2DU2_PmMLZw8cQ8SYxiqxJggfCScKiTyOpm7Nra6SJI
 id: node.field_nostr_kind
 field_name: field_nostr_kind
 entity_type: node

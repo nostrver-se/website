@@ -1,4 +1,4 @@
-uuid: 5c6d1c42-7537-48ad-8e05-338ae781ee05
+uuid: f12b36af-418e-4a34-9e94-74f769a7dbfc
 langcode: en
 status: true
 dependencies:
@@ -13,6 +13,8 @@ dependencies:
     - node.type.nostr_event
   module:
     - user
+_core:
+  default_config_hash: '-nDqcc9toiu6DS3mZQlkvg6E2DWbS27IVxU6j4cmdJc'
 id: node.nostr_event.teaser
 targetEntityType: node
 bundle: nostr_event

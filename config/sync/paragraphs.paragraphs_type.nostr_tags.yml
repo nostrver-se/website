@@ -1,7 +1,9 @@
-uuid: ac915503-fdfb-46dc-b04f-6141d537e456
+uuid: b7578fa4-17be-4694-b4ff-643bf06a3c92
 langcode: en
 status: true
 dependencies: {  }
+_core:
+  default_config_hash: hU6NkD5KV63-gvar42bVfbf0m3y7Mk3GUF5ECD4oqdc
 id: nostr_tags
 label: 'Nostr tag'
 icon_uuid: null

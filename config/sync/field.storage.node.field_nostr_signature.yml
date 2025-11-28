@@ -1,9 +1,11 @@
-uuid: 3e480e33-e436-4e01-a44c-426df040c451
+uuid: 8cdbb9af-6980-4c36-b324-93922880f7aa
 langcode: en
 status: true
 dependencies:
   module:
     - node
+_core:
+  default_config_hash: AYWPG3yompOcAgmN02C0iL6fWHQlUtb6PiivdL72WyM
 id: node.field_nostr_signature
 field_name: field_nostr_signature
 entity_type: node

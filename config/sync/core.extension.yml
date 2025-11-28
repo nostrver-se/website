@@ -43,6 +43,7 @@ module:
   njump: 0
   node: 0
   nostr_content_nip23: 0
+  nostr_event: 0
   nostr_id_nip05: 0
   nostr_simple_publish: 0
   nostrides: 0
