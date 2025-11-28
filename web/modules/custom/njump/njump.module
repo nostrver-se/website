@@ -102,7 +102,7 @@ function njump_preprocess_field__field_nostr_content(&$variables): void {
   }
 
   /*
-   * TODO replace external links
+   * TODO replace external links to HTML link elements
    */
 
   /**
@@ -112,7 +112,8 @@ function njump_preprocess_field__field_nostr_content(&$variables): void {
     'jpg',
     'jpeg',
     'png',
-    'gif'
+    'gif',
+    'webp'
   ];
   foreach ($image_extensions as $extension) {
     $pattern = '/https?:\/\/.*\.(?:' . $extension . ')/m';
@@ -122,8 +123,19 @@ function njump_preprocess_field__field_nostr_content(&$variables): void {
   }
 
   /*
-   * TODO Replace hashtags
+   * TODO replace hashtags with HTML link elements
    */
+
+  /*
+   * Replace links with video's
+   */
+  $video_extensions = ['mp4'];
+  foreach ($video_extensions as $extension) {
+    $pattern = '/https?:\/\/.*\.(?:' . $extension . ')/m';
+    if (preg_match_all($pattern, $context, $matches)) {
+      $context = _replaceVideoLinks($context, $matches[0]);
+    }
+  }
 
   /**
    * Render Markup formatted content to HTML (kind 30023 and 30024)
@@ -165,6 +177,18 @@ function _replaceImageLinks(string $context, array $matches): string {
     $image = sprintf('<img src="%s" alt="%s" />', $link->getUrl()->toString(), $link->getUrl()->toString());
     $match_patterns = ['/' . str_replace('/', '\/', $match) . '/'];
     $replacements = [$image];
+    $context = preg_replace($match_patterns, $replacements, $context);
+  }
+  return $context;
+}
+
+function _replaceVideoLinks(string $context, array $matches): string {
+  foreach ($matches as $match) {
+    $url = Url::fromUri($match);
+    $link = new Link($match, $url);
+    $video = sprintf('<video controls="" playsinline="" class="rounded-lg max-h-[80vh] sm:max-h-[60vh] border mt-2" src="%s"></video>', $link->getUrl()->toString());
+    $match_patterns = ['/' . str_replace('/', '\/', $match) . '/'];
+    $replacements = [$video];
     $context = preg_replace($match_patterns, $replacements, $context);
   }
   return $context;
