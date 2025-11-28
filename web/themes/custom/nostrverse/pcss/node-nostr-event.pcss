@@ -4,13 +4,18 @@
       @apply text-wrap wrap-anywhere mb-4;
   }
   .avatar {
-    @apply my-2 max-h-16 max-w-16 sm:max-h-none sm:max-w-none mx-auto aspect-square overflow-hidden ring-fuchsia-200 rounded-full ring-3 ring-offset-2 transition hover:ring-fuchsia-700 hover:ring-4;
-    img {
-      @apply h-full;
+    > a {
+      @apply inline-block p-2 hover:bg-transparent;
+      > img {
+        @apply aspect-square rounded-full ring-fuchsia-200 ring-3 ring-offset-2 transition hover:ring-fuchsia-700 hover:ring-4;
+      }
     }
   }
   .nostr-content {
     @apply m-0 p-4 text-xl bg-fuchsia-100 text-wrap wrap-anywhere;
+    > img {
+      @apply !w-full;
+    }
   }
   .event_id {
     @apply font-mono;

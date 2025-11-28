@@ -47,9 +47,9 @@ https://twig.symfony.com/doc/3.x/tags/macro.html
     <li class="sm:hidden">
       <details>
         <summary>Menu</summary>
-        <ul class="bg-base-100 rounded-t-none p-2">
+        <ul class="bg-base-100 rounded-t-none p-2 right-0">
           {% for item in items %}
-            <li>
+            <li class="m-0">
               {{ link(item.title, item.url) }}
             </li>
           {% endfor %}
