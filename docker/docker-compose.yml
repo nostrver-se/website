@@ -23,6 +23,7 @@ services:
       APACHE_DOCUMENT_ROOT: /var/www/web
       XDEBUG_SESSION: PHPSTORM
       PHP_IDE_CONFIG: "serverName=localhost"
+      DRUSH_ALLOW_XDEBUG: 1
     working_dir: /var/www
     secrets:
       - tinypc_ssh_key
