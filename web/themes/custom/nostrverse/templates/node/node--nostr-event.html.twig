@@ -81,7 +81,24 @@
           | created at {{ date }}
         </div>
         {% if nostr_event_handlers %}
-
+        {#
+          @todo
+          Show nostr event handlers (kind 31990 events) here for the event kinds, following NIP-89
+          Should we fetch these data with Nostr_Applesauce instead of using PHP?
+          Example.
+          https://nostrudel.ninja/n/nevent1qvzqqqqqqypzq2fpv7zl0vjp5m4mkr6c70hcs265fkh68asvefnx42z9cy4xx6nsqy88wumn8ghj7mn0wvhxcmmv9uq3camnwvaz7tmfdehx2u3wwdjkyctnw35hstnnda3kjctv9uqzpt7kva826rcdclesq77up3anltyvxttsgkjhjmuzdr3h6jjd2x3hz3usx8
+          For event kind 39701 (web bookmark) we should look for 31990 kind events.
+          - kuchiyose
+          -- https://njump.me/nevent1qqs2mytr3hxcj9vc05ur560780x4rmmaslk9gc9lhtl8tyq3zdl8hhczyr0c7znypsll6z0zjwve4narn8g9wny9q87d408v55rjacs90kr62nzj7s7
+          [
+            "client",
+            "KUCHIYOSE",
+            "31990:6b0a60cff3eca5a2b2505ccb3f7133d8422045cbef40f3d2c6189fb0b952e7d4:1748755611571",
+            "wss://nrelay.c-stellar.net/"
+          ]
+          - CCNS.news
+          - yumyu.me
+        #}
         {% endif %}
       </div>
       <div class="flex basis-1/5 sm:flex-col gap-4 sm:text-center">
