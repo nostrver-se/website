@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "868e3987a4d047b912484779be4424e0",
+    "content-hash": "11b4d90a5dd9557713b79340509738cd",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1333,17 +1333,17 @@
         },
         {
             "name": "drupal/backup_migrate",
-            "version": "5.1.2",
+            "version": "5.1.3",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/backup_migrate.git",
-                "reference": "5.1.2"
+                "reference": "5.1.3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/backup_migrate-5.1.2.zip",
-                "reference": "5.1.2",
-                "shasum": "87e48dddfa956f3bd260557be0b827f3a40e4eaf"
+                "url": "https://ftp.drupal.org/files/projects/backup_migrate-5.1.3.zip",
+                "reference": "5.1.3",
+                "shasum": "a597994dc9433516dc8ffb20725cfc6bd6b27ec4"
             },
             "require": {
                 "drupal/core": "^9.5 || ^10 || ^11"
@@ -1354,8 +1354,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "5.1.2",
-                    "datestamp": "1768119570",
+                    "version": "5.1.3",
+                    "datestamp": "1768291344",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -2325,17 +2325,17 @@
         },
         {
             "name": "drupal/gin",
-            "version": "5.0.10",
+            "version": "5.0.11",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/gin.git",
-                "reference": "5.0.10"
+                "reference": "5.0.11"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/gin-5.0.10.zip",
-                "reference": "5.0.10",
-                "shasum": "023e4e39a1c7387c23dc2fae0fc2469341eef780"
+                "url": "https://ftp.drupal.org/files/projects/gin-5.0.11.zip",
+                "reference": "5.0.11",
+                "shasum": "60423f2c9662ccc7197f79aa29e7939b93028d7a"
             },
             "require": {
                 "drupal/core": "^11.2",
@@ -2344,8 +2344,8 @@
             "type": "drupal-theme",
             "extra": {
                 "drupal": {
-                    "version": "5.0.10",
-                    "datestamp": "1766059405",
+                    "version": "5.0.11",
+                    "datestamp": "1768311009",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -5319,16 +5319,16 @@
         },
         {
             "name": "laravel/prompts",
-            "version": "v0.3.8",
+            "version": "v0.3.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/prompts.git",
-                "reference": "096748cdfb81988f60090bbb839ce3205ace0d35"
+                "reference": "5c41bf0555b7cfefaad4e66d3046675829581ac4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/prompts/zipball/096748cdfb81988f60090bbb839ce3205ace0d35",
-                "reference": "096748cdfb81988f60090bbb839ce3205ace0d35",
+                "url": "https://api.github.com/repos/laravel/prompts/zipball/5c41bf0555b7cfefaad4e66d3046675829581ac4",
+                "reference": "5c41bf0555b7cfefaad4e66d3046675829581ac4",
                 "shasum": ""
             },
             "require": {
@@ -5372,9 +5372,9 @@
             "description": "Add beautiful and user-friendly forms to your command-line applications.",
             "support": {
                 "issues": "https://github.com/laravel/prompts/issues",
-                "source": "https://github.com/laravel/prompts/tree/v0.3.8"
+                "source": "https://github.com/laravel/prompts/tree/v0.3.9"
             },
-            "time": "2025-11-21T20:52:52+00:00"
+            "time": "2026-01-07T21:00:29+00:00"
         },
         {
             "name": "league/commonmark",
@@ -13067,22 +13067,22 @@
         },
         {
             "name": "drupal/devel_entity_updates",
-            "version": "4.2.1",
+            "version": "5.0.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/devel_entity_updates.git",
-                "reference": "4.2.1"
+                "reference": "5.0.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/devel_entity_updates-4.2.1.zip",
-                "reference": "4.2.1",
-                "shasum": "4f7cdf2884fa838a8dc20dfd159b27bf68853f5e"
+                "url": "https://ftp.drupal.org/files/projects/devel_entity_updates-5.0.0.zip",
+                "reference": "5.0.0",
+                "shasum": "2e37b591b2a61c0f5266ede38c5389ae028710b2"
             },
             "require": {
                 "drupal/core": "^8 || ^9 || ^10 || ^11 || ^12",
                 "drupal/devel": "*",
-                "drush/drush": "^11 || ^12 || ^13"
+                "drush/drush": "^12 || ^13"
             },
             "require-dev": {
                 "drupal/devel": "*"
@@ -13090,8 +13090,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "4.2.1",
-                    "datestamp": "1756475373",
+                    "version": "5.0.0",
+                    "datestamp": "1765883085",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -13099,7 +13099,7 @@
                 },
                 "drush": {
                     "services": {
-                        "drush.services.yml": "^11 || ^12 || ^13"
+                        "drush.services.yml": "^12 || ^13"
                     }
                 }
             },
@@ -13380,16 +13380,16 @@
         },
         {
             "name": "google/protobuf",
-            "version": "v4.33.3",
+            "version": "v4.33.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/protocolbuffers/protobuf-php.git",
-                "reference": "281537d44d6c270606354e65bfa75a0969dbd629"
+                "reference": "22d28025cda0d223a2e48c2e16c5284ecc9f5402"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/protocolbuffers/protobuf-php/zipball/281537d44d6c270606354e65bfa75a0969dbd629",
-                "reference": "281537d44d6c270606354e65bfa75a0969dbd629",
+                "url": "https://api.github.com/repos/protocolbuffers/protobuf-php/zipball/22d28025cda0d223a2e48c2e16c5284ecc9f5402",
+                "reference": "22d28025cda0d223a2e48c2e16c5284ecc9f5402",
                 "shasum": ""
             },
             "require": {
@@ -13418,9 +13418,9 @@
                 "proto"
             ],
             "support": {
-                "source": "https://github.com/protocolbuffers/protobuf-php/tree/v4.33.3"
+                "source": "https://github.com/protocolbuffers/protobuf-php/tree/v4.33.4"
             },
-            "time": "2026-01-09T21:49:37+00:00"
+            "time": "2026-01-12T17:58:43+00:00"
         },
         {
             "name": "justinrainbow/json-schema",
@@ -17988,16 +17988,16 @@
         },
         {
             "name": "webmozart/assert",
-            "version": "2.1.1",
+            "version": "2.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/webmozarts/assert.git",
-                "reference": "bdbabc199a7ba9965484e4725d66170e5711323b"
+                "reference": "ce6a2f100c404b2d32a1dd1270f9b59ad4f57649"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webmozarts/assert/zipball/bdbabc199a7ba9965484e4725d66170e5711323b",
-                "reference": "bdbabc199a7ba9965484e4725d66170e5711323b",
+                "url": "https://api.github.com/repos/webmozarts/assert/zipball/ce6a2f100c404b2d32a1dd1270f9b59ad4f57649",
+                "reference": "ce6a2f100c404b2d32a1dd1270f9b59ad4f57649",
                 "shasum": ""
             },
             "require": {
@@ -18044,9 +18044,9 @@
             ],
             "support": {
                 "issues": "https://github.com/webmozarts/assert/issues",
-                "source": "https://github.com/webmozarts/assert/tree/2.1.1"
+                "source": "https://github.com/webmozarts/assert/tree/2.1.2"
             },
-            "time": "2026-01-08T11:28:40+00:00"
+            "time": "2026-01-13T14:02:24+00:00"
         }
     ],
     "aliases": [],
@@ -18078,5 +18078,5 @@
         "ext-json": "*"
     },
     "platform-dev": {},
-    "plugin-api-version": "2.6.0"
+    "plugin-api-version": "2.9.0"
 }

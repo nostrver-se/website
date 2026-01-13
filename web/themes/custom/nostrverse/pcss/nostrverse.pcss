@@ -1,40 +1,58 @@
+@font-face {
+  font-family: 'Ubuntu';
+  src: url('../fonts/Ubuntu.woff2') format('woff2'),
+  url('../fonts/Ubuntu.woff') format('woff'),
+  url('../fonts/Ubuntu-R.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Ubuntu Mono';
+  src: url('../fonts/UbuntuMono-R.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@import "./theme.pcss";
 @import "tailwindcss";
 @source inline("badge");
 
-@font-face {
-  font-family: 'Ubuntu', sans-serif;
-  font-optical-sizing: auto;
-  font-style: normal;
-  src: url('../fonts/Ubuntu-R.ttf') format('truetype');
+h1, h2, h3, h4, h5, h6 {
+  @apply font-ubuntu-mono font-bold;
 }
-
-* {
-  font-family: 'Ubuntu', sans-serif;
+p {
+  @apply font-ubuntu;
 }
-
 header {
-  @apply xl:w-3/4 xl:mx-auto;
+  @apply w-full font-ubuntu bg-neutral-100 drop-shadow-sm mb-8;
   .region-header {
     @apply px-0 py-0;
+    .navbar {
+      @apply bg-transparent shadow-none xl:w-3/4 lg:mx-auto;
+    }
   }
   .site-logo {
 
   }
 }
 main {
+  @apply p-0;
   .layout-content {
     @apply mx-3 xl:mx-0;
+    .block-page-title-block {
+      @apply mb-10 mx-4 lg:mx-8;
+    }
     article {
-      @apply overflow-x-hidden;
+      @apply overflow-x-hidden bg-neutral-100 p-4 lg:p-8 rounded-4xl;
       div.node__content {
-        p > img {
-          @apply w-1/2 sm:w-max rounded-2xl shadow-md/50;
-          &.align-right {
-            @apply ml-2 mb-2;
-          }
-          &.align-left {
-            @apply mr-2 mb-2;
-          }
+        a {
+          @apply font-bold;
+        }
+        p img {
+          @apply w-max lg:w-1/2 mb-4 max-w-max rounded-2xl shadow-md/25;
         }
         & > div {
           @apply wrap-break-word;
@@ -77,5 +95,12 @@ article.node.node--view-mode-blog-teaser {
 .badge {
   > a {
     @apply no-underline;
+  }
+}
+
+footer {
+  @apply w-full;
+  .region-footer {
+    @apply w-full;
   }
 }
