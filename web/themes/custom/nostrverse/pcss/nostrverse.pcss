@@ -1,5 +1,17 @@
 @import "tailwindcss";
 @source inline("badge");
+
+@font-face {
+  font-family: 'Ubuntu', sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  src: url('../fonts/Ubuntu-R.ttf') format('truetype');
+}
+
+* {
+  font-family: 'Ubuntu', sans-serif;
+}
+
 header {
   @apply xl:w-3/4 xl:mx-auto;
   .region-header {
@@ -16,7 +28,7 @@ main {
       @apply overflow-x-hidden;
       div.node__content {
         p > img {
-          @apply w-1/2 sm:w-max;
+          @apply w-1/2 sm:w-max rounded-2xl shadow-md/50;
           &.align-right {
             @apply ml-2 mb-2;
           }
