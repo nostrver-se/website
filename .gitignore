@@ -75,3 +75,4 @@
 /docker/drupal/settings.local.php
 /docker/drupal/*.settings.local.php
 *.sql
+.DS_Store
