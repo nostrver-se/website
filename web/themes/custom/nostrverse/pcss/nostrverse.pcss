@@ -43,7 +43,7 @@ main {
   .layout-content {
     @apply mx-3 xl:mx-0;
     .block-page-title-block {
-      @apply mb-10 mx-4 lg:mx-8;
+      @apply mt-4 mb-8 mx-4 lg:mx-8;
     }
     article {
       @apply overflow-x-hidden bg-neutral-100 p-4 lg:p-8 rounded-4xl;
@@ -60,14 +60,11 @@ main {
       }
       .node__meta {
         @apply flex;
-        article {
-          @apply flex-none;
-          img {
-            @apply h-6 w-6 inline;
-          }
+        img {
+          @apply h-6 w-6 inline;
         }
         .node__submitted {
-          @apply ml-2 pt-1 flex-1;
+          @apply ml-2 flex-1;
         }
       }
       p > a,
@@ -90,12 +87,21 @@ a {
 }
 
 article.node.node--view-mode-blog-teaser {
-  @apply my-2;
+  h2 {
+    @apply mb-2;
+  }
+  .node__content {
+    @apply mt-2;
+  }
 }
 .badge {
   > a {
     @apply no-underline;
   }
+}
+
+.region-breadcrumb {
+  @apply p-0;
 }
 
 footer {

@@ -23,6 +23,9 @@ use swentel\nostr\Subscription\Subscription;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
+use Symfony\Component\HttpKernel\Exception\HttpException;
+use Symfony\Component\HttpKernel\Exception\InvalidMetadataException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
@@ -189,7 +192,7 @@ final class NjumpController extends ControllerBase {
     // We got nothing, show a page not found page.
     if (!isset($event)) {
       \Drupal::messenger()->addError('Could not find any event.');
-      throw new NotFoundHttpException();
+      throw new NotFoundHttpException('Could not find any event.');
     }
 
     // Fetch profile from pubkey of the event
@@ -199,6 +202,10 @@ final class NjumpController extends ControllerBase {
 
     // TODO check if node already exist with this nostr event id
     $nodeStorage = \Drupal::entityTypeManager()->getStorage('node');
+    if (!isset($event['createdAt']) || !isset($event['id'])) {
+      \Drupal::messenger()->addError('The relay '.$relay.' could not serve the requested event. Message from the relay: ' . $message->message);
+      throw new NotFoundHttpException($message->message);
+    }
     $node = $nodeStorage->loadByProperties([
       'created' => $event->getCreatedAt(),
       'field_nostr_id' => $event->getId(),

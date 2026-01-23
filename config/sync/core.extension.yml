@@ -53,9 +53,6 @@ module:
   path: 0
   path_alias: 0
   path_alias_length: 0
-  refreshless: 0
-  refreshless_preloader: 0
-  refreshless_turbo: 0
   sodium: 0
   symfony_mailer: 0
   system: 0
