@@ -35,7 +35,7 @@ final class ListRides extends ControllerBase {
     $filter1->setLimit(50);
     $filters = [$filter1];
     $requestMessage = new RequestMessage($subscriptionId, $filters);
-    $relay = new Relay('wss://relay.nostr.band');
+    $relay = new Relay('wss://relay.damus.io');
     $request = new Request($relay, $requestMessage);
     $response = $request->send();
 

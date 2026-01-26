@@ -37,7 +37,6 @@ final class EventRide extends ControllerBase {
       new Relay('wss://khatru.nostrver.se'),
       new Relay('wss://nos.lol'),
       new Relay('wss://relay.damus.io'),
-      new Relay('wss://relay.nostr.band'),
     ];
     $relaySet = new RelaySet();
     $relaySet->setRelays($relays);

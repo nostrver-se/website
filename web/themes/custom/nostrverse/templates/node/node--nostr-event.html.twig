@@ -110,7 +110,11 @@
         </div>
         {% else %}
         <div class="basis-1/4">
-          Author: <code>{{ npub }}</code>
+          Author:
+          <br />
+          <a href="{{ path('njump.event', { 'identifier' : npub }) }}" class="font-mono text-sm break-all">
+            {{ npub }}
+          </a>
         </div>
         {% endif %}
         {% if profile.name %}

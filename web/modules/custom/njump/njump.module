@@ -33,10 +33,11 @@ function njump_preprocess_node__nostr_event(&$variables): void {
   $relayListMetadata = new RelayListMetadata($pubkey_author);
   if (!empty($relayListMetadata->getRelays())) {
     $writeRelays = $relayListMetadata->getWriteRelays();
+    // TODO try to find profile metadata from the relay where the pubkey writes to
   }
   $profile = new Profile();
   try {
-    $profile->fetch($pubkey_author, $writeRelays[0] ?? 'wss://purplepag.es');
+    $profile->fetch($pubkey_author);
   }
   catch (\Exception $e) {
     throw new \RuntimeException($e->getMessage());
@@ -189,7 +190,7 @@ function _replaceVideoLinks(string $context, array $matches): string {
     $video = sprintf('<video controls="" playsinline="" class="rounded-lg max-h-[80vh] sm:max-h-[60vh] border mt-2" src="%s"></video>', $link->getUrl()->toString());
     $match_patterns = ['/' . str_replace('/', '\/', $match) . '/'];
     $replacements = [$video];
-    $context = preg_replace($match_patterns, $replacements, $context);
+    $context = preg_replace($match_patterns, $replacements, $context) ?? '';
   }
   return $context;
 }

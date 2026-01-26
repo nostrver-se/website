@@ -17,15 +17,14 @@ use swentel\nostr\Message\RequestMessage;
 use swentel\nostr\Nip19\Nip19Helper;
 use swentel\nostr\Relay\Relay;
 use swentel\nostr\Relay\RelaySet;
+use swentel\nostr\RelayResponse\RelayResponse;
 use swentel\nostr\RelayResponse\RelayResponseEvent;
+use swentel\nostr\RelayResponse\RelayResponseNotice;
 use swentel\nostr\Request\Request as NostrRequest;
 use swentel\nostr\Subscription\Subscription;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
-use Symfony\Component\HttpKernel\Exception\HttpException;
-use Symfony\Component\HttpKernel\Exception\InvalidMetadataException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
@@ -72,9 +71,14 @@ final class NjumpController extends ControllerBase {
 
     // Determine the identifier first.
     $identifier = $request->attributes->get('identifier');
+    // Identifier validations.
     $pos = strrpos($identifier, '1');
     if ($pos === false) {
-      \Drupal::messenger()->addError('Invalid bech32 string');
+      \Drupal::messenger()->addError('Invalid bech32 string (reason: no position found for needle 1)');
+      throw new NotFoundHttpException();
+    }
+    if ($pos < 4 || $pos > 8) {
+      \Drupal::messenger()->addError('Invalid bech32 string (reason: needle 1 position is not between 4 and 8)');
       throw new NotFoundHttpException();
     }
     $prefix = substr($identifier, 0, $pos);
@@ -123,11 +127,6 @@ final class NjumpController extends ControllerBase {
         $event['kind'] = 0;
         if (!empty($decoded['relays'])) {
           $event['relays'] = $decoded['relays'];
-        } else {
-          $relayListMetadata = new RelayListMetadata($decoded['pubkey']);
-          if(!empty($relayListMetadata->getRelays())) {
-            $event['relays'] = $relayListMetadata->getWriteRelays();
-          }
         }
         break;
       case 'npub':
@@ -164,10 +163,23 @@ final class NjumpController extends ControllerBase {
     $requestMessage = new RequestMessage($subscriptionId, $filters);
     // Set relays where the request message is being sent to.
     if (!isset($relays)) {
-      $relays = [
-        new Relay('wss://nos.lol'),
-        new Relay('wss://relay.nostr.band'),
-      ];
+      // Get write relays of pubkey.
+      if (isset($event['pubkey'])) {
+        $relayListMetadata = new RelayListMetadata($event['pubkey']);
+        if(!empty($relayListMetadata->getRelays()) && $writeRelays = $relayListMetadata->getWriteRelays()) {
+          $relays = [];
+          foreach ($writeRelays as $relay_url) {
+            $relays[] = new Relay($relay_url);
+          }
+        }
+      } else {
+        // Hardcoded fallback of known public relays.
+        $relays = [
+          new Relay('wss://nos.lol'),
+          new Relay('wss://relay.damus.io'),
+          new Relay('wss://relay.primal.net'),
+        ];
+      }
     }
     $relaySet = new RelaySet();
     $relaySet->setRelays($relays);
@@ -180,6 +192,12 @@ final class NjumpController extends ControllerBase {
     foreach ($response as $relayUrl => $relayResponses) {
       if (count($response[$relayUrl]) > 0) {
         foreach ($relayResponses as $message) {
+          if ($message instanceof RelayResponseNotice) {
+            if (str_contains('ERROR', $message->message)) {
+              // Go to next iteration.
+              continue;
+            }
+          }
           if ($message instanceof RelayResponseEvent) {
             $event = new Event();
             $event->populate($message->event);
@@ -194,6 +212,29 @@ final class NjumpController extends ControllerBase {
       \Drupal::messenger()->addError('Could not find any event.');
       throw new NotFoundHttpException('Could not find any event.');
     }
+    // If $event seems to be an array...
+    if (is_array($event)) {
+      if (!isset($event['createdAt']) || !isset($event['id'])) {
+        $msg = '';
+        if (is_array($message) && $message[0] === 'ERROR') {
+          $msg = $message[3];
+        }
+        if (isset($message->message) || $message instanceof RelayResponse) {
+          $msg = $message->message;
+        }
+        \Drupal::messenger()->addError('The relay '.$relay ?? $relayUrl.' could not serve the requested event. Message from the relay: ' . $msg);
+        throw new NotFoundHttpException();
+      } else {
+        \Drupal::messenger()->addError('The Nostr event is processed as an array. This means something has gone wrong on our side.');
+        throw new NotFoundHttpException();
+      }
+    }
+
+    // If $event is not an instance of the Nostr event class...
+    if ($event instanceof Event === FALSE) {
+      \Drupal::messenger()->addError('$event is not an instance of the Nostr event class.');
+      throw new NotFoundHttpException();
+    }
 
     // Fetch profile from pubkey of the event
 //    $profile = new Profile();
@@ -202,10 +243,7 @@ final class NjumpController extends ControllerBase {
 
     // TODO check if node already exist with this nostr event id
     $nodeStorage = \Drupal::entityTypeManager()->getStorage('node');
-    if (!isset($event['createdAt']) || !isset($event['id'])) {
-      \Drupal::messenger()->addError('The relay '.$relay.' could not serve the requested event. Message from the relay: ' . $message->message);
-      throw new NotFoundHttpException($message->message);
-    }
+
     $node = $nodeStorage->loadByProperties([
       'created' => $event->getCreatedAt(),
       'field_nostr_id' => $event->getId(),
@@ -299,7 +337,7 @@ final class NjumpController extends ControllerBase {
     // Set relays where the request message is being sent to.
     $relays = [
       new Relay('wss://nos.lol'),
-      new Relay('wss://relay.nostr.band'),
+      new Relay('wss://relay.damus.io'),
     ];
     $relaySet = new RelaySet();
     $relaySet->setRelays($relays);

@@ -85,6 +85,14 @@ nav.breadcrumb {
 a {
   @apply text-fuchsia-700 underline underline-offset-3 decoration-fuchsia-600/50 decoration-2 transition hover:text-fuchsia-900 hover:bg-fuchsia-600/20 active:text-fuchsia-800 focus:text-fuchsia-800;
 }
+.alert {
+  &.alert-error {
+    @apply rounded-none border border-red-700 bg-red-700/10 text-red-700;
+    svg {
+      @apply stroke-red-700;
+    }
+  }
+}
 
 article.node.node--view-mode-blog-teaser {
   h2 {
@@ -100,7 +108,8 @@ article.node.node--view-mode-blog-teaser {
   }
 }
 
-.region-breadcrumb {
+.region-breadcrumb,
+.region-highlighted {
   @apply p-0;
 }
 
