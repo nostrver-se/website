@@ -44,6 +44,11 @@
   <br />
   {{ quoted_event.content|nl2br }}
 {% else %}
+  {% if reply_to %}
+    <span class="block w-full font-italic text-sm mb-4">
+      This event is a reply to {{ reply_parent }} <a href="{{ path('njump.event', { 'identifier' : reply_to }) }}">{{ reply_to }}</a>
+    </span>
+  {% endif %}
   {% for item in items %}
     {{ item.content['#context'].value|raw|nl2br }}
   {% endfor %}

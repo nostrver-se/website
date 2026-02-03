@@ -78,8 +78,11 @@ final class NjumpController extends ControllerBase {
       throw new NotFoundHttpException();
     }
     if ($pos < 4 || $pos > 8) {
-      \Drupal::messenger()->addError('Invalid bech32 string (reason: needle 1 position is not between 4 and 8)');
-      throw new NotFoundHttpException();
+      // Check first: if identifier is a hex formatted 32 byte string.
+      if (!ctype_xdigit($identifier) && strlen(hex2bin($identifier)) !== 32) {
+        \Drupal::messenger()->addError('Invalid bech32 string (reason: needle 1 position is not between 4 and 8) or identifier');
+        throw new NotFoundHttpException();
+      }
     }
     $prefix = substr($identifier, 0, $pos);
     $nip19Helper = new Nip19Helper();
@@ -163,7 +166,7 @@ final class NjumpController extends ControllerBase {
     $requestMessage = new RequestMessage($subscriptionId, $filters);
     // Set relays where the request message is being sent to.
     if (!isset($relays)) {
-      // Get write relays of pubkey.
+      // Try to get tge write relays of pubkey.
       if (isset($event['pubkey'])) {
         $relayListMetadata = new RelayListMetadata($event['pubkey']);
         if(!empty($relayListMetadata->getRelays()) && $writeRelays = $relayListMetadata->getWriteRelays()) {
@@ -173,7 +176,7 @@ final class NjumpController extends ControllerBase {
           }
         }
       } else {
-        // Hardcoded fallback of known public relays.
+        // Hardcoded fallback of some known public relays.
         $relays = [
           new Relay('wss://nos.lol'),
           new Relay('wss://relay.damus.io'),
@@ -181,27 +184,49 @@ final class NjumpController extends ControllerBase {
         ];
       }
     }
-    $relaySet = new RelaySet();
-    $relaySet->setRelays($relays);
-    // Create request with the relays and request message.
-    $nRequest = new NostrRequest($relaySet, $requestMessage);
-    // Send it.
-    $response = $nRequest->send();
-
-    // Handle all responses from the request.
-    foreach ($response as $relayUrl => $relayResponses) {
-      if (count($response[$relayUrl]) > 0) {
+    // Loop over the set of relays and connect to each relay at the time trying to fetch the event.
+    foreach ($relays as $relay) {
+      // Create request with the relay and request message.
+      $nRequest = new NostrRequest($relay, $requestMessage);
+      // Send it.
+      $nRequest->setTimeout(5);
+      $response = $nRequest->send();
+      // Handle the response from the relay
+      foreach ($response as $relayResponses) {
         foreach ($relayResponses as $message) {
-          if ($message instanceof RelayResponseNotice) {
-            if (str_contains('ERROR', $message->message)) {
-              // Go to next iteration.
-              continue;
-            }
-          }
-          if ($message instanceof RelayResponseEvent) {
+          if ($message instanceof RelayResponseEvent && $message->isSuccess()) {
             $event = new Event();
             $event->populate($message->event);
-            break;
+            // Event found, let's break out of the loops and continue.
+            break 3;
+          }
+        }
+      }
+    }
+    // Fallback when no event was found.
+    if (!$event) {
+      $relaySet = new RelaySet();
+      $relaySet->setRelays($relays);
+      // Create request with the relays and request message.
+      $nRequest = new NostrRequest($relaySet, $requestMessage);
+      // Send it.
+      $response = $nRequest->send();
+
+      // Handle all responses from the request.
+      foreach ($response as $relayUrl => $relayResponses) {
+        if (count($response[$relayUrl]) > 0) {
+          foreach ($relayResponses as $message) {
+            if ($message instanceof RelayResponseNotice) {
+              if (str_contains('ERROR', $message->message)) {
+                // Go to next iteration.
+                continue;
+              }
+            }
+            if ($message instanceof RelayResponseEvent) {
+              $event = new Event();
+              $event->populate($message->event);
+              break;
+            }
           }
         }
       }
@@ -261,8 +286,8 @@ final class NjumpController extends ControllerBase {
           'status' => 1,
           'field_nostr_tag_name' => $tag[0],
           'field_nostr_tag_value' => $tag[1],
-          // TODO process parameters
-          'field_nostr_tag_parameters' => $tag[3] ?? [],
+          // Process remaining parameters into a comma seperated string
+          'field_nostr_tag_parameters' => implode(',', array_slice($tag, 2, count($tag))) ?? [],
         ]);
         $paragraph_tag->save();
         $tags[] = $paragraph_tag;

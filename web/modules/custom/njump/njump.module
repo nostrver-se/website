@@ -2,8 +2,8 @@
 
 use Drupal\Core\Link;
 use Drupal\Core\Url;
+use Drupal\paragraphs\Entity\Paragraph;
 use swentel\nostr\Event\Event;
-use swentel\nostr\Event\List\RelayListMetadata;
 use swentel\nostr\Event\Profile\Profile;
 use swentel\nostr\Nip19\Nip19Helper;
 
@@ -27,16 +27,19 @@ function njump_preprocess_page_title(&$variables): void {
   }
 }
 
+/**
+ * Alter nostr_event preprocess node page.
+ *
+ * @param $variables
+ *
+ * @return void
+ * @throws \Exception
+ */
 function njump_preprocess_node__nostr_event(&$variables): void {
   $node = $variables['node'];
   $pubkey_author = $node->get('field_nostr_pubkey')->getString();
-  $relayListMetadata = new RelayListMetadata($pubkey_author);
-  if (!empty($relayListMetadata->getRelays())) {
-    $writeRelays = $relayListMetadata->getWriteRelays();
-    // TODO try to find profile metadata from the relay where the pubkey writes to
-  }
-  $profile = new Profile();
   try {
+    $profile = new Profile();
     $profile->fetch($pubkey_author);
   }
   catch (\Exception $e) {
@@ -48,11 +51,29 @@ function njump_preprocess_node__nostr_event(&$variables): void {
   $variables['profile'] = $profile;
 }
 
+/**
+ * Alter field_nostr_content used in content type Nostr event.
+ *
+ * @param $variables
+ *
+ * @return void
+ * @throws \JsonException
+ */
 function njump_preprocess_field__field_nostr_content(&$variables): void {
   // Get the node object.
   $node = $variables['element']['#object'];
   $content = $node->get('field_nostr_content')->getString();
   $kind = $node->get('field_nostr_kind')->getString();
+  $paragraph_tags = $node->get('field_nostr_tags')->getValue();
+  $tags = [];
+  foreach ($paragraph_tags as $ref) {
+    /** @var Paragraph $tag */
+    $paragraph_tag = Paragraph::load($ref['target_id']);
+    $tags[$paragraph_tag->get('field_nostr_tag_name')->getString()] = [
+      'value' => $paragraph_tag->get('field_nostr_tag_value')->getString(),
+      'parameters' => explode(',', $paragraph_tag->get('field_nostr_tag_parameters')->getString()),
+    ];
+  }
   // Profile event
   if ($kind === '0' && json_validate($content)) {
     // TODO parse profile metadata here.
@@ -72,9 +93,20 @@ function njump_preprocess_field__field_nostr_content(&$variables): void {
   if ($kind === '7') {
     // TODO fetch event where the reaction is made on.
   }
-  // TODO if the event is a note and a reaction, fetch the parent event
-
-  // TODO, can we build a tread with the parent event and all reactions?
+  // TODO if the event is a note and a reaction, fetch the parent event (root or reply)
+  if ($kind === '1' && isset($tags['e'])) {
+    $variables['reply_to'] = $tags['e']['value'];
+    // This is a reply (note kind 1) to a root event
+    if (isset($tags['e']['parameters'][1])) {
+      $variables['reply_parent'] = $tags['e']['parameters'][1];
+    }
+    $variables['reply_to'] = $tags['e']['value'];
+  }
+  if ($kind === '1' && isset($tags['a'])) {
+    // @TODO fetch event with d-tag identifier so we can use the event id as a variable
+    $variables['reply_to'] = $tags['a']['value'];
+  }
+  // TODO, can we build a tread with the parent event (root) and all reactions?
 
   /*
    * Check which identifiers we can replace in the content string
@@ -105,6 +137,8 @@ function njump_preprocess_field__field_nostr_content(&$variables): void {
   /*
    * TODO replace external links to HTML link elements
    */
+  $replace_links_pattern = '/http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w\- .\/?%&=]*)?/';
+  $context = preg_replace($replace_links_pattern, '<a href="$0">$0</a>', $context);
 
   /**
    * TODO replace links to media with elements to embed this content
