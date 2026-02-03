@@ -10,80 +10,28 @@ See `docker/docker-compose.yml`.
 
 See `.gitlab-ci.yml`
 
-## Start development
+## Nostr contrib modules
 
-1. `cd docker`
-2. `docker compose up -d`
-3. `docker compose exec drpl_drupal bash`
-4. `composer install`
-5. `drush si standard` for a clean site install
-6. Delete existing entities
-   * `drush entity-delete shortcut` delete shortcut entities
-7. Enable devel module `drush en devel`
-8. Generate a new UUID for the site `drush uuid`
-9. Save this site UUID value site in `system.site.yml`
-10. `drush cset system.site uuid <the_uuid>` for setting the UUID in the database
-11. `drush cim` for importing current config files
-12. `drush cr`
-13. Navigate to http://localhost in your browser
+In this Drupal instance I'm developing several modules using Nostr.
 
-## Update Drupal core + contribs
+* [**Nostr AppleSauce**](https://www.drupal.org/project/nostr_applesauce)
+  Drupal module to implement the [**AppleSauce SDK**](https://hzrd149.github.io/applesauce).
+* [**Nostr Wallet Connect**](https://drupal.org/project/nostr_wallet_connect)
+  Drupal module for connecting your wallet using NWC.
+* [**Nostr Profile**](https://drupal.org/project/nostr_profile)
+  Drupal module for managing Nostr profile entities for user accounts.
+* [**Nostr Event**](https://drupal.org/project/nostr_event)
+  Drupal module for handling Nostr events as nodes.
+* [**Nostr internet identifier NIP-05**](https://www.drupal.org/project/nostr_id_nip05)
+  Drupal module to setup Nostr internet identifier addresses with Drupal
+* [**Nostr Simple Publish**](https://www.drupal.org/project/nostr_simple_publish)
+  Drupal module to cross-post notes from Drupal to Nostr
+* [**Nostr long-form content NIP-23**](https://www.drupal.org/project/nostr_content_nip23)
+  Drupal module to cross-post Markdown formatted content from Drupal to Nostr
+* [**Nostr Dev Kit**](https://www.drupal.org/project/nostr_dev_kit)
+  Drupal module to implement the NDK js library.
 
-1. `composer outdated`
-2. `composer update -W`
-3. `drush cr`
-4. `drush updb`
-5. `drush cex`
-6. `composer clearcache`
-
-## What modules are included?
-
-* AdvAgg
-* Config Split
-* Config Ignore
-* Drush
-* Raven
-* Backup Migrate
-* Symfony Mailer
-* Reroute Email
-* Paragraphs
-* Admin Toolbar
-* Admin Dialogs
-* Gin
-* Gin Login
-* Admin Dialogs
-* Pathauto
-* Masquerade
-* Ultimate Cron
-* Advanced CSS/JS Aggregation
-* Media Library Edit
-* PWA
-* Markdown Easy
-* WebP
-* Swiper Formatter
-
-Development only:
-* Coder
-* Devel
-* Devel Entity Updates
-* Webprofiler
-* Drupal Coder
-* Drupal Rector
-
-### Config split configurations
-
-```php
-$config['config_split.config_split.dev']['status'] = TRUE|FALSE;
-$config['config_split.config_split.acceptance']['status'] = TRUE|FALSE;
-$config['config_split.config_split.production']['status'] = TRUE|FALSE;
-```
-`settings.local.php`
-
-#### Production
-
-#### Acceptance
-
-#### Development
+You can read my opinion on how we could use Nostr with Drupal: https://nostrver.se/blog/nostr-empowered-drupal-initiative
 
 ## Security checks
 
