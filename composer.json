@@ -59,7 +59,6 @@
     "drupal/pwa": "^2.1@beta",
     "drupal/raven": "^7.0",
     "drupal/redirect": "^1.9",
-    "drupal/refreshless": "^2.0@alpha",
     "drupal/sodium": "^3.0",
     "drupal/swiper_formatter": "^2.0@alpha",
     "drupal/symfony_mailer": "^1.2@beta",
