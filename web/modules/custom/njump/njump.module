@@ -5,7 +5,14 @@ use Drupal\Core\Url;
 use Drupal\paragraphs\Entity\Paragraph;
 use swentel\nostr\Event\Event;
 use swentel\nostr\Event\Profile\Profile;
+use swentel\nostr\Filter\Filter;
+use swentel\nostr\Message\RequestMessage;
 use swentel\nostr\Nip19\Nip19Helper;
+use swentel\nostr\Relay\Relay;
+use swentel\nostr\Relay\RelaySet;
+use swentel\nostr\RelayResponse\RelayResponseEvent;
+use swentel\nostr\Request\Request;
+use swentel\nostr\Subscription\Subscription;
 
 /**
  * @file
@@ -129,8 +136,36 @@ function njump_preprocess_field__field_nostr_content(&$variables): void {
     $variables['reply_to'] = $tags['e']['value'];
   }
   if ($kind === '1' && isset($tags['a'])) {
-    // @TODO fetch event with d-tag identifier so we can use the event id as a variable
-    $variables['reply_to'] = $tags['a']['value'];
+    // Fetch event with d-tag identifier so we can use the event id as a variable.
+    [$a_kind, $a_pubkey, $a_dtag] = explode(':', $tags['a']['value'], 3);
+    $a_kind = (int)$a_kind;
+    $subscription = new Subscription();
+    $filter1 = new Filter();
+    $filter1->setKinds([$a_kind]);
+    $filter1->setAuthors([$a_pubkey]);
+    $filter1->setTag('#d', [$a_dtag]);
+    $filter1->setLimit(1);
+    $requestMessage = new RequestMessage($subscription->getId(), [$filter1]);
+    $relaySet = new RelaySet();
+    $relaySet->addRelay(new Relay('wss://relay.damus.io'));
+    // If a relay hint is set, also use this relay to fetch the event.
+    if (isset($tags['r'])) {
+      $relay_hint = $tags['r']['value'];
+      $relay = new Relay($relay_hint);
+      $relaySet->addRelay($relay);
+    }
+    $request = new Request($relaySet, $requestMessage);
+    $response = $request->send();
+    foreach ($response as $relayResponses) {
+      foreach ($relayResponses as $relayUrl => $message) {
+        if ($message instanceof RelayResponseEvent) {
+          $event = $message->event;
+          $reply_to_event_id = $event->id;
+          break 2;
+        }
+      }
+    }
+    $variables['reply_to'] = $reply_to_event_id ?? $tags['a']['value'];
   }
   // TODO, can we build a tread with the parent event (root) and all reactions?
 
