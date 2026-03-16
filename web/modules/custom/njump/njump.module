@@ -49,6 +49,32 @@ function njump_preprocess_node__nostr_event(&$variables): void {
   $variables['npub'] = $nip19->encodeNpub($pubkey_author);
   $variables['nprofile'] = $nip19->encodeProfile($profile);
   $variables['profile'] = $profile;
+  // Used in njump_page_attachments_alter.
+  $tempstore = \Drupal::service('tempstore.private')->get('njump');
+  $tempstore->set('author', $profile->name ?? $profile->display_name);
+}
+
+/**
+ * Implements hook_page_attachments_alter().
+ */
+function njump_page_attachments_alter(array &$attachments):void {
+  $node = \Drupal::routeMatch()->getParameter('node');
+  if ($node && $node->getType() === 'nostr_event') {
+    $tempstore = \Drupal::service('tempstore.private')->get('njump');
+    $author = $tempstore->get('author');
+    // Find and update the author meta tag
+    foreach ($attachments['#attached']['html_head'] as &$head_element) {
+      if (
+        isset($head_element[0]['#attributes']['name']) &&
+        $head_element[0]['#attributes']['name'] === 'author'
+      ) {
+        $head_element[0]['#attributes']['content'] = $author;
+        break;
+      }
+      }
+    // Clean up the temporary value
+    $tempstore->delete('author');
+  }
 }
 
 /**
@@ -134,14 +160,8 @@ function njump_preprocess_field__field_nostr_content(&$variables): void {
     }
   }
 
-  /*
-   * TODO replace external links to HTML link elements
-   */
-  $replace_links_pattern = '/http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w\- .\/?%&=]*)?/';
-  $context = preg_replace($replace_links_pattern, '<a href="$0">$0</a>', $context);
-
   /**
-   * TODO replace links to media with elements to embed this content
+   * Replace links to media with elements to embed this content
    */
   $image_extensions = [
     'jpg',
@@ -171,6 +191,12 @@ function njump_preprocess_field__field_nostr_content(&$variables): void {
       $context = _replaceVideoLinks($context, $matches[0]);
     }
   }
+
+  /*
+ * TODO replace external links to HTML link elements
+ */
+  $replace_links_pattern = '/(?<!src="|href="|alt=")(?<!src=\')(?<!href=\')(?<!alt=\')\bhttp(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w\- .\/?%&=]*)?(?!["\'][^<]*>|\s*["\'][^<]*>)/';
+  $context = preg_replace($replace_links_pattern, '<a href="$0">$0</a>', $context);
 
   /**
    * Render Markup formatted content to HTML (kind 30023 and 30024)

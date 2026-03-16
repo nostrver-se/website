@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8bb0e393bafde4f821e923c49577bd9a",
+    "content-hash": "d3428c572314c224505fd6ab7dc8156f",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2518,6 +2518,69 @@
                     "url": "https://paypal.me/saschaeggi"
                 }
             ]
+        },
+        {
+            "name": "drupal/hux",
+            "version": "1.8.1",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/hux.git",
+                "reference": "1.8.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/hux-1.8.1.zip",
+                "reference": "1.8.1",
+                "shasum": "0650938576fc973e280c4108a274035f9b430e3f"
+            },
+            "require": {
+                "drupal/core": "^11.1",
+                "php": ">=8.3"
+            },
+            "require-dev": {
+                "composer/installers": "2.x-dev",
+                "dealerdirect/phpcodesniffer-composer-installer": "^1",
+                "drupal/core-dev": ">=11",
+                "micheh/phpcs-gitlab": "^1.1",
+                "mockery/mockery": "^1.5",
+                "phpstan/extension-installer": "^1.3",
+                "phpstan/phpstan": "^1.11",
+                "phpstan/phpstan-deprecation-rules": "*",
+                "phpstan/phpstan-mockery": "*",
+                "phpstan/phpstan-strict-rules": "^1@stable",
+                "previousnext/coding-standard": "^1.1"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "1.8.1",
+                    "datestamp": "1747299579",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                },
+                "installer-paths": {
+                    "web/core": [
+                        "type:drupal-core"
+                    ]
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "dpi",
+                    "homepage": "https://www.drupal.org/user/81431"
+                }
+            ],
+            "description": "New hooks",
+            "homepage": "https://www.drupal.org/project/hux",
+            "support": {
+                "source": "https://git.drupalcode.org/project/hux"
+            }
         },
         {
             "name": "drupal/key",

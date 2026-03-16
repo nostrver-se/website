@@ -1,0 +1,16 @@
+uuid: 16ba79d9-80ff-4544-8ea6-a491bd6e8cf5
+langcode: en
+status: true
+dependencies: {  }
+id: node__nostr_event
+label: 'Content: Nostr event'
+tags:
+  author: '[node:field_nostr_pubkey]'
+  canonical_url: '[node:url]'
+  description: '[node:field_nostr_content]'
+  og_description: '[node:field_nostr_content]'
+  og_site_name: '[site:name]'
+  og_title: '[node:title]'
+  og_url: '[node:url]'
+  robots: index
+  title: '[node:title] | [site:name]'

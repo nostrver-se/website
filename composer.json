@@ -41,6 +41,7 @@
     "drupal/gin": "^5.0",
     "drupal/gin_login": "^2.0",
     "drupal/gin_toolbar": "^3.0",
+    "drupal/hux": "^1.8",
     "drupal/markdown_easy": "^2.0",
     "drupal/masquerade": "^2.0@RC",
     "drupal/matomo": "^2.0@alpha",
