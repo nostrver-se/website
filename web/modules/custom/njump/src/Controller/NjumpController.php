@@ -238,7 +238,7 @@ final class NjumpController extends ControllerBase {
       throw new NotFoundHttpException('Could not find any event.');
     }
     // If $event seems to be an array...
-    if (is_array($event)) {
+    if (isset($message) && is_array($event)) {
       if (!isset($event['createdAt']) || !isset($event['id'])) {
         $msg = '';
         if (is_array($message) && $message[0] === 'ERROR') {
@@ -247,12 +247,11 @@ final class NjumpController extends ControllerBase {
         if (isset($message->message) || $message instanceof RelayResponse) {
           $msg = $message->message;
         }
-        \Drupal::messenger()->addError('The relay '.$relay ?? $relayUrl.' could not serve the requested event. Message from the relay: ' . $msg);
-        throw new NotFoundHttpException();
+        \Drupal::messenger()->addError(sprintf('The relay %s could not serve the requested event. Message from the relay: %s ', $relay->getUrl() ?? $relayUrl, $msg));
       } else {
         \Drupal::messenger()->addError('The Nostr event is processed as an array. This means something has gone wrong on our side.');
-        throw new NotFoundHttpException();
       }
+      throw new NotFoundHttpException();
     }
 
     // If $event is not an instance of the Nostr event class...
