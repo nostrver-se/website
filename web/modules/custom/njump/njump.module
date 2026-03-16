@@ -59,7 +59,7 @@ function njump_preprocess_node__nostr_event(&$variables): void {
  */
 function njump_page_attachments_alter(array &$attachments):void {
   $node = \Drupal::routeMatch()->getParameter('node');
-  if ($node && $node->getType() === 'nostr_event') {
+  if ($node && $node->bundle() === 'nostr_event') {
     $tempstore = \Drupal::service('tempstore.private')->get('njump');
     $author = $tempstore->get('author');
     // Find and update the author meta tag
@@ -134,7 +134,7 @@ function njump_preprocess_field__field_nostr_content(&$variables): void {
   }
   // TODO, can we build a tread with the parent event (root) and all reactions?
 
-  /*
+  /**
    * Check which identifiers we can replace in the content string
    * See NIP-21 - https://nips.nostr.com/21
    * nostr:npub1
@@ -177,11 +177,11 @@ function njump_preprocess_field__field_nostr_content(&$variables): void {
     }
   }
 
-  /*
+  /**
    * TODO replace hashtags with HTML link elements
    */
 
-  /*
+  /**
    * Replace links with video's
    */
   $video_extensions = ['mp4'];
@@ -192,9 +192,9 @@ function njump_preprocess_field__field_nostr_content(&$variables): void {
     }
   }
 
-  /*
- * TODO replace external links to HTML link elements
- */
+  /**
+   * Replace external links to HTML link elements
+   */
   $replace_links_pattern = '/(?<!src="|href="|alt=")(?<!src=\')(?<!href=\')(?<!alt=\')\bhttp(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w\- .\/?%&=]*)?(?!["\'][^<]*>|\s*["\'][^<]*>)/';
   $context = preg_replace($replace_links_pattern, '<a href="$0">$0</a>', $context);
 
@@ -243,6 +243,12 @@ function _replaceImageLinks(string $context, array $matches): string {
   return $context;
 }
 
+/**
+ * @param string $context
+ * @param array $matches
+ *
+ * @return string
+ */
 function _replaceVideoLinks(string $context, array $matches): string {
   foreach ($matches as $match) {
     $url = Url::fromUri($match);

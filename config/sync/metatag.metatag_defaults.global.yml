@@ -8,7 +8,9 @@ id: global
 label: Global
 tags:
   canonical_url: '[current-page:url]'
-  image_src: /themes/custom/nostrverse/images/nostrverse-meta-image.jpg
-  og_image_url: /themes/custom/nostrverse/images/nostrverse-meta-image.jpg
+  image_src: 'https://nostrver.se/themes/custom/nostrverse/images/nostrverse-meta-image.jpg'
+  og_image: 'https://nostrver.se/themes/custom/nostrverse/images/nostrverse-meta-image.jpg'
+  og_image_secure_url: 'https://nostrver.se/themes/custom/nostrverse/images/nostrverse-meta-image.jpg'
+  og_image_url: 'https://nostrver.se/themes/custom/nostrverse/images/nostrverse-meta-image.jpg'
   robots: index
   title: '[current-page:title] | [site:name]'
