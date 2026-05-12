@@ -2,6 +2,8 @@ uuid: b00a2d9c-743f-4e70-ae56-8c8519a7f459
 langcode: en
 status: true
 dependencies:
+  config:
+    - node.type.note
   module:
     - node
 id: note
@@ -12,7 +14,6 @@ selection_criteria:
   4324c16b-63b9-4b0b-8864-0bc223821412:
     id: 'entity_bundle:node'
     negate: false
-    uuid: 4324c16b-63b9-4b0b-8864-0bc223821412
     context_mapping:
       node: node
     bundles:

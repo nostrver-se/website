@@ -2,6 +2,8 @@ uuid: fdda1f04-7089-4915-98cb-21bd249dd796
 langcode: en
 status: true
 dependencies:
+  config:
+    - node.type.nostr_event
   module:
     - node
 id: nostr_event
@@ -12,7 +14,6 @@ selection_criteria:
   360b537a-b506-4d02-bdf5-a2db9d80fc83:
     id: 'entity_bundle:node'
     negate: false
-    uuid: 360b537a-b506-4d02-bdf5-a2db9d80fc83
     context_mapping:
       node: node
     bundles:
