@@ -55,6 +55,18 @@ build:drupal:
       - web
       - vendor
 
+validate:composer-lint:
+  rules:
+    - changes:
+        - composer.json
+        - composer.lock
+  stage: validate
+  dependencies:
+    - build:drupal
+  script:
+    - composer --version
+    - composer validate
+
 deploy:prd:
   rules:
     - if: '$CI_COMMIT_BRANCH == "develop"'
@@ -68,8 +80,8 @@ deploy:prd:
     name: prd
     url: $URL
   script:
-    - rsync -avz -e composer.json $SSH_USER@$SSH_HOST:$DRUPAL_PROJECTROOT
-    - rsync -avz -e composer.lock $SSH_USER@$SSH_HOST:$DRUPAL_PROJECTROOT
+    - rsync -avz -e ssh composer.json $SSH_USER@$SSH_HOST:$DRUPAL_PROJECTROOT
+    - rsync -avz -e ssh composer.lock $SSH_USER@$SSH_HOST:$DRUPAL_PROJECTROOT
     - rsync -avz --delete --exclude-from='gitlab-ci/rsync-excludes.txt' -e ssh ./config $SSH_USER@$SSH_HOST:$DRUPAL_PROJECTROOT
     - rsync -avz --delete --exclude-from='gitlab-ci/rsync-excludes.txt' -e ssh ./vendor $SSH_USER@$SSH_HOST:$DRUPAL_PROJECTROOT
     - rsync -avz --delete --exclude-from='gitlab-ci/rsync-excludes.txt' -e ssh ./web $SSH_USER@$SSH_HOST:$DRUPAL_PROJECTROOT
