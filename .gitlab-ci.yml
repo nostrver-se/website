@@ -16,6 +16,7 @@ workflow:
 
 stages:
   - build
+  - validate
   - deploy
 
 before_script:
