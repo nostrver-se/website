@@ -1,9 +1,9 @@
-image: php:8.4-alpine
+image: php:8.5-alpine
 
 variables:
-  DRUPAL_PROJECTROOT: "/var/www/nostrver.se"
+  DRUPAL_PROJECTROOT: "/var/www/vhosts/sebastix.nl/nostrver.se"
   URL: "https://nostrver.se"
-  SSH_LOGIN: "ssh -T -p 1986 sebastix@nostrver.se"
+  SSH_LOGIN: "ssh -T sebastix@nostrver.se"
   SSH_USER: "sebastix"
   SSH_HOST: "nostrver.se"
 
@@ -22,7 +22,7 @@ before_script:
   - 'which ssh-agent || ( apk add --update openssh )'
   - apk add --update bash
   - eval $(ssh-agent -s)
-  - echo "$SSH_PRIVATE_KEY_TINYPC" | ssh-add -
+  - echo "$SSH_PRIVATE_KEY_PROD" | ssh-add -
   - mkdir -p ~/.ssh
   - chmod 700 ~/.ssh
   - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
@@ -48,6 +48,7 @@ build:drupal:
   stage: build
   script:
     - composer install --no-dev --prefer-dist --optimize-autoloader
+    - composer patches-repatch
   artifacts:
     expire_in: 4 hours
     paths:
@@ -69,9 +70,9 @@ deploy:prd:
   script:
     - rsync -avz -e 'ssh -p 1986' composer.json $SSH_USER@$SSH_HOST:$DRUPAL_PROJECTROOT
     - rsync -avz -e 'ssh -p 1986' composer.lock $SSH_USER@$SSH_HOST:$DRUPAL_PROJECTROOT
-    - rsync -avz --delete --exclude-from='gitlab-ci/rsync-excludes.txt' -e 'ssh -p 1986' ./config $SSH_USER@$SSH_HOST:$DRUPAL_PROJECTROOT
-    - rsync -avz --delete --exclude-from='gitlab-ci/rsync-excludes.txt' -e 'ssh -p 1986' ./vendor $SSH_USER@$SSH_HOST:$DRUPAL_PROJECTROOT
-    - rsync -avz --delete --exclude-from='gitlab-ci/rsync-excludes.txt' -e 'ssh -p 1986' ./web $SSH_USER@$SSH_HOST:$DRUPAL_PROJECTROOT
+    - rsync -avz --delete --exclude-from='gitlab-ci/rsync-excludes.txt' -e 'ssh' ./config $SSH_USER@$SSH_HOST:$DRUPAL_PROJECTROOT
+    - rsync -avz --delete --exclude-from='gitlab-ci/rsync-excludes.txt' -e 'ssh' ./vendor $SSH_USER@$SSH_HOST:$DRUPAL_PROJECTROOT
+    - rsync -avz --delete --exclude-from='gitlab-ci/rsync-excludes.txt' -e 'ssh' ./web $SSH_USER@$SSH_HOST:$DRUPAL_PROJECTROOT
     # - $SSH_LOGIN "chown -R sebastix:www-data $DRUPAL_PROJECTROOT"
     - $SSH_LOGIN "cd $DRUPAL_PROJECTROOT && vendor/bin/drush updatedb -y --no-cache-clear"
     - $SSH_LOGIN "cd $DRUPAL_PROJECTROOT && vendor/bin/drush cache-rebuild -y"

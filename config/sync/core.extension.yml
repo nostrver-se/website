@@ -26,7 +26,6 @@ module:
   filter: 0
   gin_login: 0
   gin_toolbar: 0
-  history: 0
   image: 0
   key: 0
   link: 0

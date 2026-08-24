@@ -41,6 +41,7 @@
 /web/.htaccess
 /web/.ht.router.php
 /web/autoload.php
+/web/autoload_runtime.php
 /web/composer.json
 /web/composer.lock
 /web/example.gitignore
@@ -76,3 +77,4 @@
 /docker/drupal/*.settings.local.php
 *.sql
 .DS_Store
+backup

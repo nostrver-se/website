@@ -25,7 +25,7 @@
   "require": {
     "ext-json": "*",
     "composer/installers": "^2.2",
-    "cweagans/composer-patches": "^1.7",
+    "cweagans/composer-patches": "^2.0",
     "drupal/admin_dialogs": "^1.0",
     "drupal/admin_toolbar": "^3.2",
     "drupal/backup_migrate": "^5.0",
@@ -153,11 +153,8 @@
     },
     "enable-patching": true,
     "patches": {
-        "drupal/core": {
-            "[warning] No configuration objects have been updated - https://www.drupal.org/project/drupal/issues/2957279#comment-14355237" : "https://www.drupal.org/files/issues/2022-01-03/2957279-11.patch"
-        },
         "drupal/path_alias_length": {
-            "#3433866 D11" : "https://www.drupal.org/files/issues/2024-03-24/path_alias_length.1.0.0-beta3.rector.patch"
+            "#3433866 D11" : "patches/path_alias_length.1.0.0-beta3.rector.patch"
         }
     },
     "patchLevel": {

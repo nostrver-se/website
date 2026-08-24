@@ -1,0 +1,17 @@
+{
+    "_hash": "f032704ddfef19c3645ed08c74e4f29f055338e16bec07b97f3e23dfcbdb7ad7",
+    "patches": {
+        "drupal/path_alias_length": [
+            {
+                "package": "drupal/path_alias_length",
+                "description": "#3433866 D11",
+                "url": "patches/path_alias_length.1.0.0-beta3.rector.patch",
+                "sha256": "9ca84dbbe33d4cbdae927f3f1077f92613b8c52519544fcf23aef71ee22a9d03",
+                "depth": 1,
+                "extra": {
+                    "provenance": "root"
+                }
+            }
+        ]
+    }
+}

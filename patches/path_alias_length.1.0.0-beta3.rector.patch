@@ -1,0 +1,13 @@
+diff --git a/path_alias_length.info.yml b/path_alias_length.info.yml
+index ea4e018..1156fd8 100644
+--- a/path_alias_length.info.yml
++++ b/path_alias_length.info.yml
+@@ -1,7 +1,7 @@
+ name: Path alias length
+ type: module
+ description: 'Allows longer length for path aliases, up to 1024 characters'
+-core_version_requirement: ^9 || ^10
++core_version_requirement: ^9 || ^10 || ^11
+
+ dependencies:
+   - drupal:path_alias

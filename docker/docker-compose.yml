@@ -4,7 +4,7 @@
 services:
 
   nostrverse_drupal:
-    image: sebastix/drupal:11-php84-apache-amd64
+    image: sebastix/drupal:11-php85-apache
     hostname: nostrverse_drupal
     container_name: nostrverse_drupal
     ports:
