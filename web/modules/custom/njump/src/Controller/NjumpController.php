@@ -121,7 +121,7 @@ final class NjumpController extends ControllerBase {
           $event['pubkey'] = $decoded['author'];
         }
         if (isset($decoded['kind'])) {
-          $event['kind'] = $decoded['kind'];
+          $event['kind'] = (int)$decoded['kind'];
         }
         break;
       case 'nprofile':
@@ -181,6 +181,7 @@ final class NjumpController extends ControllerBase {
           new Relay('wss://nos.lol'),
           new Relay('wss://relay.damus.io'),
           new Relay('wss://relay.primal.net'),
+          new Relay('wss://relay.ditto.pub')
         ];
       }
     }

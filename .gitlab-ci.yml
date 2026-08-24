@@ -68,20 +68,20 @@ deploy:prd:
     name: prd
     url: $URL
   script:
-    - rsync -avz -e 'ssh -p 1986' composer.json $SSH_USER@$SSH_HOST:$DRUPAL_PROJECTROOT
-    - rsync -avz -e 'ssh -p 1986' composer.lock $SSH_USER@$SSH_HOST:$DRUPAL_PROJECTROOT
-    - rsync -avz --delete --exclude-from='gitlab-ci/rsync-excludes.txt' -e 'ssh' ./config $SSH_USER@$SSH_HOST:$DRUPAL_PROJECTROOT
-    - rsync -avz --delete --exclude-from='gitlab-ci/rsync-excludes.txt' -e 'ssh' ./vendor $SSH_USER@$SSH_HOST:$DRUPAL_PROJECTROOT
-    - rsync -avz --delete --exclude-from='gitlab-ci/rsync-excludes.txt' -e 'ssh' ./web $SSH_USER@$SSH_HOST:$DRUPAL_PROJECTROOT
+    - rsync -avz -e composer.json $SSH_USER@$SSH_HOST:$DRUPAL_PROJECTROOT
+    - rsync -avz -e composer.lock $SSH_USER@$SSH_HOST:$DRUPAL_PROJECTROOT
+    - rsync -avz --delete --exclude-from='gitlab-ci/rsync-excludes.txt' -e ssh ./config $SSH_USER@$SSH_HOST:$DRUPAL_PROJECTROOT
+    - rsync -avz --delete --exclude-from='gitlab-ci/rsync-excludes.txt' -e ssh ./vendor $SSH_USER@$SSH_HOST:$DRUPAL_PROJECTROOT
+    - rsync -avz --delete --exclude-from='gitlab-ci/rsync-excludes.txt' -e ssh ./web $SSH_USER@$SSH_HOST:$DRUPAL_PROJECTROOT
     # - $SSH_LOGIN "chown -R sebastix:www-data $DRUPAL_PROJECTROOT"
-    - $SSH_LOGIN "cd $DRUPAL_PROJECTROOT && vendor/bin/drush updatedb -y --no-cache-clear"
-    - $SSH_LOGIN "cd $DRUPAL_PROJECTROOT && vendor/bin/drush cache-rebuild -y"
-    - $SSH_LOGIN "cd $DRUPAL_PROJECTROOT && vendor/bin/drush config-import -y"
-    - $SSH_LOGIN "cd $DRUPAL_PROJECTROOT && vendor/bin/drush ckeditor5_markdown_editor:install"
+    - $SSH_LOGIN "$DRUPAL_PROJECTROOT/vendor/bin/drush updatedb -y --no-cache-clear"
+    - $SSH_LOGIN "$DRUPAL_PROJECTROOT/vendor/bin/drush cache-rebuild -y"
+    - $SSH_LOGIN "$DRUPAL_PROJECTROOT/vendor/bin/drush config-import -y"
+    - $SSH_LOGIN "$DRUPAL_PROJECTROOT/vendor/bin/drush ckeditor5_markdown_editor:install"
     # When module locale is enabled:
     #- $SSH_LOGIN "cd $DRUPAL_PROJECTROOT && vendor/bin/drush locale:check"
     #- $SSH_LOGIN "cd $DRUPAL_PROJECTROOT && vendor/bin/drush locale:update"
-    - $SSH_LOGIN "cd $DRUPAL_PROJECTROOT && vendor/bin/drush core-cron"
-    - $SSH_LOGIN "cd $DRUPAL_PROJECTROOT && vendor/bin/drush cache-rebuild -y"
-    - $SSH_LOGIN "cd $DRUPAL_PROJECTROOT && vendor/bin/drush deploy:hook"
+    - $SSH_LOGIN "$DRUPAL_PROJECTROOT/vendor/bin/drush core-cron"
+    - $SSH_LOGIN "$DRUPAL_PROJECTROOT/vendor/bin/drush cache-rebuild -y"
+    - $SSH_LOGIN "$DRUPAL_PROJECTROOT/vendor/bin/drush deploy:hook"
     - echo "Deployment ready, check $URL"
