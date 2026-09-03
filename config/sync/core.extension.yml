@@ -55,6 +55,8 @@ module:
   path_alias_length: 0
   redirect_after_login: 0
   sodium: 0
+  swiper_formatter: 0
+  swiper_formatter_ckeditor: 0
   symfony_mailer: 0
   system: 0
   taxonomy: 0

@@ -23,11 +23,11 @@
 h1, h2, h3, h4, h5, h6 {
   @apply font-ubuntu-mono font-bold;
 }
-p {
+div, p, ul, li, ol, small {
   @apply font-ubuntu;
 }
 header {
-  @apply w-full font-ubuntu bg-neutral-100 drop-shadow-sm mb-8;
+  @apply w-full font-ubuntu bg-neutral-100 drop-shadow-sm mb-4;
   .region-header {
     @apply px-0 py-0;
     .navbar {
@@ -38,33 +38,58 @@ header {
 
   }
 }
+nav.breadcrumb {
+  @apply mx-3 xl:mx-0 p-0;
+  ol > li {
+    @apply m-0;
+    > a {
+      @apply no-underline p-2;
+    }
+  }
+}
+body {
+  &.page-node-type-page {
+    article {
+      p img {
+        @apply max-w-1/2 md:max-w-full;
+      }
+    }
+  }
+  &.page-node-type-blog {
+    article {
+      p img {
+        @apply lg:w-1/2 lg:mx-auto mb-4 max-w-full rounded-2xl shadow-md/25;
+      }
+    }
+  }
+}
 main {
   @apply p-0;
   .layout-content {
     @apply mx-3 xl:mx-0;
     .block-page-title-block {
-      @apply mt-4 mb-8 mx-4 lg:mx-8;
+      @apply mt-4 mb-4 md:mb-8 mx-4 lg:mx-8;
     }
     article {
       @apply overflow-x-hidden bg-neutral-100 p-4 lg:p-8 rounded-4xl;
       div.node__content {
+        .field_image img {
+          @apply mx-auto rounded-sm;
+        }
         a {
           @apply font-bold;
         }
         p img {
-          @apply w-max lg:w-1/2 mb-4 max-w-max rounded-2xl shadow-md/25;
+          @apply rounded-2xl shadow-md/25;
         }
         & > div {
           @apply wrap-break-word;
         }
       }
       .node__meta {
-        @apply flex;
+        @apply flex gap-x-2 justify-center items-center;
         img {
-          @apply h-6 w-6 inline;
-        }
-        .node__submitted {
-          @apply ml-2 flex-1;
+          @apply size-5 inline;
         }
       }
       p > a,
@@ -72,13 +97,6 @@ main {
         @apply text-black underline-offset-1 decoration-1;
       }
     }
-  }
-}
-
-nav.breadcrumb {
-  @apply mx-3 xl:mx-0;
-  ol > li > a {
-    @apply no-underline;
   }
 }
 
@@ -117,5 +135,24 @@ footer {
   @apply w-full;
   .region-footer {
     @apply w-full;
+  }
+}
+
+#block-nostrverse-views-block-blog-block-1 {
+  h2 {
+    @apply text-3xl mt-4;
+  }
+  .swiper-slide {
+    article {
+      h2 {
+        @apply text-lg;
+      }
+      p {
+        @apply text-sm truncate;
+      }
+      footer {
+        @apply hidden;
+      }
+    }
   }
 }

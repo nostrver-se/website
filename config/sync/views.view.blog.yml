@@ -8,6 +8,7 @@ dependencies:
     - system.menu.main
   module:
     - node
+    - swiper_formatter
     - user
 id: blog
 label: Blog
@@ -77,7 +78,7 @@ display:
         options:
           offset: 0
           pagination_heading_level: h3
-          items_per_page: 50
+          items_per_page: 10
           total_pages: null
           id: 0
           tags:
@@ -182,6 +183,53 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url.query_args
+        - 'user.node_grants:view'
+        - user.permissions
+      tags: {  }
+  block_1:
+    id: block_1
+    display_title: 'Swiper blog items'
+    display_plugin: block
+    position: 3
+    display_options:
+      pager:
+        type: some
+        options:
+          offset: 0
+          items_per_page: 10
+      style:
+        type: swiper_formatter
+        options:
+          uses_fields: false
+          template: default
+          swiper: null
+      row:
+        type: 'entity:node'
+        options:
+          relationship: none
+          view_mode: blog_teaser
+      defaults:
+        pager: false
+        style: false
+        row: false
+      display_description: ''
+      display_extenders:
+        matomo:
+          enabled: false
+          keyword_gets: ''
+          keyword_behavior: first
+          keyword_concat_separator: ' '
+          category_behavior: none
+          category_gets: ''
+          category_concat_separator: ' '
+          category_fallback: ''
+          category_facets: {  }
+          category_facets_concat_separator: ', '
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
         - 'user.node_grants:view'
         - user.permissions
       tags: {  }

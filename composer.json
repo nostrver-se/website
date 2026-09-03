@@ -63,7 +63,7 @@
     "drupal/redirect": "^1.9",
     "drupal/redirect_after_login": "^3.0",
     "drupal/sodium": "^3.0",
-    "drupal/swiper_formatter": "^2.0@alpha",
+    "drupal/swiper_formatter": "^3.1.x-dev",
     "drupal/symfony_mailer": "^1.2@beta",
     "drupal/tailwindcss": "^5.0@alpha",
     "drupal/twig_tweak": "^3.2",

@@ -46,14 +46,14 @@
 
 {% if label_hidden %}
   {% if multiple %}
-    <div{{ attributes.addClass('my-2') }}>
+    <div{{ attributes.addClass('my-2', field_name) }}>
       {% for item in items %}
         <div{{ item.attributes }}>{{ item.content }}</div>
       {% endfor %}
     </div>
   {% else %}
     {% for item in items %}
-      <div{{ attributes.addClass('my-2') }}>{{ item.content }}</div>
+      <div{{ attributes.addClass('my-2', field_name) }}>{{ item.content }}</div>
     {% endfor %}
   {% endif %}
 {% else %}

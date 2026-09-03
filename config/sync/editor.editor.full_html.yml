@@ -27,6 +27,8 @@ settings:
       - '|'
       - blockQuote
       - drupalInsertImage
+      - drupalMedia
+      - swiperCkeditor
       - insertTable
       - horizontalLine
       - '|'
@@ -94,8 +96,14 @@ settings:
         startIndex: true
         styles: true
       multiBlock: true
+    ckeditor5_markdown_editor_markdown_gfm:
+      markdown_output: false
     ckeditor5_sourceEditing:
       allowed_tags: {  }
+    media_media:
+      allow_view_mode_override: false
+    swiper_formatter_ckeditor_swiper_ckeditor:
+      template: default
 image_upload:
   status: true
   scheme: public

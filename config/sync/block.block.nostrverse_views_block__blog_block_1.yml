@@ -1,0 +1,29 @@
+uuid: 83ad3bcb-d560-4547-a014-5ad2e58cfa38
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.blog
+  module:
+    - system
+    - views
+  theme:
+    - nostrverse
+id: nostrverse_views_block__blog_block_1
+theme: nostrverse
+region: content
+weight: 0
+provider: null
+plugin: 'views_block:blog-block_1'
+settings:
+  id: 'views_block:blog-block_1'
+  label: ''
+  label_display: visible
+  provider: views
+  views_label: ''
+  items_per_page: null
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: '<front>'

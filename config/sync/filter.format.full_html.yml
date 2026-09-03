@@ -2,9 +2,12 @@ uuid: d5ebbc5f-ec03-47bb-a347-61a01b32d579
 langcode: en
 status: true
 dependencies:
+  config:
+    - core.entity_view_mode.media.media_library
   module:
     - editor
-    - markdown_easy
+    - media
+    - swiper_formatter_ckeditor
 _core:
   default_config_hash: vpZysv3RHJjhYzq7O_q5q8mVlHdrSzKELmXyiX6RtV0
 name: 'Full HTML'
@@ -32,10 +35,10 @@ filters:
   filter_html:
     id: filter_html
     provider: filter
-    status: false
+    status: true
     weight: -10
     settings:
-      allowed_html: ''
+      allowed_html: '<br> <p> <h2> <h3> <h4> <h5> <h6> <strong> <em> <pre> <code class="language-*"> <s> <sub> <sup> <blockquote> <a href> <ul type> <ol type reversed start> <li> <hr> <table> <tr> <td rowspan colspan> <th rowspan colspan> <thead> <tbody> <tfoot> <caption> <img src alt height width data-entity-uuid data-entity-type data-caption data-align> <drupal-media data-entity-type data-entity-uuid alt data-caption data-align> <swiper-container class id data-swiper data-swiper-changed> <swiper-wrapper class> <swiper-slide class> <swiper-navigation-prev class> <swiper-navigation-next class> <swiper-pagination class> <swiper-scrollbar class>'
       filter_html_help: true
       filter_html_nofollow: false
   filter_htmlcorrector:
@@ -50,11 +53,20 @@ filters:
     status: true
     weight: 15
     settings: {  }
-  markdown_easy:
-    id: markdown_easy
-    provider: markdown_easy
-    status: false
-    weight: 0
+  media_embed:
+    id: media_embed
+    provider: media
+    status: true
+    weight: 100
     settings:
-      flavor: standard
-      tips: ''
+      default_view_mode: default
+      allowed_view_modes:
+        media_library: media_library
+      allowed_media_types:
+        image: image
+  swiper_formatter_swiper:
+    id: swiper_formatter_swiper
+    provider: swiper_formatter_ckeditor
+    status: true
+    weight: 0
+    settings: {  }
