@@ -69,6 +69,7 @@
 /private
 /web/modules/contrib/
 /web/themes/contrib/
+/web/themes/custom/*/css/*.css
 /web/README.md
 /nostr
 /web/libraries/*

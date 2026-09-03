@@ -39,6 +39,8 @@ before_script:
   - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
   - alias composer='php /usr/bin/composer'
   - composer --version
+  # Install nodejs and npm
+  - apk add --update nodejs npm
   # install php extensions
   # - see https://github.com/mlocati/docker-php-extension-installer
   - curl -sSLf -o /usr/bin/install-php-extensions https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions
@@ -50,6 +52,9 @@ build:drupal:
   script:
     - composer install --no-dev --prefer-dist --optimize-autoloader
     - composer patches-repatch
+    - cd web/themes/custom/nostrverse
+    - npm install
+    - npm run build
   artifacts:
     expire_in: 4 hours
     paths:
